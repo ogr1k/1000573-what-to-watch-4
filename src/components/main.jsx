@@ -59,7 +59,7 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img src={filmImage} alt={filmName} width="218" height="327"/>
-            </div>7
+            </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{filmName}</h2>
               <p className="movie-card__meta">
