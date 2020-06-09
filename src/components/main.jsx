@@ -3,7 +3,7 @@ import React from "react";
 
 const Main = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {filmName, filmGenre, filmDate} = props;
+  const {filmName, filmGenre, filmDate, filmImage} = props;
 
   return (
       <>
@@ -58,9 +58,8 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-            </div>
-
+              <img src={filmImage} alt={filmName} width="218" height="327"/>
+            </div>7
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{filmName}</h2>
               <p className="movie-card__meta">
