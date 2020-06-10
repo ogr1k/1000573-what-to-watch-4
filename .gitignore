@@ -10,3 +10,10 @@ Thumbs.db
 # Вспомогательные файлы
 *.log*
 node_modules/
+
+#Плагин студента
+.history
+
+# Файлы сборки
+public/bundle.js
+public/bundle.js.map
