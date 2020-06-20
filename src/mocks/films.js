@@ -1,0 +1,18 @@
+export default [
+  {name: `Jojo Rabbit`,
+    poster: `https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg`},
+  {name: `Jumanji: The Next Level`,
+    poster: `https://i.pinimg.com/736x/84/d7/a3/84d7a36e7d81fd1d3f3c88fea0012100.jpg`},
+  {name: `Avengers: Infinity War`,
+    poster: `https://i.pinimg.com/736x/8c/1e/eb/8c1eebf7a60be8940f9ca753de0dd956.jpg`},
+  {name: `Top Gun`,
+    poster: `https://images-na.ssl-images-amazon.com/images/I/5111BanI82L._AC_.jpg`},
+  {name: `Birdman or (The Unexpected Virtue of Ignorance)`,
+    poster: `https://www.kino-teatr.ru/movie/posters/big/9/111029.jpg`},
+  {name: `Becky`,
+    poster: `https://cdna.artstation.com/p/assets/images/images/027/420/592/large/eddie-holly-becky-poster-lowires-credits.jpg?1591486757`},
+  {name: `Blitz`,
+    poster: `https://lh3.googleusercontent.com/proxy/00_Ecfny4aIJQ4DchEJPBiYm0cddx6kaef8VDYx-2-0H8Gpm1ib7UC-5xIEZFaCYh_yg39XpadeSB_kos5hzN890seWTBdvRQHHwMW0p2wKw`},
+  {name: `Harry Potter and the Half-Blood Prince`,
+    poster: `https://images-na.ssl-images-amazon.com/images/I/71Vkd-B5iSL._AC_SX425_.jpg`},
+];
