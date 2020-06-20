@@ -7,7 +7,7 @@ const Film = (props) => {
 
   return (
     <article className="small-movie-card catalog__movies-card">
-      <div className="small-movie-card__image" key={name + Math.round()} onMouseOver={onmouseover} onMouseOut={onmouseout}>
+      <div className="small-movie-card__image" onMouseOver={() => onmouseover(name)} onMouseOut={onmouseout}>
         <img src={image} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title" onClick={onClick}>

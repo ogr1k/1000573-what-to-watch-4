@@ -369,11 +369,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Jojo Rabbit"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -394,11 +396,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Jumanji: The Next Level"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -419,11 +423,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Avengers: Infinity War"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -444,11 +450,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Top Gun"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -469,11 +477,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Birdman or (The Unexpected Virtue of Ignorance)"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -494,11 +504,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Becky"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -519,11 +531,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Blitz"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>
@@ -544,11 +558,13 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Harry Potter and the Half-Blood Prince"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src=""
               width="280"
             />
           </div>

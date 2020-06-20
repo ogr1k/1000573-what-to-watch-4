@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Films-List 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Jojo Rabbit"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Jojo Rabbit
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Jumanji: The Next Level"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Jumanji: The Next Level
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Avengers: Infinity War"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Avengers: Infinity War
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Top Gun"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Top Gun
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Birdman or (The Unexpected Virtue of Ignorance)"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Birdman or (The Unexpected Virtue of Ignorance)
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Becky"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Becky
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Blitz"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Blitz
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        alt="Harry Potter and the Half-Blood Prince"
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+      onClick={[Function]}
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Harry Potter and the Half-Blood Prince
+      </a>
+    </h3>
+  </article>
+</div>
+`;

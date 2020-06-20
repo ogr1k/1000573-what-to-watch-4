@@ -20,8 +20,8 @@ class FilmsList extends PureComponent {
       <div className="catalog__movies-list">
         {films.map((film, index) =>
           <Film name={film.name} image={film.poster} onClick={onClick} key={index + film.name}
-            onmouseover={(evt) => (this.setState({
-              currentActiveFilm: evt.target.parentNode.querySelector(`a`).textContent
+            onmouseover={(name) => (this.setState({
+              currentActiveFilm: name
             }))}
             onmouseout={() => (this.setState({currentActiveFilm: ``}))}
           />

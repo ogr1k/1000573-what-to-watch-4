@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Film 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+>
+  <div
+    className="small-movie-card__image"
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    <img
+      alt="Jojo Rabbit"
+      height="175"
+      src=""
+      width="280"
+    />
+  </div>
+  <h3
+    className="small-movie-card__title"
+    onClick={[Function]}
+  >
+    <a
+      className="small-movie-card__link"
+      href="movie-page.html"
+    >
+      Jojo Rabbit
+    </a>
+  </h3>
+</article>
+`;
