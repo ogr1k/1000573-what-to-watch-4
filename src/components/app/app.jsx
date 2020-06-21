@@ -18,7 +18,7 @@ App.propTypes = {
   filmGenre: PropTypes.string.isRequired,
   filmDate: PropTypes.number.isRequired,
   filmImage: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.string).isRequired
+  films: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 

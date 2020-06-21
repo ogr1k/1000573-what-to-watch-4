@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import FilmsList from "./films-list/films-list.jsx";
 
 const Main = (props) => {
   const {filmName, filmGenre, filmDate, filmImage, films, onHeadClick} = props;
@@ -122,19 +123,7 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-
-            {films.map((film, index) => (
-              <article className="small-movie-card catalog__movies-card" key={film + index}>
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={film} width="280" height="175"/>
-                </div>
-                <h3 className="small-movie-card__title" onClick={onHeadClick}>
-                  <a className="small-movie-card__link" href="movie-page.html">{film}</a>
-                </h3>
-              </article>
-            ))}
-          </div>
+          < FilmsList films={films} onClick={onHeadClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -164,7 +153,7 @@ Main.propTypes = {
   filmGenre: PropTypes.string.isRequired,
   filmDate: PropTypes.number.isRequired,
   filmImage: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.string).isRequired,
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
   onHeadClick: PropTypes.func.isRequired
 };
 

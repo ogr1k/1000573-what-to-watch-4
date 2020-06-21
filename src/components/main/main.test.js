@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
-import {FILMS, PROMOFILM} from "../../constants.js";
+import {FILMS, PROMOFILM} from "../../mocks/test-mocks.js";
+
 
 const headClickHandler = () =>{};
 

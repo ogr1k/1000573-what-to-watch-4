@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main";
-import {FILMS, PROMOFILM} from "../../constants";
+import {FILMS, PROMOFILM} from "../../mocks/test-mocks.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
