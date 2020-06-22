@@ -19,8 +19,8 @@ export const film = {
   year: 1
 };
 
-export const FILMS = [];
+export const films = [];
 
 for (let i = 0; i < FILMS_MOCKS_QUANTITY; i++) {
-  FILMS[i] = film;
+  films[i] = film;
 }

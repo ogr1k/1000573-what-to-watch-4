@@ -29,12 +29,12 @@ const mock = [
   {name: `Becky`,
     poster: `https://cdna.artstation.com/p/assets/images/images/027/420/592/large/eddie-holly-becky-poster-lowires-credits.jpg?1591486757`},
   {name: `Blitz`,
-    poster: `https://lh3.googleusercontent.com/proxy/00_Ecfny4aIJQ4DchEJPBiYm0cddx6kaef8VDYx-2-0H8Gpm1ib7UC-5xIEZFaCYh_yg39XpadeSB_kos5hzN890seWTBdvRQHHwMW0p2wKw`},
+    poster: `https://i2.wp.com/3.bp.blogspot.com/-m9LqYdSS9FM/TebnkFbyvpI/AAAAAAAAABY/KwIqLjhmBF0/s1600/Blitz.jpg`},
   {name: `Harry Potter and the Half-Blood Prince`,
     poster: `https://images-na.ssl-images-amazon.com/images/I/71Vkd-B5iSL._AC_SX425_.jpg`},
 ];
 
-const setMockDescription = () => {
+const setMocks = () => {
   mock.map((element) => {
     element.description = getRandomText();
     element.year = getRandomInteger(1990, 2019);
@@ -47,7 +47,7 @@ const setMockDescription = () => {
 
 };
 
-setMockDescription();
+setMocks();
 
 
 export default mock;
