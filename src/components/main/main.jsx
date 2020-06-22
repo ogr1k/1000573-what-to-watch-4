@@ -123,7 +123,7 @@ const Main = (props) => {
             </li>
           </ul>
 
-          < FilmsList films={films} onClick={onHeadClick} />
+          <FilmsList films={films} onClick={onHeadClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -153,7 +153,17 @@ Main.propTypes = {
   filmGenre: PropTypes.string.isRequired,
   filmDate: PropTypes.number.isRequired,
   filmImage: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratings: PropTypes.number.isRequired,
+    starring: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
+  })).isRequired,
   onHeadClick: PropTypes.func.isRequired
 };
 
