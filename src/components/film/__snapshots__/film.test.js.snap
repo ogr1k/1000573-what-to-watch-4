@@ -3,6 +3,7 @@
 exports[`Render Film 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -12,17 +13,15 @@ exports[`Render Film 1`] = `
     <img
       alt="Jojo Rabbit"
       height="175"
-      src=""
+      src="https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg"
       width="280"
     />
   </div>
   <h3
     className="small-movie-card__title"
-    onClick={[Function]}
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
     >
       Jojo Rabbit
     </a>

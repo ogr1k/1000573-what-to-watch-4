@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmsList from "./films-list.jsx";
-import {FILMS} from "../../../mocks/test-mocks.js";
+import {FILMS} from "../../mocks/test-mocks.js";
 
 
 const cardClickHandler = () => {};

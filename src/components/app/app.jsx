@@ -1,17 +1,38 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
+import MoviePage from "../movie-page/movie-page.jsx";
 import PropTypes from "prop-types";
 
-const headClickHandler = () =>{};
+// const headClickHandler = () =>{};
 
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-const App = (props) => {
-  const {filmName, filmGenre, filmDate, filmImage, films} = props;
+    this.state = {
+      clickedFilm: ``
+    };
+  }
 
-  return (
-    <Main filmName={filmName} filmGenre={filmGenre} filmDate={filmDate} filmImage={filmImage} films={films} onHeadClick={headClickHandler}/>
-  );
-};
+  render() {
+    const {filmName, filmGenre, filmDate, filmImage, films} = this.props;
+
+    if (!this.state.clickedFilm) {
+      return (
+        <Main filmName={filmName} filmGenre={filmGenre} filmDate={filmDate} filmImage={filmImage} films={films}
+          onHeadClick={
+            (film) => this.setState({
+              clickedFilm: film
+            })
+          }/>
+      );
+    }
+
+    return (
+      <MoviePage film={this.state.clickedFilm}/>
+    );
+  }
+}
 
 App.propTypes = {
   filmName: PropTypes.string.isRequired,

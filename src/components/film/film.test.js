@@ -4,12 +4,19 @@ import Film from "./film.jsx";
 
 const film = {
   name: `Jojo Rabbit`,
-  poster: ``
+  poster: `https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg`,
+  description: ``,
+  director: ``,
+  genre: ``,
+  rating: 1,
+  ratings: 1,
+  starring: ``,
+  year: 1
 };
 
 it(`Render Film`, () => {
   const tree = renderer
-    .create(<Film name={film.name} image={film.poster} onClick={() => {}} onmouseover={() => {}}
+    .create(<Film film={film} onClick={() => {}} onmouseover={() => {}}
       onmouseout={() => {}}
     />)
     .toJSON();
