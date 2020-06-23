@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main";
-import {FILMS, PROMOFILM} from "../../mocks/test-mocks.js";
+import {films, PROMOFILM} from "../../mocks/test-mocks.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -14,7 +14,7 @@ it(`Should head button be pressed`, () => {
 
   const main = shallow(
       <Main
-        filmName={PROMOFILM.name} filmGenre={PROMOFILM.genre} filmDate={PROMOFILM.date} filmImage={PROMOFILM.image} films={FILMS}
+        filmName={PROMOFILM.name} filmGenre={PROMOFILM.genre} filmDate={PROMOFILM.date} filmImage={PROMOFILM.image} films={films}
         onHeadClick={onHeadClick}
       />
   );

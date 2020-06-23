@@ -5,7 +5,14 @@ import Film from "./film";
 
 const mock = {
   name: `Jojo Rabbit`,
-  poster: ``
+  poster: ``,
+  description: ``,
+  director: ``,
+  genre: ``,
+  rating: 1,
+  ratings: 1,
+  starring: ``,
+  year: 1
 };
 
 
@@ -18,7 +25,7 @@ it(`Should card be mouseovered`, () => {
   const mockFunction = jest.fn();
 
   const filmCard = shallow(
-      <Film name={mock.name} image={mock.poster} onClick={() => {}}
+      <Film film={mock} onClick={() => {}}
         onmouseover={mockFunction}
         onmouseout={() => {}}
       />
@@ -29,4 +36,21 @@ it(`Should card be mouseovered`, () => {
   filmDiv.simulate(`mouseover`);
 
   expect(mockFunction).toHaveBeenCalledWith(mock.name);
+});
+
+it(`Should card click hand data`, () => {
+  const mockFunction = jest.fn();
+
+  const filmCard = shallow(
+      <Film film={mock} onClick={mockFunction}
+        onmouseover={() => {}}
+        onmouseout={() => {}}
+      />
+  );
+
+  const filmArticle = filmCard.find(`.small-movie-card`);
+
+  filmArticle.simulate(`click`);
+
+  expect(mockFunction).toHaveBeenCalledWith(mock);
 });

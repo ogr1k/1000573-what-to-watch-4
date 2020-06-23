@@ -366,6 +366,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -381,11 +382,9 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Jojo Rabbit
             </a>
@@ -393,6 +392,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -400,7 +400,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Jumanji: The Next Level"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -408,18 +408,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Jumanji: The Next Level
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -427,7 +426,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Avengers: Infinity War"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -435,18 +434,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Avengers: Infinity War
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -454,7 +452,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Top Gun"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -462,18 +460,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Top Gun
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -481,7 +478,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Birdman or (The Unexpected Virtue of Ignorance)"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -489,18 +486,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Birdman or (The Unexpected Virtue of Ignorance)
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -508,7 +504,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Becky"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -516,18 +512,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Becky
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -535,7 +530,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Blitz"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -543,18 +538,17 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Blitz
+              Jojo Rabbit
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -562,7 +556,7 @@ Array [
             onMouseOver={[Function]}
           >
             <img
-              alt="Harry Potter and the Half-Blood Prince"
+              alt="Jojo Rabbit"
               height="175"
               src=""
               width="280"
@@ -570,13 +564,11 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Harry Potter and the Half-Blood Prince
+              Jojo Rabbit
             </a>
           </h3>
         </article>

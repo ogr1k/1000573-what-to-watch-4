@@ -1,3 +1,5 @@
+const FILMS_MOCKS_QUANTITY = 8;
+
 export const PROMOFILM = {
   name: `BATMAN`,
   genre: `ACTION`,
@@ -5,21 +7,20 @@ export const PROMOFILM = {
   image: `https://i1.wp.com/eisenhowerlibrary.org/wp-content/uploads/2018/04/Batman-Gotham-by-Gaslight-2018-movie-poster1-220x330.jpg`
 };
 
-export const FILMS = [
-  {name: `Jojo Rabbit`,
-    poster: ``},
-  {name: `Jumanji: The Next Level`,
-    poster: ``},
-  {name: `Avengers: Infinity War`,
-    poster: ``},
-  {name: `Top Gun`,
-    poster: ``},
-  {name: `Birdman or (The Unexpected Virtue of Ignorance)`,
-    poster: ``},
-  {name: `Becky`,
-    poster: ``},
-  {name: `Blitz`,
-    poster: ``},
-  {name: `Harry Potter and the Half-Blood Prince`,
-    poster: ``},
-];
+export const film = {
+  name: `Jojo Rabbit`,
+  poster: ``,
+  description: ``,
+  director: ``,
+  genre: ``,
+  rating: 1,
+  ratings: 1,
+  starring: ``,
+  year: 1
+};
+
+export const films = [];
+
+for (let i = 0; i < FILMS_MOCKS_QUANTITY; i++) {
+  films[i] = film;
+}
