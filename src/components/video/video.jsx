@@ -17,19 +17,12 @@ class Video extends PureComponent {
     };
   }
 
-  _setPausedState() {
-    this.setState({isPaused: true, isPlaying: false});
-  }
-
-  _setPlayingState() {
-    this.setState({isPaused: false, isPlaying: true});
-  }
-
   componentDidMount() {
     const video = this._videoRef.current;
     const {videoSrc} = this.props;
 
     video.src = videoSrc;
+    video.autoplay = true;
 
     video.onpause = () =>
       this.setState({isPaused: true, isPlaying: false});
@@ -41,8 +34,7 @@ class Video extends PureComponent {
     video.loop = true;
     video.width = VIDEO_WIDTH;
     video.height = VIDEO_HEIGHT;
-    video.autoplay = true;
-
+    video.controls = true;
   }
 
   componentWillUnmount() {
@@ -53,6 +45,8 @@ class Video extends PureComponent {
     video.width = null;
     video.height = null;
     video.src = ``;
+    video.autoplay = null;
+    video.control = null;
   }
 
 
@@ -61,14 +55,14 @@ class Video extends PureComponent {
 
     return (
       <article className="small-movie-card catalog__movies-card">
-        <video onMouseOut={(onmouseout)} ref={this._videoRef}
+        <video onMouseLeave={(onmouseout)} ref={this._videoRef}
         />
       </article>
     );
   }
 }
 
-Video.PropTypes = {
+Video.propTypes = {
   onmouseout: PropTypes.func.isRequired,
   videoSrc: PropTypes.string.isRequired
 };

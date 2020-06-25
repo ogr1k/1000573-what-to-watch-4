@@ -16,29 +16,29 @@ class FilmsList extends PureComponent {
     this.timeOut = null;
   }
 
-  _mouseOutHandler() {
+  _mouseLeaveHandler() {
     clearTimeout(this.timeOut);
     this.setState({currentActiveFilm: ``});
 
     this.timeOut = null;
   }
 
-  _mouseOverHandler(name) {
+  _mouseEnterHandler(name) {
     this.timeOut = setTimeout(() => (this.setState({
       currentActiveFilm: name
     })), VIDEO_DELEAY_MSECONDS);
   }
 
-  _renderCard(film) {
+  _renderCard(film, index) {
 
     const {onClick} = this.props;
 
     if (film.name === this.state.currentActiveFilm) {
-      return <Video key={film.name} videoSrc={film.video} onmouseout={() => this._mouseOutHandler()}/>;
+      return <Video key={film.name + index} videoSrc={film.video} onmouseout={() => this._mouseLeaveHandler()}/>;
     } else {
-      return <Film film={film} onClick={onClick} key={film.name}
-        onmouseover={(name) => this._mouseOverHandler(name)}
-        onmouseout={() => this._mouseOutHandler()}
+      return <Film film={film} onClick={onClick} key={film.name + index}
+        onmouseover={(name) => this._mouseEnterHandler(name)}
+        onmouseout={() => this._mouseLeaveHandler()}
       />;
     }
   }
@@ -51,8 +51,8 @@ class FilmsList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film) =>
-          this._renderCard(film)
+        {films.map((film, index) =>
+          this._renderCard(film, index)
         )}
       </div>);
   }

@@ -16,7 +16,8 @@ export const film = {
   rating: 1,
   ratings: 1,
   starring: ``,
-  year: 1
+  year: 1,
+  video: ``
 };
 
 export const films = [];

@@ -31,9 +31,9 @@ it(`Should card be mouseovered`, () => {
       />
   );
 
-  const filmDiv = filmCard.find(`.small-movie-card__image`);
+  const filmDiv = filmCard.find(`.small-movie-card`);
 
-  filmDiv.simulate(`mouseover`);
+  filmDiv.simulate(`mouseenter`);
 
   expect(mockFunction).toHaveBeenCalledWith(mock.name);
 });

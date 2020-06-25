@@ -6,11 +6,11 @@ const Film = (props) => {
   const {film, onClick, onmouseover, onmouseout} = props;
 
   return (
-    <article className="small-movie-card catalog__movies-card" onClick={() => onClick(film)}>
-      <div className="small-movie-card__image" onMouseOver={() => onmouseover(film.name)} onMouseOut={onmouseout}>
+    <article className="small-movie-card catalog__movies-card" onClick={() => onClick(film)} onMouseEnter={() => onmouseover(film.name)} onMouseLeave={onmouseout}>
+      <div className="small-movie-card__image">
         <img src={film.poster} alt={film.name} width="280" height="175" />
       </div>
-      <h3 className="small-movie-card__title" onMouseOver={() => onmouseover(film.name)}>
+      <h3 className="small-movie-card__title">
         <a className="small-movie-card__link">{film.name}</a>
       </h3>
     </article>

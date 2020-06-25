@@ -7,11 +7,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -33,11 +33,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -59,11 +59,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -85,11 +85,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -111,11 +111,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -137,11 +137,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -163,11 +163,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
@@ -189,11 +189,11 @@ exports[`Render Films-List 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
     >
       <img
         alt="Jojo Rabbit"
