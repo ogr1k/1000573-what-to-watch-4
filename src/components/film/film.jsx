@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 const Film = (props) => {
   const {film, onClick, onmouseover, onmouseout} = props;
 
@@ -9,7 +10,7 @@ const Film = (props) => {
       <div className="small-movie-card__image" onMouseOver={() => onmouseover(film.name)} onMouseOut={onmouseout}>
         <img src={film.poster} alt={film.name} width="280" height="175" />
       </div>
-      <h3 className="small-movie-card__title">
+      <h3 className="small-movie-card__title" onMouseOver={() => onmouseover(film.name)}>
         <a className="small-movie-card__link">{film.name}</a>
       </h3>
     </article>
