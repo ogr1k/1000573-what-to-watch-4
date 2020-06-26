@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Film from "../film/film.jsx";
-import Video from "../video/video.jsx";
 
 const VIDEO_DELEAY_MSECONDS = 1000;
 
@@ -31,16 +30,18 @@ class FilmsList extends PureComponent {
 
   _renderCard(film, index) {
 
+    const {currentActiveFilm} = this.state;
+
     const {onClick} = this.props;
 
-    if (film.name === this.state.currentActiveFilm) {
-      return <Video key={film.name + index} videoSrc={film.video} onmouseout={() => this._mouseLeaveHandler()}/>;
-    } else {
-      return <Film film={film} onClick={onClick} key={film.name + index}
-        onmouseover={(name) => this._mouseEnterHandler(name)}
-        onmouseout={() => this._mouseLeaveHandler()}
-      />;
-    }
+    return <Film
+      film={film}
+      onClick={onClick}
+      key={film.name + index}
+      onmouseover={(name) => this._mouseEnterHandler(name)}
+      onmouseout={() => this._mouseLeaveHandler()}
+      isPlaying={film.name === currentActiveFilm}
+    />;
   }
 
 

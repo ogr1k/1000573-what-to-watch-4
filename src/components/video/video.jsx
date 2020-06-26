@@ -51,19 +51,17 @@ class Video extends PureComponent {
 
 
   render() {
-    const {onmouseout} = this.props;
 
     return (
-      <article className="small-movie-card catalog__movies-card">
-        <video onMouseLeave={(onmouseout)} ref={this._videoRef}
-        />
-      </article>
+
+      <video ref={this._videoRef}
+      />
+
     );
   }
 }
 
 Video.propTypes = {
-  onmouseout: PropTypes.func.isRequired,
   videoSrc: PropTypes.string.isRequired
 };
 

@@ -21,8 +21,6 @@ it(`video component has isPlaying and isPaused states`, () => {
   const video = mount(
       <Video videoSrc={mock.video} onmouseout={() => {}}/>
   );
-  const componentInstance = video.instance();
-  componentInstance.componentDidMount();
 
   expect(video.state()).toMatchObject(stateMock);
 });
