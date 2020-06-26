@@ -28,11 +28,13 @@ Film.propTypes = {
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
     starring: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
+    video: PropTypes.string.isRequired
   }),
   onClick: PropTypes.func.isRequired,
   onmouseover: PropTypes.func.isRequired,
   onmouseout: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
 };
 
 export default Film;

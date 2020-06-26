@@ -4,7 +4,7 @@ import Film from "../components/film/film.jsx";
 const VIDEO_DELEAY_MSECONDS = 1000;
 
 const withFilm = (Component) => {
-  class WithActivePlayer extends PureComponent {
+  class WithActiveFilm extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -17,14 +17,14 @@ const withFilm = (Component) => {
 
     _mouseLeaveHandler() {
       clearTimeout(this.timeOut);
-      this.setState({currentActiveFilm: ``});
+      this.setState({activeFilmName: ``});
 
       this.timeOut = null;
     }
 
     _mouseEnterHandler(name) {
       this.timeOut = setTimeout(() => (this.setState({
-        currentActiveFilm: name
+        activeFilmName: name
       })), VIDEO_DELEAY_MSECONDS);
     }
 
@@ -49,9 +49,9 @@ const withFilm = (Component) => {
     }
   }
 
-  WithActivePlayer.propTypes = {};
+  WithActiveFilm.propTypes = {};
 
-  return WithActivePlayer;
+  return WithActiveFilm;
 };
 
 export default withFilm;

@@ -1,63 +1,15 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Film from "../film/film.jsx";
 
-const VIDEO_DELEAY_MSECONDS = 1000;
+const FilmsList = (props) => {
+  const {films, renderFilm, onClick} = props;
 
-class FilmsList extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentActiveFilm: ``
-    };
-
-    this.timeOut = null;
-  }
-
-  _mouseLeaveHandler() {
-    clearTimeout(this.timeOut);
-    this.setState({currentActiveFilm: ``});
-
-    this.timeOut = null;
-  }
-
-  _mouseEnterHandler(name) {
-    this.timeOut = setTimeout(() => (this.setState({
-      currentActiveFilm: name
-    })), VIDEO_DELEAY_MSECONDS);
-  }
-
-  _renderCard(film, index) {
-
-    const {currentActiveFilm} = this.state;
-
-    const {onClick} = this.props;
-
-    return <Film
-      film={film}
-      onClick={onClick}
-      key={film.name + index}
-      onmouseover={(name) => this._mouseEnterHandler(name)}
-      onmouseout={() => this._mouseLeaveHandler()}
-      isPlaying={film.name === currentActiveFilm}
-    />;
-  }
-
-
-  render() {
-
-
-    const {films, renderFilm, onClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film, index) =>
-          renderFilm(film, onClick, index)
-        )}
-      </div>);
-  }
-}
+  return (<div className="catalog__movies-list">
+    {films.map((film, index) =>
+      renderFilm(film, onClick, index)
+    )}
+  </div>);
+};
 
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
@@ -71,7 +23,8 @@ FilmsList.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  renderFilm: PropTypes.func.isRequired
 };
 
 export default FilmsList;
