@@ -48,12 +48,12 @@ class FilmsList extends PureComponent {
   render() {
 
 
-    const {films} = this.props;
+    const {films, renderFilm, onClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
         {films.map((film, index) =>
-          this._renderCard(film, index)
+          renderFilm(film, onClick, index)
         )}
       </div>);
   }

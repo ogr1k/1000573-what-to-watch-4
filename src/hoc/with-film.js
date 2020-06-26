@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
-import Film from "../components/film.jsx";
+import Film from "../components/film/film.jsx";
 
 const VIDEO_DELEAY_MSECONDS = 1000;
 
-const withActivePlayer = (Component) => {
+const withFilm = (Component) => {
   class WithActivePlayer extends PureComponent {
     constructor(props) {
       super(props);
@@ -33,13 +33,14 @@ const withActivePlayer = (Component) => {
 
       return <Component
         {...this.props}
-        renderFilm={(film, name, clickHandler) => {
+        renderFilm={(film, clickHandler, index) => {
           return (
             <Film
+              key={film.name + index}
               film={film}
-              isPlaying={name === activeFilmName}
+              isPlaying={film.name === activeFilmName}
               onClick={clickHandler}
-              onmouseover={(name1) => this._mouseEnterHandler(name1)}
+              onmouseover={(name) => this._mouseEnterHandler(name)}
               onmouseout={() => this._mouseLeaveHandler()}
             />
           );
@@ -53,4 +54,4 @@ const withActivePlayer = (Component) => {
   return WithActivePlayer;
 };
 
-export default withActivePlayer;
+export default withFilm;
