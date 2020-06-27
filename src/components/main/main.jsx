@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
+import withFilm from "../../hoc/with-film.js";
+
+const FilmListWrapped = withFilm(FilmsList);
 
 const Main = (props) => {
   const {filmName, filmGenre, filmDate, filmImage, films, onHeadClick} = props;
@@ -123,7 +126,7 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <FilmsList films={films} onClick={onHeadClick} />
+          <FilmListWrapped films={films} onClick={onHeadClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

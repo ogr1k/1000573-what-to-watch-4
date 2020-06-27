@@ -1,34 +1,15 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Film from "../film/film.jsx";
 
-class FilmsList extends PureComponent {
-  constructor(props) {
-    super(props);
+const FilmsList = (props) => {
+  const {films, renderFilm, onClick} = props;
 
-    this.state = {
-      currentActiveFilm: ``
-    };
-  }
-
-
-  render() {
-
-    const {films, onClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film, index) =>
-          <Film film={film} onClick={onClick} key={index + film.name}
-            onmouseover={(name) => (this.setState({
-              currentActiveFilm: name
-            }))}
-            onmouseout={() => (this.setState({currentActiveFilm: ``}))}
-          />
-        )}
-      </div>);
-  }
-}
+  return (<div className="catalog__movies-list">
+    {films.map((film, index) =>
+      renderFilm(film, onClick, index)
+    )}
+  </div>);
+};
 
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
@@ -42,7 +23,8 @@ FilmsList.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  renderFilm: PropTypes.func.isRequired
 };
 
 export default FilmsList;

@@ -8,7 +8,7 @@ const cardClickHandler = () => {};
 
 it(`Render Films-List`, () => {
   const tree = renderer
-    .create(< FilmsList films={films} onClick={cardClickHandler} />)
+    .create(< FilmsList films={films} onClick={cardClickHandler} renderFilm={() => {}}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
