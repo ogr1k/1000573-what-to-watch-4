@@ -159,13 +159,9 @@ const isFilmMatchToFilter = (activeFilter, films) => {
     return films;
   }
 
-  const list = [];
-  for (const film of films) {
-    if (film.genre === activeFilter) {
-      list.push(film);
-    }
-  }
-  return list;
+  const filmsList = films.filter((film) => film.genre === activeFilter);
+
+  return filmsList;
 };
 
 const mapStateToProps = (state) => ({

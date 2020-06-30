@@ -12,7 +12,8 @@ const mock = {
   rating: 1,
   ratings: 1,
   starring: ``,
-  year: 1
+  year: 1,
+  video: ``
 };
 
 
@@ -28,6 +29,7 @@ it(`Should card be mouseovered`, () => {
       <Film film={mock} onClick={() => {}}
         onmouseover={mockFunction}
         onmouseout={() => {}}
+        isPlaying={false}
       />
   );
 
@@ -45,10 +47,11 @@ it(`Should card click hand data`, () => {
       <Film film={mock} onClick={mockFunction}
         onmouseover={() => {}}
         onmouseout={() => {}}
+        isPlaying={false}
       />
   );
 
-  const filmArticle = filmCard.find(`.small-movie-card`);
+  const filmArticle = filmCard.find(`.small-movie-card__image`);
 
   filmArticle.simulate(`click`);
 
