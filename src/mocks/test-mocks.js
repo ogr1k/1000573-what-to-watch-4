@@ -1,3 +1,5 @@
+import {getAvailableGenres} from "../utils.js";
+
 const FILMS_MOCKS_QUANTITY = 8;
 
 export const PROMOFILM = {
@@ -25,3 +27,5 @@ export const films = [];
 for (let i = 0; i < FILMS_MOCKS_QUANTITY; i++) {
   films[i] = film;
 }
+
+export const availableGenres = getAvailableGenres(films);

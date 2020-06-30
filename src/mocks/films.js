@@ -1,3 +1,5 @@
+import {getAvailableGenres} from "../utils.js";
+
 const getRandomInteger = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
@@ -58,17 +60,6 @@ const setMocks = () => {
 
 setMocks();
 
-const getAvailableGenres = () => {
-  const availableGenres = [];
-
-  for (const film of mock) {
-    if (!availableGenres.includes(film.genre)) {
-      availableGenres.push(film.genre);
-    }
-  }
-  return availableGenres;
-};
-
-const availableGenres = getAvailableGenres();
+const availableGenres = getAvailableGenres(mock);
 
 export {mock, availableGenres, PROMOFILM};

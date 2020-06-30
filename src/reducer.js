@@ -1,20 +1,26 @@
 import {mock, PROMOFILM, availableGenres} from "./mocks/films.js";
 
+const DEFAULT_FILTER = `All Genres`;
+
 const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
 const initialState = {
-  activeFilter: `All Genres`,
+  activeFilter: DEFAULT_FILTER,
   films: mock,
   promoFilm: PROMOFILM,
   genres: availableGenres
 };
 
+const ActionType = {
+  SET_FILTER: `SET_FILTER`
+};
+
 
 const ActionCreator = {
   setActiveFilter: (activeGenre) => ({
-    type: `SET_FILTER`,
+    type: ActionType.SET_FILTER,
     activeFilter: activeGenre
   })
 };
@@ -23,7 +29,7 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case `SET_FILTER`: {
+    case ActionType.SET_FILTER: {
       return extend(state, {
         activeFilter: action.activeFilter,
       });
@@ -34,4 +40,4 @@ const reducer = (state = initialState, action) => {
 };
 
 
-export {reducer, ActionCreator};
+export {reducer, ActionCreator, ActionType};
