@@ -7,13 +7,18 @@ const Film = (props) => {
   const {film, onClick, onmouseover, onmouseout, isPlaying} = props;
 
   return (
-    <article className="small-movie-card catalog__movies-card" onClick={() => onClick(film)} onMouseEnter={() => onmouseover(film.name)} onMouseLeave={onmouseout}>
-      <div className="small-movie-card__image">
-        {isPlaying ? <Video videoSrc={film.video} /> : <img src={film.poster} alt={film.name} width="280" height="175" />}
+    <article className="small-movie-card catalog__movies-card" onMouseEnter={() => onmouseover(film.name)} onMouseLeave={onmouseout}>
+      {isPlaying ? <Video videoSrc={film.video} /> :
+      <>
+      <div className="small-movie-card__image" onClick={() => onClick(film)}>
+        <img src={film.poster} alt={film.name} width="280" height="175" />
       </div>
-      <h3 className="small-movie-card__title">
+      <h3 className="small-movie-card__title" onClick={() => onClick(film)}>
         <a className="small-movie-card__link">{film.name}</a>
       </h3>
+    </>
+      }
+
     </article>
   );
 };
