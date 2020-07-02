@@ -51,9 +51,9 @@ it(`Should card click hand data`, () => {
       />
   );
 
-  const filmArticle = filmCard.find(`.small-movie-card__image`);
+  const movieCard = filmCard.find(`#movie-card-wrapper`);
 
-  filmArticle.simulate(`click`);
+  movieCard.simulate(`click`);
 
   expect(mockFunction).toHaveBeenCalledWith(mock);
 });

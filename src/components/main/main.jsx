@@ -6,14 +6,13 @@ import Filter from "../filter/filter.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 
+const ALL_GENRES_FILTER = `All Genres`;
+
 const FilmListWrapped = withFilm(FilmsList);
 
 const Main = (props) => {
   const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick} = props;
 
-
-  const genresList = [...genres];
-  genresList.unshift(`All Genres`);
 
   return (
       <>
@@ -101,7 +100,8 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            {genresList.map((genre) => < Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
+            <Filter genre={ALL_GENRES_FILTER} onClick={onFilterClick} activeFilter={activeFilter} />
+            {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
           </ul>
 
           <FilmListWrapped films={films} onClick={onHeadClick} />
@@ -153,7 +153,7 @@ Main.propTypes = {
   onFilterClick: PropTypes.func.isRequired
 };
 
-const isFilmMatchToFilter = (activeFilter, films) => {
+const getUpdatedFilmsList = (activeFilter, films) => {
 
   if (activeFilter === `All Genres`) {
     return films;
@@ -166,7 +166,7 @@ const isFilmMatchToFilter = (activeFilter, films) => {
 
 const mapStateToProps = (state) => ({
   activeFilter: state.activeFilter,
-  films: isFilmMatchToFilter(state.activeFilter, state.films),
+  films: getUpdatedFilmsList(state.activeFilter, state.films),
   promoFilm: state.promoFilm,
   genres: state.genres
 });

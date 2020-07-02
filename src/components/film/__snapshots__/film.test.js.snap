@@ -7,25 +7,28 @@ exports[`Render Film 1`] = `
   onMouseLeave={[Function]}
 >
   <div
-    className="small-movie-card__image"
+    id="movie-card-wrapper"
     onClick={[Function]}
   >
-    <img
-      alt="Jojo Rabbit"
-      height="175"
-      src="https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg"
-      width="280"
-    />
-  </div>
-  <h3
-    className="small-movie-card__title"
-    onClick={[Function]}
-  >
-    <a
-      className="small-movie-card__link"
+    <div
+      className="small-movie-card__image"
     >
-      Jojo Rabbit
-    </a>
-  </h3>
+      <img
+        alt="Jojo Rabbit"
+        height="175"
+        src="https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        Jojo Rabbit
+      </a>
+    </h3>
+  </div>
 </article>
 `;
