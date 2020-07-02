@@ -5,14 +5,23 @@ import withFilm from "../../hoc/with-film.js";
 import Filter from "../filter/filter.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const ALL_GENRES_FILTER = `All Genres`;
 
 const FilmListWrapped = withFilm(FilmsList);
 
 const Main = (props) => {
-  const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick} = props;
+  const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
 
+  const renderShowMoreButton = () => {
+
+    if (maxCards < films.length) {
+      return <ShowMoreButton onClick={onShowMoreButtonClick}/>;
+    }
+
+    return null;
+  };
 
   return (
       <>
@@ -104,11 +113,9 @@ const Main = (props) => {
             {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
           </ul>
 
-          <FilmListWrapped films={films} onClick={onHeadClick} />
+          <FilmListWrapped films={films.slice(0, maxCards)} onClick={onHeadClick} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {renderShowMoreButton()}
         </section>
 
         <footer className="page-footer">
@@ -150,7 +157,9 @@ Main.propTypes = {
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired
+  onFilterClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
+  maxCards: PropTypes.number.isRequired
 };
 
 const getUpdatedFilmsList = (activeFilter, films) => {
@@ -168,13 +177,17 @@ const mapStateToProps = (state) => ({
   activeFilter: state.activeFilter,
   films: getUpdatedFilmsList(state.activeFilter, state.films),
   promoFilm: state.promoFilm,
-  genres: state.genres
+  genres: state.genres,
+  maxCards: state.maxCards
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterName) {
     dispatch(ActionCreator.setActiveFilter(filterName));
   },
+  onShowMoreButtonClick() {
+    dispatch(ActionCreator.incrementMaxCards());
+  }
 });
 
 export {Main};

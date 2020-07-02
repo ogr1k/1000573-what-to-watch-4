@@ -13,7 +13,8 @@ it(`Render App`, () => {
     films,
     promoFilm: PROMOFILM,
     genres: [],
-    activeFilter: ``
+    activeFilter: ``,
+    maxCards: 8
   });
 
   const tree = renderer
