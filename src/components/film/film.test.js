@@ -12,7 +12,8 @@ const film = {
   ratings: 1,
   starring: ``,
   year: 1,
-  video: ``
+  video: ``,
+  id: 1
 };
 
 it(`Render Film`, () => {

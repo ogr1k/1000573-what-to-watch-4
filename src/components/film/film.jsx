@@ -7,7 +7,7 @@ const Film = (props) => {
   const {film, onClick, onmouseover, onmouseout, isPlaying} = props;
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseEnter={() => onmouseover(film.name)} onMouseLeave={onmouseout}>
+    <article className="small-movie-card catalog__movies-card" onMouseEnter={() => onmouseover(film.id)} onMouseLeave={onmouseout}>
       {isPlaying ?
         <Video videoSrc={film.video} />
         : (
@@ -37,7 +37,8 @@ Film.propTypes = {
     ratings: PropTypes.number.isRequired,
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-    video: PropTypes.string.isRequired
+    video: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired
   }),
   onClick: PropTypes.func.isRequired,
   onmouseover: PropTypes.func.isRequired,

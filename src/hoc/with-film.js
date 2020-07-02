@@ -9,7 +9,7 @@ const withFilm = (Component) => {
       super(props);
 
       this.state = {
-        activeFilmName: ``,
+        activeFilmId: ``,
       };
 
       this.timeOut = null;
@@ -17,12 +17,12 @@ const withFilm = (Component) => {
 
     _mouseLeaveHandler() {
       clearTimeout(this.timeOut);
-      this.setState({activeFilmName: ``});
+      this.setState({activeFilmId: ``});
     }
 
     _mouseEnterHandler(name) {
       this.timeOut = setTimeout(() => (this.setState({
-        activeFilmName: name
+        activeFilmId: name
       })), VIDEO_DELEAY_MSECONDS);
     }
 
@@ -31,7 +31,7 @@ const withFilm = (Component) => {
     }
 
     render() {
-      const {activeFilmName} = this.state;
+      const {activeFilmId} = this.state;
 
       return <Component
         {...this.props}
@@ -41,7 +41,7 @@ const withFilm = (Component) => {
             <Film
               key={film.name + index}
               film={film}
-              isPlaying={film.name === activeFilmName}
+              isPlaying={film.id === activeFilmId}
               onClick={clickHandler}
               onmouseover={(name) => this._mouseEnterHandler(name)}
               onmouseout={() => this._mouseLeaveHandler()}

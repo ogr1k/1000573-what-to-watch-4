@@ -13,7 +13,8 @@ const mock = {
   ratings: 1,
   starring: ``,
   year: 1,
-  video: ``
+  video: ``,
+  id: 1
 };
 
 
@@ -37,7 +38,7 @@ it(`Should card be mouseovered`, () => {
 
   filmDiv.simulate(`mouseenter`);
 
-  expect(mockFunction).toHaveBeenCalledWith(mock.name);
+  expect(mockFunction).toHaveBeenCalledWith(mock.id);
 });
 
 it(`Should card click hand data`, () => {

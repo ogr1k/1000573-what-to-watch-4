@@ -3,6 +3,7 @@
 exports[`Render ShowMoreButton 1`] = `
 <div
   className="catalog__more"
+  onClick={[Function]}
 >
   <button
     className="catalog__button"

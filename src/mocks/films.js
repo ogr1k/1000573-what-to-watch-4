@@ -31,6 +31,7 @@ const setMocks = () => {
 
   for (let i = 0; i < 200; i++) {
     films[i] = {
+      id: i,
       name: FILM_NAMES[getRandomInteger(0, FILM_NAMES.length - 1)],
       poster: POSTERS[getRandomInteger(0, POSTERS.length - 1)],
       description: getRandomText(),
