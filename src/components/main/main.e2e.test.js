@@ -3,6 +3,10 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main";
 import {films, PROMOFILM} from "../../mocks/test-mocks.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -10,13 +14,23 @@ Enzyme.configure({
 
 
 it(`Should head button be pressed`, () => {
+
+  const store = mockStore({
+    films,
+    promoFilm: PROMOFILM,
+    genres: [],
+    activeFilter: ``
+  });
+
+
   const onHeadClick = jest.fn();
 
   const main = shallow(
-      <Main
-        filmName={PROMOFILM.name} filmGenre={PROMOFILM.genre} filmDate={PROMOFILM.date} filmImage={PROMOFILM.image} films={films}
-        onHeadClick={onHeadClick}
-      />
+      <Provider store={store}>
+        <Main
+          onHeadClick={onHeadClick}
+        />
+      </Provider>
   );
 
   const headButtons = main.find(`.small-movie-card__title`);

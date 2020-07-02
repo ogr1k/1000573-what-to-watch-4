@@ -2,11 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import withFilm from "../../hoc/with-film.js";
+import Filter from "../filter/filter.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+
+const ALL_GENRES_FILTER = `All Genres`;
 
 const FilmListWrapped = withFilm(FilmsList);
 
 const Main = (props) => {
-  const {filmName, filmGenre, filmDate, filmImage, films, onHeadClick} = props;
+  const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick} = props;
+
 
   return (
       <>
@@ -61,13 +67,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={filmImage} alt={filmName} width="218" height="327"/>
+              <img src={promoFilm.image} alt={promoFilm.name} width="218" height="327"/>
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{filmName}</h2>
+              <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{filmGenre}</span>
-                <span className="movie-card__year">{filmDate}</span>
+                <span className="movie-card__genre">{promoFilm.genre}</span>
+                <span className="movie-card__year">{promoFilm.date}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -94,36 +100,8 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids &amp; Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            <Filter genre={ALL_GENRES_FILTER} onClick={onFilterClick} activeFilter={activeFilter} />
+            {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
           </ul>
 
           <FilmListWrapped films={films} onClick={onHeadClick} />
@@ -152,10 +130,6 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  filmName: PropTypes.string.isRequired,
-  filmGenre: PropTypes.string.isRequired,
-  filmDate: PropTypes.number.isRequired,
-  filmImage: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
@@ -167,8 +141,41 @@ Main.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onHeadClick: PropTypes.func.isRequired
+  onHeadClick: PropTypes.func.isRequired,
+  promoFilm: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    date: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
+  }).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeFilter: PropTypes.string.isRequired,
+  onFilterClick: PropTypes.func.isRequired
 };
 
+const getUpdatedFilmsList = (activeFilter, films) => {
 
-export default Main;
+  if (activeFilter === `All Genres`) {
+    return films;
+  }
+
+  const filmsList = films.filter((film) => film.genre === activeFilter);
+
+  return filmsList;
+};
+
+const mapStateToProps = (state) => ({
+  activeFilter: state.activeFilter,
+  films: getUpdatedFilmsList(state.activeFilter, state.films),
+  promoFilm: state.promoFilm,
+  genres: state.genres
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterClick(filterName) {
+    dispatch(ActionCreator.setActiveFilter(filterName));
+  },
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -11,13 +11,14 @@ const film = {
   rating: 1,
   ratings: 1,
   starring: ``,
-  year: 1
+  year: 1,
+  video: ``
 };
 
 it(`Render Film`, () => {
   const tree = renderer
     .create(<Film film={film} onClick={() => {}} onmouseover={() => {}}
-      onmouseout={() => {}}
+      onmouseout={() => {}} isPlaying={false}
     />)
     .toJSON();
 

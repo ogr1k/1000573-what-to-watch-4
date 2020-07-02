@@ -18,8 +18,6 @@ const withFilm = (Component) => {
     _mouseLeaveHandler() {
       clearTimeout(this.timeOut);
       this.setState({activeFilmName: ``});
-
-      this.timeOut = null;
     }
 
     _mouseEnterHandler(name) {
@@ -28,11 +26,16 @@ const withFilm = (Component) => {
       })), VIDEO_DELEAY_MSECONDS);
     }
 
+    componentWillUnmount() {
+      clearTimeout(this.timeOut);
+    }
+
     render() {
       const {activeFilmName} = this.state;
 
       return <Component
         {...this.props}
+
         renderFilm={(film, clickHandler, index) => {
           return (
             <Film

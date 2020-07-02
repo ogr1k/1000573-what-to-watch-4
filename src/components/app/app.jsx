@@ -14,11 +14,10 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {filmName, filmGenre, filmDate, filmImage, films} = this.props;
 
     if (!this.state.clickedFilm) {
       return (
-        <Main filmName={filmName} filmGenre={filmGenre} filmDate={filmDate} filmImage={filmImage} films={films}
+        <Main
           onHeadClick={
             (film) => this.setState({
               clickedFilm: film
@@ -51,10 +50,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  filmName: PropTypes.string.isRequired,
-  filmGenre: PropTypes.string.isRequired,
-  filmDate: PropTypes.number.isRequired,
-  filmImage: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,

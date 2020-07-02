@@ -261,103 +261,14 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
-            All genres
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Comedies
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Dramas
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Horror
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Kids & Family
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Thrillers
+            All Genres
           </a>
         </li>
       </ul>
@@ -366,211 +277,243 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div
-            className="small-movie-card__image"
+            id="movie-card-wrapper"
+            onClick={[Function]}
           >
-            <img
-              alt="Jojo Rabbit"
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
+            <div
+              className="small-movie-card__image"
             >
-              Jojo Rabbit
-            </a>
-          </h3>
+              <img
+                alt="Jojo Rabbit"
+                height="175"
+                src=""
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+            >
+              <a
+                className="small-movie-card__link"
+              >
+                Jojo Rabbit
+              </a>
+            </h3>
+          </div>
         </article>
       </div>
       <div
