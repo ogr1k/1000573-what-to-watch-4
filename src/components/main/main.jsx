@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
-import withFilm from "../../hoc/with-film.js";
 import Filter from "../filter/filter.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const ALL_GENRES_FILTER = `All Genres`;
-
-const FilmListWrapped = withFilm(FilmsList);
 
 const Main = (props) => {
   const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
@@ -113,7 +110,7 @@ const Main = (props) => {
             {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
           </ul>
 
-          <FilmListWrapped films={films.slice(0, maxCards)} onClick={onHeadClick} />
+          <FilmsList films={films.slice(0, maxCards)} onClick={onHeadClick} />
 
           {renderShowMoreButton()}
         </section>

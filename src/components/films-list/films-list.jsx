@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import withPlayer from "../../hoc/with-player.js";
+import Film from "../../components/film/film.jsx";
+
+const WrappedFilm = withPlayer(Film);
 
 const FilmsList = (props) => {
-  const {films, renderFilm, onClick} = props;
+  const {films, onClick} = props;
 
   return (<div className="catalog__movies-list">
-    {films.map((film, index) =>
-      renderFilm(film, onClick, index)
+    {films.map((film) =>
+      <WrappedFilm film={film} onClick={onClick} key={film.id} />
     )}
   </div>);
 };
@@ -23,8 +27,7 @@ FilmsList.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onClick: PropTypes.func.isRequired,
-  renderFilm: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default FilmsList;

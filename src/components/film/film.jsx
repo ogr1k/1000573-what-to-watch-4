@@ -1,30 +1,30 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import Video from "../video/video.jsx";
 
-const Film = (props) => {
+class Film extends PureComponent {
 
-  const {film, onClick, onmouseover, onmouseout, isPlaying} = props;
+  constructor(props) {
+    super(props);
 
-  return (
-    <article className="small-movie-card catalog__movies-card" onMouseEnter={() => onmouseover(film.id)} onMouseLeave={onmouseout}>
-      {isPlaying ?
-        <Video videoSrc={film.video} />
-        : (
-          <div id="movie-card-wrapper" onClick={() => onClick(film)}>
-            <div className="small-movie-card__image" >
-              <img src={film.poster} alt={film.name} width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link">{film.name}</a>
-            </h3>
-          </div>
-        )
-      }
+  }
 
-    </article>
-  );
-};
+  render() {
+
+    const {film, onClick, isPlaying, handleEnter, handleLeave, children} = this.props;
+    return (
+      <article className="small-movie-card catalog__movies-card"
+        onClick={isPlaying ? null : () => onClick(film)}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+      >
+        {children}
+        <h3 className="small-movie-card__title">
+          <a className="small-movie-card__link" onClick={!isPlaying ? null : () => onClick(film)}>{film.name}</a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 Film.propTypes = {
   film: PropTypes.shape({
@@ -41,9 +41,10 @@ Film.propTypes = {
     id: PropTypes.number.isRequired
   }),
   onClick: PropTypes.func.isRequired,
-  onmouseover: PropTypes.func.isRequired,
-  onmouseout: PropTypes.func.isRequired,
+  handleEnter: PropTypes.func.isRequired,
+  handleLeave: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  children: PropTypes.object
 };
 
 export default Film;
