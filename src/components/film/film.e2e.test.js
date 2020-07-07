@@ -40,8 +40,29 @@ it(`Should card be mouseentered`, () => {
 
   filmDiv.simulate(`mouseenter`);
 
-  expect(mockFunction.mock.calls.length).toBe(1);
+  expect(mockFunction).toHaveBeenCalledTimes(1);
 });
+
+it(`Should card be mouseleaved`, () => {
+  const mockFunction = jest.fn();
+
+  const filmCard = shallow(
+      <Film
+        film={mock}
+        onClick={() => {}}
+        handleEnter={() => {}}
+        handleLeave={mockFunction}
+        isPlaying={true}
+      />
+  );
+
+  const filmDiv = filmCard.find(`.small-movie-card`);
+
+  filmDiv.simulate(`mouseleave`);
+
+  expect(mockFunction).toHaveBeenCalledTimes(1);
+});
+
 
 it(`Should card click hand data`, () => {
   const mockFunction = jest.fn();

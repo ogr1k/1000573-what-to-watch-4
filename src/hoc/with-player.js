@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const VIDEO_WIDTH = `280`;
 const VIDEO_HEIGHT = `175`;
-const VIDEO_DELAY_MSECONDS = 1000;
+const VIDEO_PLAY_DELAY_MSECONDS = 1000;
 
 
 const withPlayer = (Component) => {
@@ -24,12 +24,14 @@ const withPlayer = (Component) => {
     }
 
     handleLeave() {
-      this.setState({isPlaying: false});
+      const video = this._videoRef.current;
+      video.pause();
+      video.load();
       clearTimeout(this.startVideoTimeOut);
     }
 
     handleEnter() {
-      this.startVideoTimeOut = setTimeout(() => (this.setState({isPlaying: true})), VIDEO_DELAY_MSECONDS);
+      this.startVideoTimeOut = setTimeout(() => (this._videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
     }
 
     componentDidMount() {
@@ -37,6 +39,18 @@ const withPlayer = (Component) => {
 
       const {film} = this.props;
       const {video: videoSRC, poster} = film;
+
+      video.onplay = () => {
+        this.setState({
+          isPlaying: true,
+        });
+      };
+
+      video.onpause = () => {
+        this.setState({
+          isPlaying: false,
+        });
+      };
 
       video.src = videoSRC;
       video.poster = poster;
@@ -56,18 +70,6 @@ const withPlayer = (Component) => {
       video.height = null;
       video.src = ``;
       clearTimeout(this.startVideoTimeOut);
-    }
-
-    componentDidUpdate() {
-      const video = this._videoRef.current;
-
-
-      if (this.state.isPlaying) {
-        video.play();
-      } else {
-        video.pause();
-        video.load();
-      }
     }
 
     render() {

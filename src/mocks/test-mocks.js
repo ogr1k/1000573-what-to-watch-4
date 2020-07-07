@@ -20,6 +20,7 @@ export const film = {
   starring: ``,
   year: 1,
   video: ``,
+  id: 1
 };
 
 export const films = [];
