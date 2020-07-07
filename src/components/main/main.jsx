@@ -9,7 +9,7 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 const ALL_GENRES_FILTER = `All Genres`;
 
 const Main = (props) => {
-  const {promoFilm, films, onHeadClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
+  const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
 
   const renderShowMoreButton = () => {
 
@@ -110,7 +110,7 @@ const Main = (props) => {
             {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
           </ul>
 
-          <FilmsList films={films.slice(0, maxCards)} onClick={onHeadClick} />
+          <FilmsList films={films.slice(0, maxCards)} onClick={handleHeaderClick} />
 
           {renderShowMoreButton()}
         </section>
@@ -145,7 +145,7 @@ Main.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onHeadClick: PropTypes.func.isRequired,
+  handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
     name: PropTypes.string.isRequired,
     date: PropTypes.number.isRequired,

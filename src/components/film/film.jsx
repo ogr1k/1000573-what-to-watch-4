@@ -11,6 +11,7 @@ class Film extends PureComponent {
   render() {
 
     const {film, onClick, isPlaying, handleEnter, handleLeave, children} = this.props;
+
     return (
       <article className="small-movie-card catalog__movies-card"
         onClick={isPlaying ? null : () => onClick(film)}
