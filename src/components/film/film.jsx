@@ -42,8 +42,8 @@ Film.propTypes = {
     id: PropTypes.number.isRequired
   }),
   onClick: PropTypes.func.isRequired,
-  handleEnter: PropTypes.func.isRequired,
-  handleLeave: PropTypes.func.isRequired,
+  handleEnter: PropTypes.func,
+  handleLeave: PropTypes.func,
   isPlaying: PropTypes.bool.isRequired,
   children: PropTypes.object
 };

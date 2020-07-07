@@ -20,13 +20,15 @@ export const film = {
   starring: ``,
   year: 1,
   video: ``,
-  id: 1
 };
 
 export const films = [];
 
 for (let i = 0; i < FILMS_MOCKS_QUANTITY; i++) {
-  films[i] = film;
+  const copiedFilm = Object.assign({}, film);
+  copiedFilm.id = i;
+
+  films[i] = copiedFilm;
 }
 
 export const availableGenres = getAvailableGenres(films);
