@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withPlayer from "../../hoc/with-player.js";
+import withPlayer from "../../hoc/with-player/with-player.js";
 import Film from "../../components/film/film.jsx";
 
 const WrappedFilm = withPlayer(Film);
