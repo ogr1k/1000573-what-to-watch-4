@@ -3,32 +3,17 @@
 exports[`Render Film 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
+  onClick={[Function]}
 >
-  <div
-    id="movie-card-wrapper"
-    onClick={[Function]}
+  <h3
+    className="small-movie-card__title"
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card__link"
+      onClick={null}
     >
-      <img
-        alt="Jojo Rabbit"
-        height="175"
-        src="https://images-na.ssl-images-amazon.com/images/I/71DIYFHebjL._AC_SY741_.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-      >
-        Jojo Rabbit
-      </a>
-    </h3>
-  </div>
+      Jojo Rabbit
+    </a>
+  </h3>
 </article>
 `;

@@ -8,7 +8,11 @@ const cardClickHandler = () => {};
 
 it(`Render Films-List`, () => {
   const tree = renderer
-    .create(< FilmsList films={films} onClick={cardClickHandler} renderFilm={() => {}}/>)
+    .create(< FilmsList films={films} onClick={cardClickHandler} renderFilm={() => {}}/>, {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

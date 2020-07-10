@@ -5,6 +5,7 @@ import {films, PROMOFILM} from "../../mocks/test-mocks.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
+
 const mockStore = configureStore([]);
 
 const headClickHandler = () =>{};
@@ -16,16 +17,22 @@ it(`Render Main`, () => {
     promoFilm: PROMOFILM,
     genres: [],
     activeFilter: ``,
-    maxCards: 8
+    maxCards: 8,
+    onFilterClick: () => {},
+    onShowMoreButtonClick: () => {}
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <Main
-            onHeadClick={headClickHandler}
+            handleHeaderClick={headClickHandler}
           />
-        </Provider>)
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

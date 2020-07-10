@@ -23,13 +23,15 @@ Enzyme.configure({
 });
 
 
-it(`Should card be mouseovered`, () => {
+it(`Should card be mouseentered`, () => {
   const mockFunction = jest.fn();
 
   const filmCard = shallow(
-      <Film film={mock} onClick={() => {}}
-        onmouseover={mockFunction}
-        onmouseout={() => {}}
+      <Film
+        film={mock}
+        onClick={() => {}}
+        handleEnter={mockFunction}
+        handleLeave={() => {}}
         isPlaying={false}
       />
   );
@@ -38,21 +40,44 @@ it(`Should card be mouseovered`, () => {
 
   filmDiv.simulate(`mouseenter`);
 
-  expect(mockFunction).toHaveBeenCalledWith(mock.id);
+  expect(mockFunction).toHaveBeenCalledTimes(1);
 });
 
-it(`Should card click hand data`, () => {
+it(`Should card be mouseleaved`, () => {
   const mockFunction = jest.fn();
 
   const filmCard = shallow(
-      <Film film={mock} onClick={mockFunction}
-        onmouseover={() => {}}
-        onmouseout={() => {}}
+      <Film
+        film={mock}
+        onClick={() => {}}
+        handleEnter={() => {}}
+        handleLeave={mockFunction}
+        isPlaying={true}
+      />
+  );
+
+  const filmDiv = filmCard.find(`.small-movie-card`);
+
+  filmDiv.simulate(`mouseleave`);
+
+  expect(mockFunction).toHaveBeenCalledTimes(1);
+});
+
+
+it(`Should click be handled with correct data`, () => {
+  const mockFunction = jest.fn();
+
+  const filmCard = shallow(
+      <Film
+        film={mock}
+        onClick={mockFunction}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
         isPlaying={false}
       />
   );
 
-  const movieCard = filmCard.find(`#movie-card-wrapper`);
+  const movieCard = filmCard.find(`.small-movie-card`);
 
   movieCard.simulate(`click`);
 

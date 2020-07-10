@@ -22,8 +22,13 @@ it(`Render App`, () => {
         <Provider store={store}>
           <App
             films={films}
+            handleHeaderClick={() => {}}
           />
-        </Provider>)
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
