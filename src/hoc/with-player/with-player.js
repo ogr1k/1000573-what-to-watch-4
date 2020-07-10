@@ -23,17 +23,6 @@ const withPlayer = (Component) => {
       this.handleEnter = this.handleEnter.bind(this);
     }
 
-    handleLeave() {
-      const video = this._videoRef.current;
-      video.pause();
-      video.load();
-      clearTimeout(this.startVideoTimeOut);
-    }
-
-    handleEnter() {
-      this.startVideoTimeOut = setTimeout(() => (this._videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
-    }
-
     componentDidMount() {
       const video = this._videoRef.current;
 
@@ -71,6 +60,18 @@ const withPlayer = (Component) => {
       video.src = ``;
       clearTimeout(this.startVideoTimeOut);
     }
+
+    handleLeave() {
+      const video = this._videoRef.current;
+      video.pause();
+      video.load();
+      clearTimeout(this.startVideoTimeOut);
+    }
+
+    handleEnter() {
+      this.startVideoTimeOut = setTimeout(() => (this._videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
+    }
+
 
     render() {
 

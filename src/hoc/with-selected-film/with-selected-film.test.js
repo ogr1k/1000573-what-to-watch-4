@@ -5,12 +5,8 @@ import films from "../../mocks/test-mocks.js";
 
 const availableGenres = [`Comedy`, `Dramma`];
 
-const MockComponent = () => {
-  return (
-    <div>
-    </div>
-  );
-};
+const MockComponent = () => <div/>;
+
 
 const MockComponentWrapped = withSelectedFilm(MockComponent);
 

@@ -64,7 +64,7 @@ it(`Should card be mouseleaved`, () => {
 });
 
 
-it(`Should card click hand data`, () => {
+it(`Should click be handled with correct data`, () => {
   const mockFunction = jest.fn();
 
   const filmCard = shallow(

@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 
 
-const withFilm = (Component) => {
+const withSelectedFilm = (Component) => {
   class WithFilm extends PureComponent {
     constructor(props) {
       super(props);
@@ -39,4 +39,4 @@ const withFilm = (Component) => {
   return WithFilm;
 };
 
-export default withFilm;
+export default withSelectedFilm;
