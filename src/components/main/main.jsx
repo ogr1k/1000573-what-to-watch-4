@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
-import Filter from "../filter/filter.jsx";
+import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-
-const ALL_GENRES_FILTER = `All Genres`;
 
 const Main = (props) => {
   const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
@@ -105,14 +103,12 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <Filter genre={ALL_GENRES_FILTER} onClick={onFilterClick} activeFilter={activeFilter} />
-            {genres.map((genre) => <Filter genre={genre} key={genre} onClick={onFilterClick} activeFilter={activeFilter}/>)}
-          </ul>
+          <GenresList genres={genres} clickHandler={onFilterClick} activeFilter={activeFilter}/>
 
           <FilmsList films={films.slice(0, maxCards)} onClick={handleHeaderClick} />
 
           {renderShowMoreButton()}
+
         </section>
 
         <footer className="page-footer">
