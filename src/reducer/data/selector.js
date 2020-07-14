@@ -1,5 +1,5 @@
 import NameSpace from "../name-space.js";
-import {getActiveFilter} from "../main/selector.js";
+import {getActiveFilter} from "../main-page/selector.js";
 import {createSelector} from "reselect";
 
 const NAME_SPACE = NameSpace.DATA;

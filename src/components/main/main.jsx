@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/main/main.js";
+import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
-import {getActiveFilter, getMaxCardsCount} from "../../reducer/main/selector.js";
+import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
 
 const Main = (props) => {
   const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
