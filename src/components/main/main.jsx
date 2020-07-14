@@ -166,13 +166,15 @@ const getUpdatedFilmsList = (activeFilter, films) => {
   return filmsList;
 };
 
-const mapStateToProps = (state) => ({
-  activeFilter: state.activeFilter,
-  films: getUpdatedFilmsList(state.activeFilter, state.films),
-  promoFilm: state.promoFilm,
-  genres: state.genres,
-  maxCards: state.maxCards,
-});
+const mapStateToProps = (state) => {
+  return {
+    activeFilter: state.MAIN.activeFilter,
+    films: getUpdatedFilmsList(state.MAIN.activeFilter, state.DATA.films),
+    promoFilm: state.DATA.promoFilm,
+    genres: state.DATA.genres,
+    maxCards: state.MAIN.maxCards,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterName) {
