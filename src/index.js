@@ -22,10 +22,9 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument(api))
 );
 
-
+store.dispatch(DataOperation.loadPromoFilm());
 store.dispatch(DataOperation.loadFilms());
 store.dispatch(UserOperation.checkAuth());
-store.dispatch(DataOperation.loadPromoFilm());
 
 
 const WrappedApp = withSelectedFilm(App);

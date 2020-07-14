@@ -1,13 +1,11 @@
-import {getAvailableGenres, extend} from "../../utils.js";
+import {extend} from "../../utils.js";
 
 const initialState = {
   films: [],
   promoFilm: {},
-  genres: [],
 };
 
-const adaptFilmData = (films) => {
-
+const parseFilmData = (films) => {
   const result = [];
 
   films.map(
@@ -35,7 +33,7 @@ const adaptFilmData = (films) => {
   return result;
 };
 
-const adaptPromoFilmData = (promoFilm) => {
+const parsePromoFilmData = (promoFilm) => {
   const {name, genre, released} = promoFilm;
   return {
     name,
@@ -65,13 +63,15 @@ const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
         .then((response) => {
-          dispatch(ActionCreator.loadFilms(response.data));
+          const films = parseFilmData(response.data);
+          dispatch(ActionCreator.loadFilms(films));
         });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
         .then((response) => {
-          dispatch(ActionCreator.loadPromoFilm(response.data));
+          const promoFilm = parsePromoFilmData(response.data);
+          dispatch(ActionCreator.loadPromoFilm(promoFilm));
         });
   }
 };
@@ -82,13 +82,12 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FILMS: {
       return extend(state, {
-        films: adaptFilmData(action.payload),
-        genres: getAvailableGenres(action.payload)
+        films: action.payload,
       });
     }
     case ActionType.LOAD_PROMO_FILM: {
       return extend(state, {
-        promoFilm: adaptPromoFilmData(action.payload)
+        promoFilm: action.payload
       });
     }
   }

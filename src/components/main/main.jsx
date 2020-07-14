@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer.js";
+import {ActionCreator} from "../../reducer/main/main.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
+import {getActiveFilter, getMaxCardsCount} from "../../reducer/main/selector.js";
 
 const Main = (props) => {
   const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
@@ -155,24 +157,13 @@ Main.propTypes = {
   maxCards: PropTypes.number.isRequired
 };
 
-const getUpdatedFilmsList = (activeFilter, films) => {
-
-  if (activeFilter === `All Genres`) {
-    return films;
-  }
-
-  const filmsList = films.filter((film) => film.genre === activeFilter);
-
-  return filmsList;
-};
-
 const mapStateToProps = (state) => {
   return {
-    activeFilter: state.MAIN.activeFilter,
-    films: getUpdatedFilmsList(state.MAIN.activeFilter, state.DATA.films),
-    promoFilm: state.DATA.promoFilm,
-    genres: state.DATA.genres,
-    maxCards: state.MAIN.maxCards,
+    activeFilter: getActiveFilter(state),
+    films: getFilmsByGenres(state),
+    promoFilm: getPromoFilm(state),
+    genres: getGenres(state),
+    maxCards: getMaxCardsCount(state)
   };
 };
 
