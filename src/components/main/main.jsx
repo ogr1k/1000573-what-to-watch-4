@@ -73,13 +73,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={promoFilm.image} alt={promoFilm.name} width="218" height="327"/>
+              <img src={promoFilm.poster} alt={promoFilm.name} width="218" height="327"/>
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoFilm.genre}</span>
-                <span className="movie-card__year">{promoFilm.date}</span>
+                <span className="movie-card__year">{promoFilm.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -146,9 +146,9 @@ Main.propTypes = {
   handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
     name: PropTypes.string,
-    date: PropTypes.number,
+    year: PropTypes.number,
     genre: PropTypes.string,
-    image: PropTypes.string
+    poster: PropTypes.string
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,
