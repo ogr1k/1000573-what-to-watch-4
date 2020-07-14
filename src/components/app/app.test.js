@@ -1,20 +1,27 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
-import {films, PROMOFILM} from "../../mocks/test-mocks.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+import {films} from "../../mocks/test-mocks.js";
 
 const mockStore = configureStore([]);
+
+const DEFAULT_FILTER = `All Genres`;
+const DEFAULT_MAX_CARDS = 8;
 
 it(`Render App`, () => {
 
   const store = mockStore({
-    films,
-    promoFilm: PROMOFILM,
-    genres: [],
-    activeFilter: ``,
-    maxCards: 8
+    [NameSpace.MAIN]: {
+      activeFilter: DEFAULT_FILTER,
+      maxCards: DEFAULT_MAX_CARDS
+    },
+    [NameSpace.DATA]: {
+      films: [],
+      promoFilm: {},
+    }
   });
 
   const tree = renderer
