@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/reducer.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const Main = (props) => {
@@ -143,10 +143,10 @@ Main.propTypes = {
   })).isRequired,
   handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    date: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    name: PropTypes.string,
+    date: PropTypes.number,
+    genre: PropTypes.string,
+    image: PropTypes.string
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,
@@ -171,7 +171,7 @@ const mapStateToProps = (state) => ({
   films: getUpdatedFilmsList(state.activeFilter, state.films),
   promoFilm: state.promoFilm,
   genres: state.genres,
-  maxCards: state.maxCards
+  maxCards: state.maxCards,
 });
 
 const mapDispatchToProps = (dispatch) => ({
