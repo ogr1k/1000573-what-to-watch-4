@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
+import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
 
 const Main = (props) => {
   const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
@@ -71,13 +73,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={promoFilm.image} alt={promoFilm.name} width="218" height="327"/>
+              <img src={promoFilm.poster} alt={promoFilm.name} width="218" height="327"/>
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoFilm.genre}</span>
-                <span className="movie-card__year">{promoFilm.date}</span>
+                <span className="movie-card__year">{promoFilm.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -143,10 +145,10 @@ Main.propTypes = {
   })).isRequired,
   handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    date: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    name: PropTypes.string,
+    year: PropTypes.number,
+    genre: PropTypes.string,
+    poster: PropTypes.string
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,
@@ -155,24 +157,15 @@ Main.propTypes = {
   maxCards: PropTypes.number.isRequired
 };
 
-const getUpdatedFilmsList = (activeFilter, films) => {
-
-  if (activeFilter === `All Genres`) {
-    return films;
-  }
-
-  const filmsList = films.filter((film) => film.genre === activeFilter);
-
-  return filmsList;
+const mapStateToProps = (state) => {
+  return {
+    activeFilter: getActiveFilter(state),
+    films: getFilmsByGenres(state),
+    promoFilm: getPromoFilm(state),
+    genres: getGenres(state),
+    maxCards: getMaxCardsCount(state)
+  };
 };
-
-const mapStateToProps = (state) => ({
-  activeFilter: state.activeFilter,
-  films: getUpdatedFilmsList(state.activeFilter, state.films),
-  promoFilm: state.promoFilm,
-  genres: state.genres,
-  maxCards: state.maxCards
-});
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterName) {

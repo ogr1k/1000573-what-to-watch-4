@@ -9,4 +9,8 @@ const getAvailableGenres = (films) => {
   return availableGenres;
 };
 
-export {getAvailableGenres};
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export {getAvailableGenres, extend};

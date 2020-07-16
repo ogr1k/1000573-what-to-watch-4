@@ -1,24 +1,18 @@
-import {mock, PROMOFILM, availableGenres} from "./mocks/films.js";
+import {extend} from "../../utils.js";
 
 const DEFAULT_FILTER = `All Genres`;
 const DEFAULT_MAX_CARDS = 8;
 const MAX_CARDS_INCREMENT_STEP = 8;
 
-const extend = (a, b) => {
-  return Object.assign({}, a, b);
-};
 
 const initialState = {
   activeFilter: DEFAULT_FILTER,
-  films: mock,
-  promoFilm: PROMOFILM,
-  genres: availableGenres,
   maxCards: DEFAULT_MAX_CARDS
 };
 
 const ActionType = {
   SET_FILTER: `SET_FILTER`,
-  INCREMENT_MAX_CARDS: `INCREMENT_MAX_CARDS`
+  INCREMENT_MAX_CARDS: `INCREMENT_MAX_CARDS`,
 };
 
 

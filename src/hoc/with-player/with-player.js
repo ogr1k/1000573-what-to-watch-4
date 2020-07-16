@@ -27,9 +27,10 @@ const withPlayer = (Component) => {
       const video = this._videoRef.current;
 
       const {film} = this.props;
-      const {video: videoSRC, poster} = film;
+      const {video: videoSRC, previewImage} = film;
 
       video.onplay = () => {
+
         this.setState({
           isPlaying: true,
         });
@@ -39,10 +40,11 @@ const withPlayer = (Component) => {
         this.setState({
           isPlaying: false,
         });
+        video.load();
       };
 
       video.src = videoSRC;
-      video.poster = poster;
+      video.poster = previewImage;
 
       video.muted = true;
       video.loop = true;
@@ -64,7 +66,6 @@ const withPlayer = (Component) => {
     handleLeave() {
       const video = this._videoRef.current;
       video.pause();
-      video.load();
       clearTimeout(this.startVideoTimeOut);
     }
 
@@ -95,7 +96,7 @@ const withPlayer = (Component) => {
     onClick: PropTypes.func.isRequired,
     film: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      poster: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       director: PropTypes.string.isRequired,
       genre: PropTypes.string.isRequired,
