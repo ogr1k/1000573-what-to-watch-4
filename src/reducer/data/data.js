@@ -24,7 +24,7 @@ const parseFilmData = (film) => {
     rating,
     ratings: film.scores_count,
     starring: film.starring.join(),
-    video: film.video_link,
+    video: film.preview_video_link,
     year: released
   };
 
@@ -32,8 +32,8 @@ const parseFilmData = (film) => {
 
 const parseData = (element) => {
 
-    return element.map((film) => {
-      return parseFilmData(film);
+  return element.map((film) => {
+    return parseFilmData(film);
   });
 
 };

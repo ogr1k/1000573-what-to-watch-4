@@ -15,7 +15,7 @@ const film = {
   "released": 1984,
   "scores_count": 276395,
   "starring": [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
-  "video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
 };
 
 const parsedFilm = {
@@ -30,7 +30,7 @@ const parsedFilm = {
   year: film.released,
   ratings: film.scores_count,
   starring: film.starring.join(),
-  video: film.video_link
+  video: film.preview_video_link
 };
 
 const api = createAPI(() => {});
@@ -80,14 +80,14 @@ describe(`Operation work correctly`, () => {
 
     apiMock
       .onGet(`/films/promo`)
-      .reply(200, [film]);
+      .reply(200, film);
 
     return filmsLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_PROMO_FILM,
-          payload: [parsedFilm],
+          payload: parsedFilm,
         });
       });
   });

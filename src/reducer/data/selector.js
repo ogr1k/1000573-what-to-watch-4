@@ -14,7 +14,7 @@ const getFilteredFilms = (activeFilter, films) => {
 
 const getAvailableGenres = (films) => {
 
-  const availableGenres = new Set(films.map(film => film.genre))
+  const availableGenres = new Set(films.map((film) => film.genre));
 
   return Array.from(availableGenres);
 };
