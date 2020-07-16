@@ -4,7 +4,7 @@ import {createSelector} from "reselect";
 
 const NAME_SPACE = NameSpace.DATA;
 
-const getUpdatedFilmsList = (activeFilter, films) => {
+const getFilteredFilms = (activeFilter, films) => {
   if (activeFilter === `All Genres`) {
     return films;
   }
@@ -13,18 +13,13 @@ const getUpdatedFilmsList = (activeFilter, films) => {
 };
 
 const getAvailableGenres = (films) => {
-  const availableGenres = [];
 
-  for (const film of films) {
-    if (!availableGenres.includes(film.genre)) {
-      availableGenres.push(film.genre);
-    }
-  }
+  const availableGenres = new Set(films.map(film => film.genre))
 
-  return availableGenres;
+  return Array.from(availableGenres);
 };
 
-const getFilmsList = (state) => {
+const getFilms = (state) => {
 
   return state[NAME_SPACE].films;
 };
@@ -35,14 +30,14 @@ export const getPromoFilm = (state) => {
 
 export const getFilmsByGenres = createSelector(
     getActiveFilter,
-    getFilmsList,
+    getFilms,
     (resultOne, resultTwo) => {
-      return getUpdatedFilmsList(resultOne, resultTwo);
+      return getFilteredFilms(resultOne, resultTwo);
     }
 );
 
 export const getGenres = createSelector(
-    getFilmsList,
+    getFilms,
     (result) => {
       return getAvailableGenres(result);
     }

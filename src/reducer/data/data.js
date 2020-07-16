@@ -32,19 +32,10 @@ const parseFilmData = (film) => {
 
 const parseData = (element) => {
 
-  if (Array.isArray(element)) {
-    const result = [];
+    return element.map((film) => {
+      return parseFilmData(film);
+  });
 
-    element.map(
-        (film) => {
-          result.push(parseFilmData(film));
-        }
-    );
-
-    return result;
-  }
-
-  return parseFilmData(element);
 };
 
 
@@ -75,7 +66,7 @@ const Operation = {
   loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
         .then((response) => {
-          const promoFilm = parseData(response.data);
+          const promoFilm = parseFilmData(response.data);
           dispatch(ActionCreator.loadPromoFilm(promoFilm));
         });
   }

@@ -11,7 +11,6 @@ class Film extends PureComponent {
   render() {
 
     const {film, onClick, isPlaying, handleEnter, handleLeave, children} = this.props;
-    // debugger;
 
     return (
       <article className="small-movie-card catalog__movies-card"
