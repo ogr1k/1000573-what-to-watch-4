@@ -1,11 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
-import {film} from "../../mocks/test-mocks.js";
+import {films} from "../../mocks/test-mocks.js";
+
+const testID = 1;
 
 it(`Render Movie-Page`, () => {
   const tree = renderer
-    .create(<MoviePage film={film}/>)
+    .create(
+
+        <MoviePage films={films} filmId={testID}/>
+
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

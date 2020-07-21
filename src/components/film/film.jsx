@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
 
 class Film extends PureComponent {
 
@@ -10,17 +12,17 @@ class Film extends PureComponent {
 
   render() {
 
-    const {film, onClick, isPlaying, handleEnter, handleLeave, children} = this.props;
+    const {film, isPlaying, handleEnter, handleLeave, children} = this.props;
 
     return (
       <article className="small-movie-card catalog__movies-card"
-        onClick={isPlaying ? null : () => onClick(film)}
+        onClick={isPlaying ? null : () => history.push(`${AppRoute.FILM}/${film.id}`)}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
       >
         {children}
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" onClick={!isPlaying ? null : () => onClick(film)}>{film.name}</a>
+          <a className="small-movie-card__link" onClick={!isPlaying ? null : () => history.push(`${AppRoute.FILM}/${film.id}`)}>{film.name}</a>
         </h3>
       </article>
     );
@@ -41,7 +43,6 @@ Film.propTypes = {
     video: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired
   }),
-  onClick: PropTypes.func.isRequired,
   handleEnter: PropTypes.func,
   handleLeave: PropTypes.func,
   isPlaying: PropTypes.bool.isRequired,

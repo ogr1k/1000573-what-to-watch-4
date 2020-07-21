@@ -121,7 +121,7 @@ exports[`Render Movie-Page 1`] = `
       >
         <img
           alt="The Grand Budapest Hotel"
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          src="/img/bg-the-grand-budapest-hotel.jpg"
         />
       </div>
       <h1
@@ -165,7 +165,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="User avatar"
               height={63}
-              src="img/avatar.jpg"
+              src="/img/avatar.jpg"
               width={63}
             />
           </div>
@@ -375,7 +375,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height={175}
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width={280}
             />
           </div>
@@ -399,7 +399,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Bohemian Rhapsody"
               height={175}
-              src="img/bohemian-rhapsody.jpg"
+              src="/img/bohemian-rhapsody.jpg"
               width={280}
             />
           </div>
@@ -423,7 +423,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Macbeth"
               height={175}
-              src="img/macbeth.jpg"
+              src="/img/macbeth.jpg"
               width={280}
             />
           </div>
@@ -447,7 +447,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Aviator"
               height={175}
-              src="img/aviator.jpg"
+              src="/img/aviator.jpg"
               width={280}
             />
           </div>

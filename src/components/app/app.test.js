@@ -12,16 +12,18 @@ const DEFAULT_FILTER = `All Genres`;
 const DEFAULT_MAX_CARDS = 8;
 
 it(`Render App`, () => {
-
   const store = mockStore({
     [NameSpace.MAIN]: {
       activeFilter: DEFAULT_FILTER,
-      maxCards: DEFAULT_MAX_CARDS
+      maxCards: DEFAULT_MAX_CARDS,
     },
     [NameSpace.DATA]: {
       films: [],
       promoFilm: {},
-    }
+    },
+    [NameSpace.USER]: {
+      authorisationStatus: `AUTH`,
+    },
   });
 
   const tree = renderer

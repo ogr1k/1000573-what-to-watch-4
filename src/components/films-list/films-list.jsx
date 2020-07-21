@@ -6,11 +6,11 @@ import Film from "../../components/film/film.jsx";
 const WrappedFilm = withPlayer(Film);
 
 const FilmsList = (props) => {
-  const {films, onClick} = props;
+  const {films} = props;
 
   return (<div className="catalog__movies-list">
     {films.map((film) =>
-      <WrappedFilm film={film} onClick={onClick} key={film.id} />
+      <WrappedFilm film={film} key={film.id} />
     )}
   </div>);
 };
@@ -27,7 +27,6 @@ FilmsList.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  onClick: PropTypes.func.isRequired
 };
 
 export default FilmsList;

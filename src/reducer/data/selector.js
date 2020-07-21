@@ -19,9 +19,15 @@ const getAvailableGenres = (films) => {
   return Array.from(availableGenres);
 };
 
-const getFilms = (state) => {
+export const getFilms = (state) => {
 
   return state[NAME_SPACE].films;
+};
+
+export const getFilmById = (state, id) => {
+  const films = state[NAME_SPACE].films;
+
+  return films.filter((film) => film.id === id);
 };
 
 export const getPromoFilm = (state) => {

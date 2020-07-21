@@ -3,13 +3,17 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
+import {AuthorisationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../constants.js";
 
 const Main = (props) => {
-  const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
+  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards, authorisationStatus} = props;
+
 
   const renderShowMoreButton = () => {
 
@@ -62,11 +66,13 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
+            {authorisationStatus === AuthorisationStatus.NO_AUTH ?
+              <Link to={AppRoute.LOGIN} className="user-block__link"> Sign-in </Link>
+              :
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              </div>}
           </div>
         </header>
 
@@ -107,7 +113,7 @@ const Main = (props) => {
 
           <GenresList genres={genres} clickHandler={onFilterClick} activeFilter={activeFilter}/>
 
-          <FilmsList films={films.slice(0, maxCards)} onClick={handleHeaderClick} />
+          <FilmsList films={films.slice(0, maxCards)} />
 
           {renderShowMoreButton()}
 
@@ -143,7 +149,6 @@ Main.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
     name: PropTypes.string,
     year: PropTypes.number,
@@ -154,7 +159,8 @@ Main.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
-  maxCards: PropTypes.number.isRequired
+  maxCards: PropTypes.number.isRequired,
+  authorisationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -163,7 +169,7 @@ const mapStateToProps = (state) => {
     films: getFilmsByGenres(state),
     promoFilm: getPromoFilm(state),
     genres: getGenres(state),
-    maxCards: getMaxCardsCount(state)
+    maxCards: getMaxCardsCount(state),
   };
 };
 
