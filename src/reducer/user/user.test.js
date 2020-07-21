@@ -21,6 +21,15 @@ it(`Reducer should update authorisation status by require authorisation`, () => 
   })).toEqual({
     authorisationStatus: AuthorisationStatus.AUTH,
   });
+
+  expect(reducer({
+    authorisationStatus: AuthorisationStatus.AUTH,
+  }, {
+    type: ActionType.REQUIRED_AUTHORISATION,
+    payload: AuthorisationStatus.NO_AUTH,
+  })).toEqual({
+    authorisationStatus: AuthorisationStatus.NO_AUTH,
+  });
 });
 
 
