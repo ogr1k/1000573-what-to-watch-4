@@ -133,8 +133,6 @@ Array [
       >
         <a
           className="logo__link"
-          href="/"
-          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -300,7 +298,9 @@ Array [
         className="copyright"
       >
         <p>
-          © 2019 What to watch Ltd.
+          © 
+          2020
+           What to watch Ltd.
         </p>
       </div>
     </footer>

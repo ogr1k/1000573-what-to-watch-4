@@ -12,7 +12,8 @@ exports[`Render Authentification 1`] = `
     >
       <a
         className="logo__link"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -110,7 +111,8 @@ exports[`Render Authentification 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -133,7 +135,9 @@ exports[`Render Authentification 1`] = `
       className="copyright"
     >
       <p>
-        © 2019 What to watch Ltd.
+        © 
+        2020
+         What to watch Ltd.
       </p>
     </div>
   </footer>

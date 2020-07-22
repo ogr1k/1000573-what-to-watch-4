@@ -4,9 +4,10 @@ import MoviePage from "./movie-page.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
-const testID = 1;
 
 it(`Render Movie-Page`, () => {
 
@@ -34,10 +35,18 @@ it(`Render Movie-Page`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MoviePage
-            filmId={testID}
-            authorisationsStatus="AUTH"
-          />
+          <Router history={history}>
+            <MoviePage
+              routerProps={{
+                match: {
+                  params: {
+                    id: `1`
+                  }
+                }
+              }}
+              authorisationStatus="AUTH"
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

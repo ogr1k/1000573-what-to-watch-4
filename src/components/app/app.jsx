@@ -16,7 +16,6 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    props = this.props;
   }
 
   renderAuthScreen() {
@@ -46,7 +45,7 @@ class App extends PureComponent {
               authorisationStatus={authorisationStatus}
             />
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) => <MoviePage filmId={Number(props.match.params.id)}/>}>
+          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) => <MoviePage routerProps={props} authorisationStatus={authorisationStatus}/>}>
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
@@ -58,30 +57,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  })).isRequired,
-  selectedFilm: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    video: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
   authorisationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired
 };

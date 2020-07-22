@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFilmById} from "../../reducer/data/selector.js";
+import {Link} from "react-router-dom";
+import UserBlock from "../user-block/user-block.jsx";
+import Copyright from "../copyright/copyright.jsx";
 
 const getRatingText = (rating) => {
   switch (true) {
@@ -21,7 +24,7 @@ const getRatingText = (rating) => {
 
 const MoviePage = (props) => {
 
-  const {film} = props;
+  const {film, authorisationStatus} = props;
 
   if (!film) {
     return null;
@@ -63,17 +66,13 @@ const MoviePage = (props) => {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width={63} height={63} />
-              </div>
-            </div>
+            < UserBlock authorisationStatus={authorisationStatus} />
           </header>
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -175,15 +174,13 @@ const MoviePage = (props) => {
         </section>
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
+          < Copyright />
         </footer>
       </div>
     </div>
@@ -193,17 +190,6 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  })).isRequired,
   film: PropTypes.shape({
     name: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
@@ -215,13 +201,12 @@ MoviePage.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   }),
-  filmId: PropTypes.number.isRequired
+  authorisationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
-
   return {
-    film: getFilmById(state, ownProps.filmId)
+    film: getFilmById(state, ownProps.routerProps.match.params.id)
   };
 
 };
