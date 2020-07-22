@@ -8,7 +8,6 @@ import {Operation, AuthorisationStatus} from "../../reducer/user/user.js";
 import {getAuthorisationStatus} from "../../reducer/user/selector.js";
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
-import {getFilms} from "../../reducer/data/selector.js";
 import {AppRoute} from "../../constants.js";
 
 
@@ -37,7 +36,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authorisationStatus, films} = this.props;
+    const {authorisationStatus} = this.props;
 
     return (
       <Router history={history}>
@@ -47,7 +46,7 @@ class App extends PureComponent {
               authorisationStatus={authorisationStatus}
             />
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) => <MoviePage filmId={Number(props.match.params.id)} films={films}/>}>
+          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) => <MoviePage filmId={Number(props.match.params.id)}/>}>
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
@@ -89,7 +88,6 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    films: getFilms(state),
     authorisationStatus: getAuthorisationStatus(state),
   };
 };

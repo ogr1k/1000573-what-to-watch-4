@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getFilmById} from "../../reducer/data/selector.js";
 
 const getRatingText = (rating) => {
   switch (true) {
@@ -19,9 +21,7 @@ const getRatingText = (rating) => {
 
 const MoviePage = (props) => {
 
-  const {films, filmId} = props;
-
-  const film = films.filter((movie) => movie.id === filmId)[0];
+  const {film} = props;
 
   if (!film) {
     return null;
@@ -218,4 +218,12 @@ MoviePage.propTypes = {
   filmId: PropTypes.number.isRequired
 };
 
-export default MoviePage;
+const mapStateToProps = (state, ownProps) => {
+
+  return {
+    film: getFilmById(state, ownProps.filmId)
+  };
+
+};
+
+export default connect(mapStateToProps)(MoviePage);

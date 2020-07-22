@@ -27,7 +27,7 @@ export const getFilms = (state) => {
 export const getFilmById = (state, id) => {
   const films = state[NAME_SPACE].films;
 
-  return films.filter((film) => film.id === id);
+  return films.filter((film) => film.id === id)[0];
 };
 
 export const getPromoFilm = (state) => {

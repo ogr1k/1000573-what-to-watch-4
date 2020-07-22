@@ -180,7 +180,7 @@ exports[`Render Movie-Page 1`] = `
           <h2
             className="movie-card__title"
           >
-            Jojo Rabbit
+            Once Upon a Time in America
           </h2>
           <p
             className="movie-card__meta"
@@ -188,13 +188,11 @@ exports[`Render Movie-Page 1`] = `
             <span
               className="movie-card__genre"
             >
-              
+              Crime
             </span>
             <span
               className="movie-card__year"
-            >
-              1
-            </span>
+            />
           </p>
           <div
             className="movie-card__buttons"
@@ -255,7 +253,6 @@ exports[`Render Movie-Page 1`] = `
           <img
             alt="The Grand Budapest Hotel poster"
             height={327}
-            src=""
             width={218}
           />
         </div>
@@ -306,7 +303,7 @@ exports[`Render Movie-Page 1`] = `
             <div
               className="movie-rating__score"
             >
-              1
+              9.9
             </div>
             <p
               className="movie-rating__meta"
@@ -314,12 +311,11 @@ exports[`Render Movie-Page 1`] = `
               <span
                 className="movie-rating__level"
               >
-                Very bad
+                Very good
               </span>
               <span
                 className="movie-rating__count"
               >
-                1
                  ratings
               </span>
             </p>
@@ -328,14 +324,14 @@ exports[`Render Movie-Page 1`] = `
             className="movie-card__text"
           >
             <p>
-              
+              A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                
+                Sergio Leone
               </strong>
             </p>
             <p
@@ -343,7 +339,9 @@ exports[`Render Movie-Page 1`] = `
             >
               <strong>
                 Starring: 
-                
+                Robert De Niro
+                James Woods
+                Elizabeth McGovern
                  and other
               </strong>
             </p>
