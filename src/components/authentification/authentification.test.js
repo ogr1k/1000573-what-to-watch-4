@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Authentification from "./Authentification.jsx";
+import Authentification from "./authentification.jsx";
 
 
 it(`Render Authentification`, () => {
