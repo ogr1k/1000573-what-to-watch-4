@@ -4,7 +4,8 @@ import Main from "./main.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
-
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
@@ -29,9 +30,11 @@ it(`Render Main`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            handleHeaderClick={headClickHandler}
-          />
+          <Router history={history}>
+            <Main
+              handleHeaderClick={headClickHandler}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};
