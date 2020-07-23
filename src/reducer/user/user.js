@@ -1,17 +1,17 @@
 import {extend} from "../../utils.js";
 
-const AuthorizationStatus = {
+const AuthorisationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
 
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorisationStatus: AuthorisationStatus.NO_AUTH,
 };
 
 const ActionType = {
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REQUIRED_AUTHORISATION: `REQUIRED_AUTHORISATION`,
 };
 
 
@@ -19,7 +19,7 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.requireAuthorisation(AuthorisationStatus.AUTH));
       })
       .catch((err) => {
         throw err;
@@ -31,28 +31,30 @@ const Operation = {
       password: authData.password,
     })
       .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.requireAuthorisation(AuthorisationStatus.AUTH));
+      }).catch((err) => {
+        throw err;
       });
   },
 };
 
 
 const ActionCreator = {
-  requireAuthorization: (status) => {
+  requireAuthorisation: (status) => {
     return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.REQUIRED_AUTHORISATION,
       payload: status,
     };
-  },
+  }
 };
 
 
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION: {
+    case ActionType.REQUIRED_AUTHORISATION: {
       return extend(state, {
-        authorizationStatus: action.payload
+        authorisationStatus: action.payload,
       });
     }
   }
@@ -61,4 +63,4 @@ const reducer = (state = initialState, action) => {
 };
 
 
-export {reducer, ActionCreator, ActionType, Operation, AuthorizationStatus};
+export {reducer, ActionCreator, ActionType, Operation, AuthorisationStatus};

@@ -7,9 +7,12 @@ import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
+import UserBlock from "../user-block/user-block.jsx";
+import Copyright from "../copyright/copyright.jsx";
 
 const Main = (props) => {
-  const {promoFilm, films, handleHeaderClick, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards} = props;
+  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards, authorisationStatus} = props;
+
 
   const renderShowMoreButton = () => {
 
@@ -62,12 +65,7 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </div>
+          <UserBlock authorisationStatus={authorisationStatus} />
         </header>
 
         <div className="movie-card__wrap">
@@ -107,7 +105,7 @@ const Main = (props) => {
 
           <GenresList genres={genres} clickHandler={onFilterClick} activeFilter={activeFilter}/>
 
-          <FilmsList films={films.slice(0, maxCards)} onClick={handleHeaderClick} />
+          <FilmsList films={films.slice(0, maxCards)} />
 
           {renderShowMoreButton()}
 
@@ -122,9 +120,7 @@ const Main = (props) => {
             </a>
           </div>
 
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
+          <Copyright />
         </footer>
       </div>
     </>
@@ -143,7 +139,6 @@ Main.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
-  handleHeaderClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
     name: PropTypes.string,
     year: PropTypes.number,
@@ -154,7 +149,8 @@ Main.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
-  maxCards: PropTypes.number.isRequired
+  maxCards: PropTypes.number.isRequired,
+  authorisationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -163,7 +159,7 @@ const mapStateToProps = (state) => {
     films: getFilmsByGenres(state),
     promoFilm: getPromoFilm(state),
     genres: getGenres(state),
-    maxCards: getMaxCardsCount(state)
+    maxCards: getMaxCardsCount(state),
   };
 };
 

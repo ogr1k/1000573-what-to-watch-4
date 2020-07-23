@@ -76,12 +76,9 @@ const withPlayer = (Component) => {
 
     render() {
 
-      const {onClick} = this.props;
-
       return (
         <Component
           {...this.props}
-          onClick={onClick}
           handleEnter={this.handleEnter}
           handleLeave={this.handleLeave}
           isPlaying={this.state.isPlaying}
@@ -93,7 +90,6 @@ const withPlayer = (Component) => {
   }
 
   WithPlayer.propTypes = {
-    onClick: PropTypes.func.isRequired,
     film: PropTypes.shape({
       name: PropTypes.string.isRequired,
       previewImage: PropTypes.string.isRequired,

@@ -62,24 +62,3 @@ it(`Should card be mouseleaved`, () => {
 
   expect(mockFunction).toHaveBeenCalledTimes(1);
 });
-
-
-it(`Should click be handled with correct data`, () => {
-  const mockFunction = jest.fn();
-
-  const filmCard = shallow(
-      <Film
-        film={mock}
-        onClick={mockFunction}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        isPlaying={false}
-      />
-  );
-
-  const movieCard = filmCard.find(`.small-movie-card`);
-
-  movieCard.simulate(`click`);
-
-  expect(mockFunction).toHaveBeenCalledWith(mock);
-});

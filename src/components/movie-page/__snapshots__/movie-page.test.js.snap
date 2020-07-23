@@ -121,7 +121,7 @@ exports[`Render Movie-Page 1`] = `
       >
         <img
           alt="The Grand Budapest Hotel"
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          src="/img/bg-the-grand-budapest-hotel.jpg"
         />
       </div>
       <h1
@@ -137,7 +137,8 @@ exports[`Render Movie-Page 1`] = `
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -164,9 +165,9 @@ exports[`Render Movie-Page 1`] = `
           >
             <img
               alt="User avatar"
-              height={63}
-              src="img/avatar.jpg"
-              width={63}
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
             />
           </div>
         </div>
@@ -180,7 +181,7 @@ exports[`Render Movie-Page 1`] = `
           <h2
             className="movie-card__title"
           >
-            Jojo Rabbit
+            Once Upon a Time in America
           </h2>
           <p
             className="movie-card__meta"
@@ -188,13 +189,11 @@ exports[`Render Movie-Page 1`] = `
             <span
               className="movie-card__genre"
             >
-              
+              Crime
             </span>
             <span
               className="movie-card__year"
-            >
-              1
-            </span>
+            />
           </p>
           <div
             className="movie-card__buttons"
@@ -255,7 +254,6 @@ exports[`Render Movie-Page 1`] = `
           <img
             alt="The Grand Budapest Hotel poster"
             height={327}
-            src=""
             width={218}
           />
         </div>
@@ -306,7 +304,7 @@ exports[`Render Movie-Page 1`] = `
             <div
               className="movie-rating__score"
             >
-              1
+              9.9
             </div>
             <p
               className="movie-rating__meta"
@@ -314,12 +312,11 @@ exports[`Render Movie-Page 1`] = `
               <span
                 className="movie-rating__level"
               >
-                Very bad
+                Very good
               </span>
               <span
                 className="movie-rating__count"
               >
-                1
                  ratings
               </span>
             </p>
@@ -328,14 +325,14 @@ exports[`Render Movie-Page 1`] = `
             className="movie-card__text"
           >
             <p>
-              
+              A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                
+                Sergio Leone
               </strong>
             </p>
             <p
@@ -343,7 +340,9 @@ exports[`Render Movie-Page 1`] = `
             >
               <strong>
                 Starring: 
-                
+                Robert De Niro
+                James Woods
+                Elizabeth McGovern
                  and other
               </strong>
             </p>
@@ -375,7 +374,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height={175}
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width={280}
             />
           </div>
@@ -399,7 +398,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Bohemian Rhapsody"
               height={175}
-              src="img/bohemian-rhapsody.jpg"
+              src="/img/bohemian-rhapsody.jpg"
               width={280}
             />
           </div>
@@ -423,7 +422,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Macbeth"
               height={175}
-              src="img/macbeth.jpg"
+              src="/img/macbeth.jpg"
               width={280}
             />
           </div>
@@ -447,7 +446,7 @@ exports[`Render Movie-Page 1`] = `
             <img
               alt="Aviator"
               height={175}
-              src="img/aviator.jpg"
+              src="/img/aviator.jpg"
               width={280}
             />
           </div>
@@ -472,7 +471,8 @@ exports[`Render Movie-Page 1`] = `
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -495,7 +495,9 @@ exports[`Render Movie-Page 1`] = `
         className="copyright"
       >
         <p>
-          © 2019 What to watch Ltd.
+          © 
+          2020
+           What to watch Ltd.
         </p>
       </div>
     </footer>
