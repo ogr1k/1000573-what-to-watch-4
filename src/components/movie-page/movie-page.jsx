@@ -72,7 +72,7 @@ const MoviePage = (props) => {
                 <span className="logo__letter logo__letter--3">W</span>
               </Link>
             </div>
-            < UserBlock authorisationStatus={authorisationStatus} />
+            <UserBlock authorisationStatus={authorisationStatus} />
           </header>
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -180,7 +180,7 @@ const MoviePage = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </Link>
           </div>
-          < Copyright />
+          <Copyright />
         </footer>
       </div>
     </div>

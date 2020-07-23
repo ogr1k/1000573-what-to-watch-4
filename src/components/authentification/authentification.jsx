@@ -70,7 +70,7 @@ class Authentification extends PureComponent {
               <span className="logo__letter logo__letter--3">W</span>
             </Link>
           </div>
-          < Copyright />
+          <Copyright />
         </footer>
       </div>
     );

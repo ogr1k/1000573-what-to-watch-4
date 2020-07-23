@@ -65,7 +65,7 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-          < UserBlock authorisationStatus={authorisationStatus} />
+          <UserBlock authorisationStatus={authorisationStatus} />
         </header>
 
         <div className="movie-card__wrap">
@@ -120,7 +120,7 @@ const Main = (props) => {
             </a>
           </div>
 
-          < Copyright />
+          <Copyright />
         </footer>
       </div>
     </>

@@ -13,11 +13,6 @@ import {AppRoute} from "../../constants.js";
 
 class App extends PureComponent {
 
-  constructor(props) {
-    super(props);
-
-  }
-
   renderAuthScreen() {
 
     const {authorisationStatus, login} = this.props;
