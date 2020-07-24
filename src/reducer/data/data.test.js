@@ -15,7 +15,10 @@ const film = {
   "released": 1984,
   "scores_count": 276395,
   "starring": [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
-  "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  "background_image": ``,
+  "background_color": `black`,
+  "run_time": 200
 };
 
 const parsedFilm = {
@@ -29,8 +32,11 @@ const parsedFilm = {
   rating: film.rating,
   year: film.released,
   ratings: film.scores_count,
-  starring: film.starring.join(),
-  video: film.preview_video_link
+  starring: film.starring,
+  video: film.preview_video_link,
+  backgroundImage: film.background_image,
+  backgroundColor: film.background_color,
+  runTime: film.run_time
 };
 
 const api = createAPI(() => {});
