@@ -14,6 +14,10 @@ const MoviePage = (props) => {
 
   const {film, authorisationStatus, sameGenreFilms, routerProps} = props;
 
+  if (!film) {
+    return null;
+  }
+
   const {backgroundColor, backgroundImage, name, genre, year} = film;
 
 
@@ -30,10 +34,6 @@ const MoviePage = (props) => {
     return <MoviePageOverview film={film} activeTab={activeTab}/>;
   };
 
-
-  if (!film) {
-    return null;
-  }
 
   return (
     <div>
@@ -160,7 +160,7 @@ MoviePage.propTypes = {
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string),
     year: PropTypes.number.isRequired
   })),
 };

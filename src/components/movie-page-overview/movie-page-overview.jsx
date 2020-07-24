@@ -63,7 +63,7 @@ MoviePageOverview.propTypes = {
     id: PropTypes.number.isRequired,
     runTime: PropTypes.number.isRequired
   }),
-  activeTab: PropTypes.string.isRequired
+  activeTab: PropTypes.string
 };
 
 export default MoviePageOverview;

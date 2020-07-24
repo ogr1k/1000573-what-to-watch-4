@@ -271,10 +271,12 @@ exports[`Render Movie-Page 1`] = `
               className="movie-nav__list"
             >
               <li
-                className="movie-nav__item movie-nav__item--active"
+                className="movie-nav__item
+            movie-nav__item--active"
               >
                 <a
-                  className="movie-nav__link"
+                  className="movie-nav__link
+            disabled-link"
                   href="/films/1"
                   onClick={[Function]}
                 >
@@ -282,10 +284,12 @@ exports[`Render Movie-Page 1`] = `
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item
+            "
               >
                 <a
-                  className="movie-nav__link"
+                  className="movie-nav__link
+            "
                   href="/films/1/details"
                   onClick={[Function]}
                 >
@@ -293,10 +297,12 @@ exports[`Render Movie-Page 1`] = `
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item
+            "
               >
                 <a
-                  className="movie-nav__link"
+                  className="movie-nav__link
+            "
                   href="/films/1/review"
                   onClick={[Function]}
                 >

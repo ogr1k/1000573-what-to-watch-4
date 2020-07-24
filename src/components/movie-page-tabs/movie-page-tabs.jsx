@@ -29,15 +29,30 @@ const MoviePageTabs = (props) => {
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
 
-        {TabData.map((tab) => (
-          <li className={`movie-nav__item` + (activeTab === tab.slicedPath ? ` movie-nav__item--active` : ``)} key={tab.name}>
-            <Link to={`${AppRoute.FILM}/${filmId}${tab.path}`} className="movie-nav__link">{tab.name}</Link>
-          </li>
-        ))}
+        {TabData.map((tab) => {
+
+          const isActiveTab = activeTab === tab.slicedPath;
+
+          return (
+            <li key={tab.name}
+              className={`movie-nav__item
+            ${isActiveTab
+              ? `movie-nav__item--active`
+              : ``}`}
+            >
+              <Link to={`${AppRoute.FILM}/${filmId}${tab.path}`} className={`movie-nav__link
+            ${isActiveTab
+              ? `disabled-link`
+              : ``}`}>{tab.name}</Link>
+            </li>
+          );
+        }
+        )}
       </ul>
     </nav>
   );
 };
+
 
 MoviePageTabs.propTypes = {
   filmId: PropTypes.number.isRequired,

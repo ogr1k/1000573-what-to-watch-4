@@ -136,7 +136,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
   promoFilm: PropTypes.shape({
