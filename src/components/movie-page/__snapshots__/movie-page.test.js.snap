@@ -112,6 +112,11 @@ exports[`Render Movie-Page 1`] = `
   </div>
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
   >
     <div
       className="movie-card__hero"
@@ -120,8 +125,7 @@ exports[`Render Movie-Page 1`] = `
         className="movie-card__bg"
       >
         <img
-          alt="The Grand Budapest Hotel"
-          src="/img/bg-the-grand-budapest-hotel.jpg"
+          alt="Once Upon a Time in America"
         />
       </div>
       <h1
@@ -271,7 +275,8 @@ exports[`Render Movie-Page 1`] = `
               >
                 <a
                   className="movie-nav__link"
-                  href="#"
+                  href="/films/1"
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
@@ -281,7 +286,8 @@ exports[`Render Movie-Page 1`] = `
               >
                 <a
                   className="movie-nav__link"
-                  href="#"
+                  href="/films/1/details"
+                  onClick={[Function]}
                 >
                   Details
                 </a>
@@ -291,7 +297,8 @@ exports[`Render Movie-Page 1`] = `
               >
                 <a
                   className="movie-nav__link"
-                  href="#"
+                  href="/films/1/review"
+                  onClick={[Function]}
                 >
                   Reviews
                 </a>
@@ -340,9 +347,7 @@ exports[`Render Movie-Page 1`] = `
             >
               <strong>
                 Starring: 
-                Robert De Niro
-                James Woods
-                Elizabeth McGovern
+                Robert De Niro, James Woods, Elizabeth McGovern
                  and other
               </strong>
             </p>
@@ -364,104 +369,7 @@ exports[`Render Movie-Page 1`] = `
       </h2>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height={175}
-              src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width={280}
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Bohemian Rhapsody"
-              height={175}
-              src="/img/bohemian-rhapsody.jpg"
-              width={280}
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height={175}
-              src="/img/macbeth.jpg"
-              width={280}
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height={175}
-              src="/img/aviator.jpg"
-              width={280}
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"

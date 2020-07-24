@@ -40,8 +40,9 @@ class App extends PureComponent {
               authorisationStatus={authorisationStatus}
             />
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) => <MoviePage routerProps={props} authorisationStatus={authorisationStatus}/>}>
-          </Route>
+          <Route exact path={`${AppRoute.FILM}/:id/:tab?`} component={(props) =>
+            <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
+          }/>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>

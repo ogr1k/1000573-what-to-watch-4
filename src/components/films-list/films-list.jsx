@@ -8,6 +8,10 @@ const WrappedFilm = withPlayer(Film);
 const FilmsList = (props) => {
   const {films} = props;
 
+  if (!films) {
+    return null;
+  }
+
   return (<div className="catalog__movies-list">
     {films.map((film) =>
       <WrappedFilm film={film} key={film.id} />

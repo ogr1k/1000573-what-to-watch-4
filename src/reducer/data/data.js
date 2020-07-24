@@ -11,7 +11,7 @@ const parseFilmData = (film) => {
     return null;
   }
 
-  const {description, director, genre, id, name, rating, released} = film;
+  const {description, director, genre, id, name, rating, released, starring} = film;
 
   return {
     description,
@@ -23,9 +23,12 @@ const parseFilmData = (film) => {
     previewImage: film.preview_image,
     rating,
     ratings: film.scores_count,
-    starring: film.starring.join(),
+    starring,
     video: film.preview_video_link,
-    year: released
+    year: released,
+    backgroundImage: film.background_image,
+    backgroundColor: film.background_color,
+    runTime: film.run_time
   };
 
 };

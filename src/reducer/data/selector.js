@@ -30,6 +30,25 @@ export const getFilmById = (state, id) => {
   return films.filter((film) => film.id === Number(id))[0];
 };
 
+export const getFilmsByGenre = (state, currentActiveFilm) => {
+  const films = state[NAME_SPACE].films;
+
+  const result = [];
+
+
+  for (const film of films) {
+    if (result.length === 4) {
+      return result;
+    }
+
+    if (film.genre === currentActiveFilm.genre && film.id !== currentActiveFilm.id) {
+      result.push(film);
+    }
+  }
+
+  return result;
+};
+
 export const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
 };
