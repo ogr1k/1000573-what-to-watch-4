@@ -1,40 +1,43 @@
 import React from "react";
 import MoviePageTabs from "../movie-page-tabs/movie-page-tabs.jsx";
+import PropTypes from "prop-types";
 
 
 const minutesToHoursMinutes = (minutes) => {
-  let h = Math.floor(minutes / 60);
-  let m = Math.floor(minutes % 60);
+  const h = Math.floor(minutes / 60);
+  const m = Math.floor(minutes % 60);
 
-  let hDisplay = h > 0 ? `${h}H` : ``;
-  let mDisplay = m > 0 ? `${m}M` : ``;
+  const hDisplay = h > 0 ? `${h}H` : ``;
+  const mDisplay = m > 0 ? `${m}M` : ``;
+
   return `${hDisplay} ${mDisplay}`;
 };
 
 const MoviePageDetails = (props) => {
 
   const {film, activeTab} = props;
+  const {poster, name, id, runTime, genre, year, director, starring} = film;
 
   return (
     <div className="movie-card__wrap movie-card__translate-top">
       <div className="movie-card__info">
         <div className="movie-card__poster movie-card__poster--big">
-          <img src={film.poster} alt={film.name} width={218} height={327} />
+          <img src={poster} alt={name} width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={film.id} activeTab={activeTab}/>
+          <MoviePageTabs filmId={id} activeTab={activeTab}/>
           <div className="movie-card__text movie-card__row">
             <div className="movie-card__text-col">
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Director</strong>
-                <span className="movie-card__details-value">{film.director}</span>
+                <span className="movie-card__details-value">{director}</span>
               </p>
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Starring</strong>
                 <span className="movie-card__details-value">
 
-                  {film.starring.map((name, index) => (
-                    `${name}${index + 1 === film.starring.length ? `` : `,`}\n`
+                  {starring.map((actorName, index) => (
+                    `${actorName}${index + 1 === starring.length ? `` : `,`}\n`
                   ))}
 
                 </span>
@@ -43,15 +46,15 @@ const MoviePageDetails = (props) => {
             <div className="movie-card__text-col">
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Run Time</strong>
-                <span className="movie-card__details-value">{minutesToHoursMinutes(film.runTime)}</span>
+                <span className="movie-card__details-value">{minutesToHoursMinutes(runTime)}</span>
               </p>
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Genre</strong>
-                <span className="movie-card__details-value">{film.genre}</span>
+                <span className="movie-card__details-value">{genre}</span>
               </p>
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Released</strong>
-                <span className="movie-card__details-value">{film.year}</span>
+                <span className="movie-card__details-value">{year}</span>
               </p>
             </div>
           </div>
@@ -60,6 +63,23 @@ const MoviePageDetails = (props) => {
     </div>
 
   );
+};
+
+MoviePageDetails.propTypes = {
+  film: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratings: PropTypes.number.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    year: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    runTime: PropTypes.number.isRequired
+  }),
+  activeTab: PropTypes.string.isRequired
 };
 
 export default MoviePageDetails;

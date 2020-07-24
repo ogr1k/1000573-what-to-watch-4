@@ -143,7 +143,8 @@ Main.propTypes = {
     name: PropTypes.string,
     year: PropTypes.number,
     genre: PropTypes.string,
-    poster: PropTypes.string
+    poster: PropTypes.string,
+    backgroundImage: PropTypes.string
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,

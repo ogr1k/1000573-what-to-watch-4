@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import PropTypes from "prop-types";
 
 const TabData = [
   {
@@ -36,6 +37,11 @@ const MoviePageTabs = (props) => {
       </ul>
     </nav>
   );
+};
+
+MoviePageTabs.propTypes = {
+  filmId: PropTypes.number.isRequired,
+  activeTab: PropTypes.string
 };
 
 export default MoviePageTabs;

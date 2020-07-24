@@ -1,5 +1,6 @@
 import React from "react";
 import MoviePageTabs from "../movie-page-tabs/movie-page-tabs.jsx";
+import PropTypes from "prop-types";
 
 const MoviePageReviews = (props) => {
 
@@ -17,7 +18,7 @@ const MoviePageReviews = (props) => {
             <div className="movie-card__reviews-col">
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.</p>
+                  <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.</p>
                   <footer className="review__details">
                     <cite className="review__author">Kate Muir</cite>
                     <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
@@ -27,7 +28,7 @@ const MoviePageReviews = (props) => {
               </div>
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
+                  <p className="review__text">films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
                   <footer className="review__details">
                     <cite className="review__author">Bill Goodykoontz</cite>
                     <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
@@ -37,7 +38,7 @@ const MoviePageReviews = (props) => {
               </div>
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.</p>
+                  <p className="review__text">I find it amusing, and while I can appreciate the creativity, its an hour and 40 minutes I wish I could take back.</p>
                   <footer className="review__details">
                     <cite className="review__author">Amanda Greever</cite>
                     <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
@@ -84,6 +85,23 @@ const MoviePageReviews = (props) => {
     </div>
   );
 
+};
+
+MoviePageReviews.propTypes = {
+  film: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratings: PropTypes.number.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    year: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    runTime: PropTypes.number.isRequired
+  }),
+  activeTab: PropTypes.string
 };
 
 export default MoviePageReviews;
