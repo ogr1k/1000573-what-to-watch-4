@@ -7,9 +7,10 @@ import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.jsx";
 import FilmsList from "../films-list/films-list.jsx";
-import withActiveTab from "../../hoc/with-player/with-active-tab/with-active-tab.js";
+import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
+import {AppRoute} from "../../constants.js";
 
-const WrappedPageBlock = withActiveTab(MoviePageInfoBlock);
+const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
 const MoviePage = (props) => {
 
@@ -59,7 +60,7 @@ const MoviePage = (props) => {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header movie-card__head">
             <div className="logo">
-              <Link to="/" className="logo__link">
+              <Link to={AppRoute.ROOT} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -92,16 +93,16 @@ const MoviePage = (props) => {
             </div>
           </div>
         </div>
-        <WrappedPageBlock film={film}/>
+        <WrappedInfoBlock film={film}/>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          < FilmsList films={sameGenreFilms}/>
+          <FilmsList films={sameGenreFilms}/>
         </section>
         <footer className="page-footer">
           <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
+            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

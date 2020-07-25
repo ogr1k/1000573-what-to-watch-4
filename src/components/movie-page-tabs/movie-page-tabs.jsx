@@ -1,37 +1,24 @@
 import React from "react";
-import {AppRoute} from "../../constants.js";
 import PropTypes from "prop-types";
+import {TabsNames} from "../../constants.js";
 
-const TabData = [
-  {
-    name: `Overview`,
-    path: ``
-  },
-  {
-    name: `Details`,
-    path: AppRoute.DETAILS,
-  },
-  {
-    name: `Reviews`,
-    path: AppRoute.REVIEW,
-  },
-];
+const Tabs = [TabsNames.OVERVIEW, TabsNames.DETAILS, TabsNames.REVIEWS];
 
 
 const MoviePageTabs = (props) => {
 
-  const {activeTab, clickHandler} = props;
+  const {activeTab, onClick} = props;
 
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
 
-        {TabData.map((tab) => {
+        {Tabs.map((tab) => {
 
-          const isActiveTab = activeTab === tab.name;
+          const isActiveTab = activeTab === tab;
 
           return (
-            <li key={tab.name}
+            <li key={tab}
               className={`movie-nav__item
             ${isActiveTab
               ? `movie-nav__item--active`
@@ -39,8 +26,8 @@ const MoviePageTabs = (props) => {
             >
               <a href="#" className="movie-nav__link" onClick={(e) => {
                 e.preventDefault();
-                clickHandler(tab.name);
-              } }>{tab.name}</a>
+                onClick(tab);
+              } }>{tab}</a>
 
             </li>
           );
@@ -54,7 +41,7 @@ const MoviePageTabs = (props) => {
 
 MoviePageTabs.propTypes = {
   activeTab: PropTypes.string,
-  clickHandler: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default MoviePageTabs;

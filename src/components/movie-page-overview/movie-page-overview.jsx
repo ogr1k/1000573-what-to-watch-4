@@ -20,7 +20,7 @@ const getRatingText = (rating) => {
 
 const MoviePageOverview = (props) => {
 
-  const {film, activeTab, clickHandler} = props;
+  const {film, activeTab, onClick} = props;
   const {poster, id, rating, ratings, description, director, starring} = film;
 
 
@@ -30,7 +30,7 @@ const MoviePageOverview = (props) => {
           <img src={poster} alt="The Grand Budapest Hotel poster" width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={id} activeTab={activeTab} clickHandler={clickHandler}/>
+          <MoviePageTabs filmId={id} activeTab={activeTab} onClick={onClick}/>
           <div className="movie-rating">
             <div className="movie-rating__score">{rating}</div>
             <p className="movie-rating__meta">
@@ -63,7 +63,7 @@ MoviePageOverview.propTypes = {
     runTime: PropTypes.number.isRequired
   }),
   activeTab: PropTypes.string,
-  clickHandler: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default MoviePageOverview;

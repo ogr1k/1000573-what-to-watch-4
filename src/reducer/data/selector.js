@@ -34,19 +34,27 @@ export const getFilmById = (state, id) => {
 export const getFilmsByGenre = (state, currentActiveFilm) => {
   const films = state[NAME_SPACE].films;
 
-  const sameGenresFilms = [];
+  const sameGenreFilms = films.filter((film) => (film.genre === currentActiveFilm.genre && film.name !== currentActiveFilm.name));
 
-  for (const film of films) {
-    if (sameGenresFilms.length === MAX_SAME_GENRES_FILMS_COUNT) {
-      return sameGenresFilms;
+  const getIterationsCount = () => {
+
+    if (sameGenreFilms.length < MAX_SAME_GENRES_FILMS_COUNT) {
+      return sameGenreFilms.length;
     }
 
-    if (film.genre === currentActiveFilm.genre && film.id !== currentActiveFilm.id) {
-      sameGenresFilms.push(film);
-    }
+    return MAX_SAME_GENRES_FILMS_COUNT;
+  };
+
+  const iterationsNumber = getIterationsCount();
+  const randomSameGenreFilms = [];
+
+  for (let i = 0; i < iterationsNumber; i++) {
+    const randomIndex = Math.floor(Math.random() * sameGenreFilms.length);
+    randomSameGenreFilms.push(sameGenreFilms[randomIndex]);
+    sameGenreFilms.splice(randomIndex, 1);
   }
 
-  return sameGenresFilms;
+  return randomSameGenreFilms;
 };
 
 export const getPromoFilm = (state) => {

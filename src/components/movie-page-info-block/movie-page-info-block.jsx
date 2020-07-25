@@ -3,28 +3,33 @@ import PropTypes from "prop-types";
 import MoviePageOverview from "../movie-page-overview/movie-page-overview.jsx";
 import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
+import {TabsNames} from "../../constants.js";
 
 const MoviePageInfoBlock = (props) => {
 
-  const {film, activeTab, clickHandler} = props;
+  const {film, activeTab, onClick} = props;
 
-  const renderInfoComponent = () => {
+
+  const getInfoComponent = () => {
 
     switch (activeTab) {
-      case `Reviews`:
-        return <MoviePageReviews film={film} activeTab={activeTab} clickHandler={clickHandler}/>;
-      case `Details`:
-        return <MoviePageDetails film={film} activeTab={activeTab} clickHandler={clickHandler}/>;
+      case TabsNames.REVIEWS:
+        return MoviePageReviews;
+      case TabsNames.DETAILS:
+        return MoviePageDetails;
+      case TabsNames.OVERVIEW:
+        return MoviePageOverview;
     }
 
-    return <MoviePageOverview film={film} activeTab={activeTab} clickHandler={clickHandler}/>;
+    return null;
   };
 
+  const Info = getInfoComponent();
 
   return (
     <div className="movie-card__wrap movie-card__translate-top">
       <div className="movie-card__info">
-        {renderInfoComponent()}
+        <Info film={film} activeTab={activeTab} onClick={onClick}/>
       </div>
     </div>
 
@@ -46,7 +51,7 @@ MoviePageInfoBlock.propTypes = {
     runTime: PropTypes.number.isRequired
   }),
   activeTab: PropTypes.string.isRequired,
-  clickHandler: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default MoviePageInfoBlock;

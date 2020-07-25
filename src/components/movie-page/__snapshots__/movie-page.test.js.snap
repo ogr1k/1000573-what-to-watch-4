@@ -275,9 +275,8 @@ exports[`Render Movie-Page 1`] = `
             movie-nav__item--active"
               >
                 <a
-                  className="movie-nav__link
-            disabled-link"
-                  href="/films/1"
+                  className="movie-nav__link"
+                  href="#"
                   onClick={[Function]}
                 >
                   Overview
@@ -288,9 +287,8 @@ exports[`Render Movie-Page 1`] = `
             "
               >
                 <a
-                  className="movie-nav__link
-            "
-                  href="/films/1/details"
+                  className="movie-nav__link"
+                  href="#"
                   onClick={[Function]}
                 >
                   Details
@@ -301,9 +299,8 @@ exports[`Render Movie-Page 1`] = `
             "
               >
                 <a
-                  className="movie-nav__link
-            "
-                  href="/films/1/review"
+                  className="movie-nav__link"
+                  href="#"
                   onClick={[Function]}
                 >
                   Reviews

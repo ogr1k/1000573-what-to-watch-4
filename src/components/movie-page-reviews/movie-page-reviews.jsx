@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const MoviePageReviews = (props) => {
 
-  const {film, activeTab, clickHandler} = props;
+  const {film, activeTab, onClick} = props;
 
   return (
     <>
@@ -12,7 +12,7 @@ const MoviePageReviews = (props) => {
           <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={film.id} activeTab={activeTab} clickHandler={clickHandler}/>
+          <MoviePageTabs filmId={film.id} activeTab={activeTab} onClick={onClick}/>
           <div className="movie-card__reviews movie-card__row">
             <div className="movie-card__reviews-col">
               <div className="review">
@@ -100,7 +100,7 @@ MoviePageReviews.propTypes = {
     runTime: PropTypes.number.isRequired
   }),
   activeTab: PropTypes.string,
-  clickHandler: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default MoviePageReviews;

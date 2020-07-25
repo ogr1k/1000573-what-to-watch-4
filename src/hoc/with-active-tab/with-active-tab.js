@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {TabsNames} from "../../constants.js";
 
 const withActiveTab = (Component) => {
   class WithActiveTab extends PureComponent {
@@ -6,7 +7,7 @@ const withActiveTab = (Component) => {
       super(props);
 
       this.state = {
-        activeTab: `Overview`
+        activeTab: TabsNames.OVERVIEW
       };
 
       this.handleClick = this.handleClick.bind(this);
@@ -21,13 +22,12 @@ const withActiveTab = (Component) => {
 
     render() {
 
-
       return (
 
         <Component
           {...this.props}
-          clickHandler={this.handleClick}
           activeTab={this.state.activeTab}
+          onClick={this.handleClick}
         />
 
       );

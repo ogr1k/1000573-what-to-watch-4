@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviePageOverview from "./movie-page-overview.jsx";
+import MoviePageInfoBlock from "./movie-page-info-block.jsx";
+import {TabsNames} from "../../constants.js";
 
 const film = {
   description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
@@ -19,15 +20,15 @@ const film = {
 };
 
 
-it(`Render Movie Page Overview`, () => {
+it(`Render Movie Page Info Block`, () => {
 
   const tree = renderer
     .create(
 
-        <MoviePageOverview
-          activeTab={``}
+        <MoviePageInfoBlock
+          activeTab={TabsNames.OVERVIEW}
           film={film}
-          onClick={() => {}}
+          onClick={()=> {}}
         />
 
     )

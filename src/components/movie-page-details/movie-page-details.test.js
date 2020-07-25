@@ -1,8 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviePageDetails from "./movie-page-details.jsx";
-import {Router} from "react-router-dom";
-import history from "../../history.js";
 
 const film = {
   description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
@@ -26,12 +24,11 @@ it(`Render Movie Page Details`, () => {
   const tree = renderer
     .create(
 
-        <Router history={history}>
-          <MoviePageDetails
-            activeTab={``}
-            film={film}
-          />
-        </Router>
+        <MoviePageDetails
+          activeTab={``}
+          film={film}
+          onClick={() => {}}
+        />
 
     )
     .toJSON();

@@ -12,9 +12,8 @@ exports[`Render Movie Page Tabs 1`] = `
             "
     >
       <a
-        className="movie-nav__link
-            "
-        href="/films/1"
+        className="movie-nav__link"
+        href="#"
         onClick={[Function]}
       >
         Overview
@@ -25,9 +24,8 @@ exports[`Render Movie Page Tabs 1`] = `
             "
     >
       <a
-        className="movie-nav__link
-            "
-        href="/films/1/details"
+        className="movie-nav__link"
+        href="#"
         onClick={[Function]}
       >
         Details
@@ -38,9 +36,8 @@ exports[`Render Movie Page Tabs 1`] = `
             "
     >
       <a
-        className="movie-nav__link
-            "
-        href="/films/1/review"
+        className="movie-nav__link"
+        href="#"
         onClick={[Function]}
       >
         Reviews
