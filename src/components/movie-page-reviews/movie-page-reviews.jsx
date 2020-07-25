@@ -4,16 +4,15 @@ import PropTypes from "prop-types";
 
 const MoviePageReviews = (props) => {
 
-  const {film, activeTab} = props;
+  const {film, activeTab, clickHandler} = props;
 
   return (
-    <div className="movie-card__wrap movie-card__translate-top">
-      <div className="movie-card__info">
+    <>
         <div className="movie-card__poster movie-card__poster--big">
           <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={film.id} activeTab={activeTab}/>
+          <MoviePageTabs filmId={film.id} activeTab={activeTab} clickHandler={clickHandler}/>
           <div className="movie-card__reviews movie-card__row">
             <div className="movie-card__reviews-col">
               <div className="review">
@@ -81,8 +80,7 @@ const MoviePageReviews = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 
 };
@@ -101,7 +99,8 @@ MoviePageReviews.propTypes = {
     id: PropTypes.number.isRequired,
     runTime: PropTypes.number.isRequired
   }),
-  activeTab: PropTypes.string
+  activeTab: PropTypes.string,
+  clickHandler: PropTypes.func.isRequired
 };
 
 export default MoviePageReviews;

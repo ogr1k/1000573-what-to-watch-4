@@ -15,17 +15,16 @@ const minutesToHoursMinutes = (minutes) => {
 
 const MoviePageDetails = (props) => {
 
-  const {film, activeTab} = props;
+  const {film, activeTab, clickHandler} = props;
   const {poster, name, id, runTime, genre, year, director, starring} = film;
 
   return (
-    <div className="movie-card__wrap movie-card__translate-top">
-      <div className="movie-card__info">
+    <>
         <div className="movie-card__poster movie-card__poster--big">
           <img src={poster} alt={name} width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={id} activeTab={activeTab}/>
+          <MoviePageTabs filmId={id} activeTab={activeTab} clickHandler={clickHandler}/>
           <div className="movie-card__text movie-card__row">
             <div className="movie-card__text-col">
               <p className="movie-card__details-item">
@@ -59,9 +58,7 @@ const MoviePageDetails = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
+    </>
   );
 };
 
@@ -79,7 +76,8 @@ MoviePageDetails.propTypes = {
     id: PropTypes.number.isRequired,
     runTime: PropTypes.number.isRequired
   }),
-  activeTab: PropTypes.string.isRequired
+  activeTab: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired
 };
 
 export default MoviePageDetails;

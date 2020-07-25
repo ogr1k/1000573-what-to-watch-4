@@ -20,17 +20,17 @@ const getRatingText = (rating) => {
 
 const MoviePageOverview = (props) => {
 
-  const {film, activeTab} = props;
+  const {film, activeTab, clickHandler} = props;
   const {poster, id, rating, ratings, description, director, starring} = film;
 
+
   return (
-    <div className="movie-card__wrap movie-card__translate-top">
-      <div className="movie-card__info">
+    <>
         <div className="movie-card__poster movie-card__poster--big">
           <img src={poster} alt="The Grand Budapest Hotel poster" width={218} height={327} />
         </div>
         <div className="movie-card__desc">
-          <MoviePageTabs filmId={id} activeTab={activeTab}/>
+          <MoviePageTabs filmId={id} activeTab={activeTab} clickHandler={clickHandler}/>
           <div className="movie-rating">
             <div className="movie-rating__score">{rating}</div>
             <p className="movie-rating__meta">
@@ -44,8 +44,7 @@ const MoviePageOverview = (props) => {
             <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)} and other</strong></p>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 
@@ -63,7 +62,8 @@ MoviePageOverview.propTypes = {
     id: PropTypes.number.isRequired,
     runTime: PropTypes.number.isRequired
   }),
-  activeTab: PropTypes.string
+  activeTab: PropTypes.string,
+  clickHandler: PropTypes.func.isRequired
 };
 
 export default MoviePageOverview;

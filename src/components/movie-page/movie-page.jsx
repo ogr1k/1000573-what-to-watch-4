@@ -5,35 +5,21 @@ import {getFilmById, getFilmsByGenre} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
-import MoviePageOverview from "../movie-page-overview/movie-page-overview.jsx";
-import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
-import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
+import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.jsx";
 import FilmsList from "../films-list/films-list.jsx";
+import withActiveTab from "../../hoc/with-player/with-active-tab/with-active-tab.js";
+
+const WrappedPageBlock = withActiveTab(MoviePageInfoBlock);
 
 const MoviePage = (props) => {
 
-  const {film, authorisationStatus, sameGenreFilms, routerProps} = props;
+  const {film, authorisationStatus, sameGenreFilms} = props;
 
   if (!film) {
     return null;
   }
 
   const {backgroundColor, backgroundImage, name, genre, year} = film;
-
-
-  const activeTab = routerProps.match.params.tab;
-
-  const renderCardInfoComponent = () => {
-    switch (activeTab) {
-      case `review`:
-        return <MoviePageReviews film={film} activeTab={activeTab}/>;
-      case `details`:
-        return <MoviePageDetails film={film} activeTab={activeTab}/>;
-    }
-
-    return <MoviePageOverview film={film} activeTab={activeTab}/>;
-  };
-
 
   return (
     <div>
@@ -106,7 +92,7 @@ const MoviePage = (props) => {
             </div>
           </div>
         </div>
-        {renderCardInfoComponent()}
+        <WrappedPageBlock film={film}/>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
