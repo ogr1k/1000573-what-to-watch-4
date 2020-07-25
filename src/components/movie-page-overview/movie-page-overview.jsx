@@ -21,13 +21,13 @@ const getRatingText = (rating) => {
 const MoviePageOverview = (props) => {
 
   const {film, activeTab, onClick} = props;
-  const {poster, id, rating, ratings, description, director, starring} = film;
+  const {poster, id, rating, ratings, description, director, starring, name} = film;
 
 
   return (
     <>
         <div className="movie-card__poster movie-card__poster--big">
-          <img src={poster} alt="The Grand Budapest Hotel poster" width={218} height={327} />
+          <img src={poster} alt={name} width={218} height={327} />
         </div>
         <div className="movie-card__desc">
           <MoviePageTabs filmId={id} activeTab={activeTab} onClick={onClick}/>

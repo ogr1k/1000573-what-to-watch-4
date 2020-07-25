@@ -3,6 +3,7 @@ import {extend} from "../../utils.js";
 const initialState = {
   films: [],
   promoFilm: {},
+  comments: []
 };
 
 const parseFilmData = (film) => {
@@ -44,7 +45,9 @@ const parseData = (element) => {
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  CLEAR_COMMENTS: `CLEAR_COMMENTS`
 };
 
 const ActionCreator = {
@@ -55,6 +58,13 @@ const ActionCreator = {
   loadPromoFilm: (film) => ({
     type: ActionType.LOAD_PROMO_FILM,
     payload: film
+  }),
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments
+  }),
+  clearComments: () => ({
+    type: ActionType.CLEAR_COMMENTS,
   })
 };
 
@@ -72,6 +82,13 @@ const Operation = {
           const promoFilm = parseFilmData(response.data);
           dispatch(ActionCreator.loadPromoFilm(promoFilm));
         });
+  },
+  loadComments: (id) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.clearComments());
+    return api.get(`comments/${id}`)
+        .then((response) => {
+          dispatch(ActionCreator.loadComments(response.data));
+        });
   }
 };
 
@@ -87,6 +104,16 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_FILM: {
       return extend(state, {
         promoFilm: action.payload
+      });
+    }
+    case ActionType.LOAD_COMMENTS: {
+      return extend(state, {
+        comments: action.payload
+      });
+    }
+    case ActionType.CLEAR_COMMENTS: {
+      return extend(state, {
+        comments: []
       });
     }
   }

@@ -91,11 +91,8 @@ Array [
             className="movie-card__details-value"
           >
             Robert De Niro,
-
-            James Woods,
-
-            Elizabeth McGovern
-
+James Woods,
+Elizabeth McGovern
           </span>
         </p>
       </div>

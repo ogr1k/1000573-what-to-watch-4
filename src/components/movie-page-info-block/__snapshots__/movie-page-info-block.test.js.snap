@@ -11,7 +11,7 @@ exports[`Render Movie Page Info Block 1`] = `
       className="movie-card__poster movie-card__poster--big"
     >
       <img
-        alt="The Grand Budapest Hotel poster"
+        alt="Once Upon a Time in America"
         height={327}
         src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg"
         width={218}

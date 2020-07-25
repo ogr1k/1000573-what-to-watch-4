@@ -129,7 +129,8 @@ MoviePage.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     year: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string,
-    backgroundImage: PropTypes.string
+    backgroundImage: PropTypes.string,
+    id: PropTypes.number.isRequired
   }),
   authorisationStatus: PropTypes.string.isRequired,
   routerProps: PropTypes.shape({

@@ -35,9 +35,7 @@ const MoviePageDetails = (props) => {
                 <strong className="movie-card__details-name">Starring</strong>
                 <span className="movie-card__details-value">
 
-                  {starring.map((actorName, index) => (
-                    `${actorName}${index + 1 === starring.length ? `` : `,`}\n`
-                  ))}
+                  {starring.join(`,\n`)}
 
                 </span>
               </p>

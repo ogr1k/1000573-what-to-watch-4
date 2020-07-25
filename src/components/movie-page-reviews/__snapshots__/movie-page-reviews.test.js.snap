@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Movie Page Overview 1`] = `
+exports[`Render Movie Page Reviews 1`] = `
 Array [
   <div
     className="movie-card__poster movie-card__poster--big"
@@ -47,7 +47,7 @@ Array [
         </li>
         <li
           className="movie-nav__item
-            "
+            movie-nav__item--active"
         >
           <a
             className="movie-nav__link"
@@ -60,52 +60,45 @@ Array [
       </ul>
     </nav>
     <div
-      className="movie-rating"
+      className="movie-card__reviews movie-card__row"
     >
       <div
-        className="movie-rating__score"
+        className="movie-card__reviews-col"
       >
-        9.9
+        <div
+          className="review"
+        >
+          <blockquote
+            className="review__quote"
+          >
+            <p
+              className="review__text"
+            >
+              Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+            </p>
+            <footer
+              className="review__details"
+            >
+              <cite
+                className="review__author"
+              >
+                Kate Muir
+              </cite>
+              <time
+                className="review__date"
+                dateTime="2016-12-24"
+              >
+                May 8, 2019
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            className="review__rating"
+          >
+            8.9
+          </div>
+        </div>
       </div>
-      <p
-        className="movie-rating__meta"
-      >
-        <span
-          className="movie-rating__level"
-        >
-          Very good
-        </span>
-        <span
-          className="movie-rating__count"
-        >
-          276395
-           ratings
-        </span>
-      </p>
-    </div>
-    <div
-      className="movie-card__text"
-    >
-      <p>
-        A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.
-      </p>
-      <p
-        className="movie-card__director"
-      >
-        <strong>
-          Director: 
-          Sergio Leone
-        </strong>
-      </p>
-      <p
-        className="movie-card__starring"
-      >
-        <strong>
-          Starring: 
-          Robert De Niro, James Woods, Elizabeth McGovern
-           and other
-        </strong>
-      </p>
     </div>
   </div>,
 ]

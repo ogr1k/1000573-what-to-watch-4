@@ -256,7 +256,7 @@ exports[`Render Movie-Page 1`] = `
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Once Upon a Time in America"
             height={327}
             width={218}
           />
