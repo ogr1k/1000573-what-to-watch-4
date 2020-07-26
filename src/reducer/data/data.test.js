@@ -15,7 +15,10 @@ const film = {
   "released": 1984,
   "scores_count": 276395,
   "starring": [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
-  "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  "background_image": ``,
+  "background_color": `black`,
+  "run_time": 200
 };
 
 const parsedFilm = {
@@ -29,14 +32,30 @@ const parsedFilm = {
   rating: film.rating,
   year: film.released,
   ratings: film.scores_count,
-  starring: film.starring.join(),
-  video: film.preview_video_link
+  starring: film.starring,
+  video: film.preview_video_link,
+  backgroundImage: film.background_image,
+  backgroundColor: film.background_color,
+  runTime: film.run_time
 };
+
+
+const comments = [{
+  "id": 1,
+  "user": {
+    "id": 4,
+    "name": `Kate Muir`
+  },
+  "rating": 8.9,
+  "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+  "date": `2019-05-08T14:13:56.569Z`
+}];
 
 const api = createAPI(() => {});
 
 it(`Data reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
+    comments: [],
     films: [],
     promoFilm: {},
   });
@@ -50,6 +69,17 @@ it(`Reducer should update films by load films`, () => {
     payload: films,
   })).toEqual({
     films,
+  });
+});
+
+it(`Reducer should update comments by load comments`, () => {
+  expect(reducer({
+    comments: [],
+  }, {
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments,
+  })).toEqual({
+    comments,
   });
 });
 
@@ -88,6 +118,26 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_PROMO_FILM,
           payload: parsedFilm,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /comments/id`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const id = 1;
+    const commentsLoader = Operation.loadComments(id);
+
+    apiMock
+      .onGet(`/comments/${id}`)
+      .reply(200, comments);
+
+    return commentsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOAD_COMMENTS,
+          payload: comments,
         });
       });
   });

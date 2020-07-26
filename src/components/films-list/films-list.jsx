@@ -8,6 +8,10 @@ const WrappedFilm = withPlayer(Film);
 const FilmsList = (props) => {
   const {films} = props;
 
+  if (!films) {
+    return null;
+  }
+
   return (<div className="catalog__movies-list">
     {films.map((film) =>
       <WrappedFilm film={film} key={film.id} />
@@ -24,7 +28,7 @@ FilmsList.propTypes = {
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
 };

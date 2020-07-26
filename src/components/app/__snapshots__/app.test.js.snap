@@ -115,10 +115,7 @@ Array [
     <div
       className="movie-card__bg"
     >
-      <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
-      />
+      <img />
     </div>
     <h1
       className="visually-hidden"

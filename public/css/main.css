@@ -1384,6 +1384,10 @@ main {
           flex-grow: 1;
   width: 100%; }
 
+.disabled-link {
+  pointer-events: none;
+}
+
 .user-page__title {
   position: absolute;
   left: 200px;

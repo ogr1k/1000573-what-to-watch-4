@@ -52,7 +52,7 @@ const Main = (props) => {
         </div>
 
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"></img>
+          <img src={promoFilm.backgroundImage} alt={promoFilm.name}></img>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -136,14 +136,15 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
-    starring: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     year: PropTypes.number.isRequired
   })).isRequired,
   promoFilm: PropTypes.shape({
     name: PropTypes.string,
     year: PropTypes.number,
     genre: PropTypes.string,
-    poster: PropTypes.string
+    poster: PropTypes.string,
+    backgroundImage: PropTypes.string
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,

@@ -3,6 +3,7 @@ import {getActiveFilter} from "../main-page/selector.js";
 import {createSelector} from "reselect";
 
 const NAME_SPACE = NameSpace.DATA;
+const MAX_SAME_GENRES_FILMS_COUNT = 4;
 
 const getFilteredFilms = (activeFilter, films) => {
   if (activeFilter === `All Genres`) {
@@ -30,6 +31,24 @@ export const getFilmById = (state, id) => {
   return films.filter((film) => film.id === Number(id))[0];
 };
 
+export const getFilmsByGenre = (state, currentActiveFilm) => {
+  const films = state[NAME_SPACE].films;
+
+  const sameGenresFilms = [];
+
+  for (const film of films) {
+    if (sameGenresFilms.length === MAX_SAME_GENRES_FILMS_COUNT) {
+      return sameGenresFilms;
+    }
+
+    if (film.genre === currentActiveFilm.genre && film.id !== currentActiveFilm.id) {
+      sameGenresFilms.push(film);
+    }
+  }
+
+  return sameGenresFilms;
+};
+
 export const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
 };
@@ -48,3 +67,7 @@ export const getGenres = createSelector(
       return getAvailableGenres(result);
     }
 );
+
+export const getComments = (state) => {
+  return state[NAME_SPACE].comments;
+};
