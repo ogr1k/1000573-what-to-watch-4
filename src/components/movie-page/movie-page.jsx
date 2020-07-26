@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFilmById, getFilmsByGenre} from "../../reducer/data/selector.js";
+import {getFilmById, getSameGenreFilms} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
@@ -153,13 +153,14 @@ MoviePage.propTypes = {
   })),
 };
 
+
 const mapStateToProps = (state, ownProps) => {
 
-  const film = getFilmById(state, ownProps.routerProps.match.params.id);
+  const filmId = ownProps.routerProps.match.params.id;
 
   return {
-    film,
-    sameGenreFilms: film ? getFilmsByGenre(state, film) : []
+    film: getFilmById(state, filmId),
+    sameGenreFilms: getSameGenreFilms(state, filmId)
   };
 
 };
