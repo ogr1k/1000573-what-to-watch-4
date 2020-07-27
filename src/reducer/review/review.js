@@ -25,9 +25,11 @@ const ActionCreator = {
     type: ActionType.CHANGE_FETCH_STATUS,
     payload: status
   }),
-  cleanData: () => ({
-    type: ActionType.CLEAN_DATA
-  })
+  cleanData: () => {
+    return ({
+      type: ActionType.CLEAN_DATA
+    });
+  }
 };
 
 const Operation = {
@@ -39,7 +41,6 @@ const Operation = {
     })
     .then(() => {
       dispatch(ActionCreator.changeFetchStatus(FetchStatus.DONE));
-      dispatch(ActionCreator.cleanData());
     })
     .catch((err) => {
       dispatch(ActionCreator.setError(err.response));

@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Operation, FetchStatus} from "../../reducer/review/review.js";
+import {Operation, FetchStatus, ActionCreator} from "../../reducer/review/review.js";
 import {getErrorMessage, getFetchStatus} from "../../reducer/review/selector.js";
 import {getFilmById} from '../../reducer/data/selector.js';
 import {connect} from "react-redux";
@@ -23,6 +23,11 @@ const withFormValues = (Component) => {
         comment: ``,
         rating: ``
       };
+    }
+
+    componentWillUnmount() {
+
+      this.props.cleanReviewState();
     }
 
     handleChange(e) {
@@ -100,10 +105,12 @@ const withFormValues = (Component) => {
     }),
     fetchStatus: PropTypes.string,
     postReview: PropTypes.func.isRequired,
-    error: PropTypes.object
+    error: PropTypes.object,
+    cleanReviewState: PropTypes.func.isRequired
   };
 
   const mapStateToProps = (state, ownProps) => {
+
 
     return {
       fetchStatus: getFetchStatus(state),
@@ -117,6 +124,9 @@ const withFormValues = (Component) => {
     {
       postReview(review) {
         dispatch(Operation.postReview(review, ownProps.match.params.id));
+      },
+      cleanReviewState() {
+        dispatch(ActionCreator.cleanData());
       }
     }
   );
