@@ -358,11 +358,13 @@ main {
 .add-review {
   padding-top: 62px;
   width: 520px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .add-review__text {
   background: #E8C3C4;
   border-radius: 8px; }
+
 
 .add-review__textarea {
   display: block;
@@ -1384,10 +1386,6 @@ main {
           flex-grow: 1;
   width: 100%; }
 
-.disabled-link {
-  pointer-events: none;
-}
-
 .user-page__title {
   position: absolute;
   left: 200px;
@@ -1395,4 +1393,14 @@ main {
   text-align: center;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%); }
+          transform: translateY(-50%);
+        }
+
+.add-review__notice {
+  text-align: center;
+  font-weight: bold;
+}
+
+.add-review__error {
+  background-color: red;
+}
