@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 
 
 const MAX_RATING = 5;
-const MIN_RATING = 1;
-const DEFAULT_CHECKED_STAR = 3;
 
 
 class AddReview extends PureComponent {
@@ -20,11 +18,11 @@ class AddReview extends PureComponent {
 
     const result = [];
 
-    for (let i = MIN_RATING; i < MAX_RATING + MIN_RATING; i++) {
+    for (let i = 0; i <= MAX_RATING; i++) {
       result.push(
           <Fragment key={i}>
-            <input className="rating__input" id={`star-${i}`} type="radio" disabled={this.props.isFetching} name="rating" defaultValue={i} defaultChecked={i === DEFAULT_CHECKED_STAR}/>
-            <label className="rating__label" htmlFor={`star-${i}`}>Rating ${i}</label>
+            <input className="rating__input" id={`star-${i}`} type="radio" disabled={this.props.isFetching} name="rating" defaultValue={i} defaultChecked={i === 0}/>
+            <label className={`rating__label ${i === 0 ? `visually-hidden` : ``}`} htmlFor={`star-${i}`}>Rating ${i}</label>
           </Fragment>
       );
     }
@@ -37,6 +35,9 @@ class AddReview extends PureComponent {
     const {film, error, onSubmit, onClick, onChange, isValid, isFetching} = this.props;
     const {status, statusText} = error;
     const {name, poster, backgroundImage, id} = film;
+
+
+    const shouldSubmitButtonBeDisabled = (isFetching || !isValid);
 
 
     return (
@@ -101,7 +102,7 @@ class AddReview extends PureComponent {
                   onChange(e);
                 }} />
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
+                <button className="add-review__btn" type="submit" disabled={shouldSubmitButtonBeDisabled}>Post</button>
               </div>
             </div>
           </form>

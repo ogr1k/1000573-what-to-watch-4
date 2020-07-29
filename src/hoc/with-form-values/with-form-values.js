@@ -8,7 +8,7 @@ import {AppRoute} from '../../constants.js';
 import PropTypes from "prop-types";
 
 const MAX_COMMENT_SYMBOLS = 400;
-const MIN_COMMENT_SYMBOLS = 50;
+const MIN_COMMENT_SYMBOLS = 5;
 
 const withFormValues = (Component) => {
   class WithFormValues extends PureComponent {
@@ -65,8 +65,8 @@ const withFormValues = (Component) => {
         return null;
       }
 
-      const isValid = Boolean(this.state.comment.length > MIN_COMMENT_SYMBOLS && this.state.comment.length < MAX_COMMENT_SYMBOLS && this.state.rating);
-      const isFetching = Boolean(this.props.fetchStatus === FetchStatus.IS_FETCHING);
+      const isValid = (this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating);
+      const isFetching = (this.props.fetchStatus === FetchStatus.IS_FETCHING);
 
       if (this.props.fetchStatus === FetchStatus.DONE) {
         return <Redirect to={`${AppRoute.FILM}/${this.props.film.id}`} />;

@@ -124,6 +124,22 @@ exports[`Render Add Review 1`] = `
         >
           <input
             className="rating__input"
+            defaultChecked={true}
+            defaultValue={0}
+            disabled={false}
+            id="star-0"
+            name="rating"
+            type="radio"
+          />
+          <label
+            className="rating__label visually-hidden"
+            htmlFor="star-0"
+          >
+            Rating $
+            0
+          </label>
+          <input
+            className="rating__input"
             defaultChecked={false}
             defaultValue={1}
             disabled={false}
@@ -132,7 +148,7 @@ exports[`Render Add Review 1`] = `
             type="radio"
           />
           <label
-            className="rating__label"
+            className="rating__label "
             htmlFor="star-1"
           >
             Rating $
@@ -148,7 +164,7 @@ exports[`Render Add Review 1`] = `
             type="radio"
           />
           <label
-            className="rating__label"
+            className="rating__label "
             htmlFor="star-2"
           >
             Rating $
@@ -156,7 +172,7 @@ exports[`Render Add Review 1`] = `
           </label>
           <input
             className="rating__input"
-            defaultChecked={true}
+            defaultChecked={false}
             defaultValue={3}
             disabled={false}
             id="star-3"
@@ -164,7 +180,7 @@ exports[`Render Add Review 1`] = `
             type="radio"
           />
           <label
-            className="rating__label"
+            className="rating__label "
             htmlFor="star-3"
           >
             Rating $
@@ -180,7 +196,7 @@ exports[`Render Add Review 1`] = `
             type="radio"
           />
           <label
-            className="rating__label"
+            className="rating__label "
             htmlFor="star-4"
           >
             Rating $
@@ -196,7 +212,7 @@ exports[`Render Add Review 1`] = `
             type="radio"
           />
           <label
-            className="rating__label"
+            className="rating__label "
             htmlFor="star-5"
           >
             Rating $
