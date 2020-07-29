@@ -47,7 +47,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
-  CLEAR_COMMENTS: `CLEAR_COMMENTS`
+  CLEAR_COMMENTS: `CLEAR_COMMENTS`,
 };
 
 const ActionCreator = {
@@ -89,7 +89,7 @@ const Operation = {
         .then((response) => {
           dispatch(ActionCreator.loadComments(response.data));
         });
-  }
+  },
 };
 
 

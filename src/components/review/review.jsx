@@ -21,7 +21,7 @@ const Review = (props) => {
 
         <footer className="review__details">
           <cite className="review__author">{name}</cite>
-          <time className="review__date" dateTime="2016-12-24">{formatDate(new Date(date))}</time>
+          <time className="review__date" dateTime={date}>{formatDate(new Date(date))}</time>
         </footer>
       </blockquote>
 

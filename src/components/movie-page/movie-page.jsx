@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFilmById, getFilmsByGenre} from "../../reducer/data/selector.js";
+import {getFilmById, getSameGenreFilms} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
@@ -9,6 +9,7 @@ import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.j
 import FilmsList from "../films-list/films-list.jsx";
 import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
 import {AppRoute} from "../../constants.js";
+import {AuthorisationStatus} from "../../reducer/user/user.js";
 
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
@@ -20,7 +21,7 @@ const MoviePage = (props) => {
     return null;
   }
 
-  const {backgroundColor, backgroundImage, name, genre, year} = film;
+  const {backgroundColor, backgroundImage, name, genre, year, id} = film;
 
   return (
     <div>
@@ -88,7 +89,11 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={
+                  authorisationStatus === AuthorisationStatus.AUTH
+                    ? `${AppRoute.FILM}/${id}/review`
+                    : `${AppRoute.LOGIN}`
+                } className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -153,13 +158,14 @@ MoviePage.propTypes = {
   })),
 };
 
+
 const mapStateToProps = (state, ownProps) => {
 
-  const film = getFilmById(state, ownProps.routerProps.match.params.id);
+  const filmId = ownProps.routerProps.match.params.id;
 
   return {
-    film,
-    sameGenreFilms: film ? getFilmsByGenre(state, film) : []
+    film: getFilmById(state, filmId),
+    sameGenreFilms: getSameGenreFilms(state, filmId)
   };
 
 };

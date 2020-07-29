@@ -9,6 +9,10 @@ import {getAuthorisationStatus} from "../../reducer/user/selector.js";
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
+import AddReview from "../add-review/add-review.jsx";
+import withFormValues from "../../hoc/with-form-values/with-form-values.js";
+
+const WrappedAddReview = withFormValues(AddReview);
 
 
 class App extends PureComponent {
@@ -40,12 +44,13 @@ class App extends PureComponent {
               authorisationStatus={authorisationStatus}
             />
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id/:tab?`} component={(props) =>
+          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) =>
             <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
           }/>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>
+          <Route exact path={`${AppRoute.FILM}/:id/review`} component={WrappedAddReview}/>
         </Switch>
       </Router>
     );
