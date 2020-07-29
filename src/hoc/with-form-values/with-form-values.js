@@ -8,7 +8,7 @@ import {AppRoute} from '../../constants.js';
 import PropTypes from "prop-types";
 
 const MAX_COMMENT_SYMBOLS = 400;
-const MIN_COMMENT_SYMBOLS = 5;
+const MIN_COMMENT_SYMBOLS = 50;
 
 const withFormValues = (Component) => {
   class WithFormValues extends PureComponent {
