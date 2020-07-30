@@ -4,15 +4,19 @@ import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/main-page/main-page.js";
+import {Operation} from "../../reducer/data/data.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {getPromoFilm, getFilmsByGenres, getGenres} from "../../reducer/data/selector.js";
+import {getPromoFilm, getFilmsByGenres, getGenres, getIsFavouriteFetching} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
+import {AuthorisationStatus} from "../../reducer/user/user.js";
+
 
 const Main = (props) => {
-  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards, authorisationStatus} = props;
-
+  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards, authorisationStatus, changeIsFavourite, isFavouriteFetching} = props;
 
   const renderShowMoreButton = () => {
 
@@ -21,6 +25,15 @@ const Main = (props) => {
     }
 
     return null;
+  };
+
+  const clickHandler = () => {
+
+    if (authorisationStatus === AuthorisationStatus.AUTH) {
+      changeIsFavourite(promoFilm.id, !promoFilm.isFavourite, true);
+    } else {
+      history.push(AppRoute.LOGIN);
+    }
   };
 
   return (
@@ -87,10 +100,16 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                <button className="btn btn--list movie-card__button" disabled={isFavouriteFetching} type="button" onClick={() => {
+                  clickHandler();
+                }}>
+                  {promoFilm.isFavourite
+                    ? <svg viewBox="0 0 18 14" width={18} height={14}>
+                      <use xlinkHref="#in-list" />
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width={19} height={20}>
+                      <use xlinkHref="#add" />
+                    </svg>}
                   <span>My list</span>
                 </button>
               </div>
@@ -144,34 +163,47 @@ Main.propTypes = {
     year: PropTypes.number,
     genre: PropTypes.string,
     poster: PropTypes.string,
-    backgroundImage: PropTypes.string
+    backgroundImage: PropTypes.string,
+    id: PropTypes.number,
+    isFavourite: PropTypes.bool
   }).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeFilter: PropTypes.string.isRequired,
   onFilterClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
   maxCards: PropTypes.number.isRequired,
-  authorisationStatus: PropTypes.string.isRequired
+  authorisationStatus: PropTypes.string.isRequired,
+  changeIsFavourite: PropTypes.func.isRequired,
+  isFavouriteFetching: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
+
+
   return {
     activeFilter: getActiveFilter(state),
     films: getFilmsByGenres(state),
     promoFilm: getPromoFilm(state),
     genres: getGenres(state),
     maxCards: getMaxCardsCount(state),
+    isFavouriteFetching: getIsFavouriteFetching(state)
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onFilterClick(filterName) {
-    dispatch(ActionCreator.setActiveFilter(filterName));
-  },
-  onShowMoreButtonClick() {
-    dispatch(ActionCreator.incrementMaxCards());
-  }
-});
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    onFilterClick(filterName) {
+      dispatch(ActionCreator.setActiveFilter(filterName));
+    },
+    onShowMoreButtonClick() {
+      dispatch(ActionCreator.incrementMaxCards());
+    },
+    changeIsFavourite(id, status, isPromoFilm) {
+      dispatch(Operation.postIsFavourite(id, status, isPromoFilm));
+    }
+  };
+};
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

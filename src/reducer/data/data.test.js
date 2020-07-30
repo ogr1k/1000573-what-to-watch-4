@@ -58,6 +58,8 @@ it(`Data reducer without additional parameters should return initial state`, () 
     comments: [],
     films: [],
     promoFilm: {},
+    favouriteFilms: [],
+    isFavouriteFetching: false,
   });
 });
 

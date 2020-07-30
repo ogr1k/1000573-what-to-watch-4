@@ -1,11 +1,16 @@
 import React from "react";
 import UserBlock from "./user-block.jsx";
 import renderer from "react-test-renderer";
+import {BrowserRouter} from "react-router-dom";
 
 
-it(`Render Copyright`, () => {
+it(`Render User block`, () => {
   const tree = renderer
-    .create(<UserBlock authorisationStatus="AUTH"/>)
+    .create(
+        <BrowserRouter>
+          <UserBlock authorisationStatus="AUTH"/>
+        </BrowserRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
