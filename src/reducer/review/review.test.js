@@ -49,6 +49,7 @@ it(`Reducer should update errorMessage by set error`, () => {
       status: 404,
       statusText: `Error`
     },
+    fetchStatus: ``
   });
 });
 

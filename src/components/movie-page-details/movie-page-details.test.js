@@ -15,7 +15,8 @@ const film = {
   ratings: 276395,
   starring: [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
   video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
-  runTime: 500
+  runTime: 500,
+  isFavourite: false
 };
 
 

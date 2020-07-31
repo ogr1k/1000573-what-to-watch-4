@@ -54,7 +54,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_ERROR: {
       return extend(state, {
-        errorMessage: action.payload
+        errorMessage: action.payload,
+        fetchStatus: ``
       });
     }
     case ActionType.CHANGE_FETCH_STATUS: {

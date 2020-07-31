@@ -11,6 +11,7 @@ import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import AddReview from "../add-review/add-review.jsx";
 import withFormValues from "../../hoc/with-form-values/with-form-values.js";
+import MyList from "../my-list/my-list.jsx";
 
 const WrappedAddReview = withFormValues(AddReview);
 
@@ -51,6 +52,7 @@ class App extends PureComponent {
             {this.renderAuthScreen()}
           </Route>
           <Route exact path={`${AppRoute.FILM}/:id/review`} component={WrappedAddReview}/>
+          <Route exact path={AppRoute.MYLIST} component={MyList}/>
         </Switch>
       </Router>
     );

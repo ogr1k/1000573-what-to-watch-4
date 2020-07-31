@@ -10,18 +10,31 @@ import FilmsList from "../films-list/films-list.jsx";
 import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
+import {Operation} from "../../reducer/data/data.js";
+import history from "../../history.js";
 
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
 const MoviePage = (props) => {
 
-  const {film, authorisationStatus, sameGenreFilms} = props;
+  const {film, authorisationStatus, sameGenreFilms, changeIsFavourite} = props;
 
   if (!film) {
     return null;
   }
 
-  const {backgroundColor, backgroundImage, name, genre, year, id} = film;
+  const {backgroundColor, backgroundImage, name, genre, year, id, isFavourite} = film;
+
+
+  const clickHandler = () => {
+
+    if (authorisationStatus === AuthorisationStatus.AUTH) {
+      changeIsFavourite(id, !isFavourite, true);
+    } else {
+      history.push(AppRoute.LOGIN);
+    }
+  };
+
 
   return (
     <div>
@@ -83,10 +96,14 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button" onClick={clickHandler}>
+                  {isFavourite
+                    ? <svg viewBox="0 0 18 14" width={18} height={14}>
+                      <use xlinkHref="#in-list" />
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width={19} height={20}>
+                      <use xlinkHref="#add" />
+                    </svg>}
                   <span>My list</span>
                 </button>
                 <Link to={
@@ -135,7 +152,8 @@ MoviePage.propTypes = {
     year: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string,
     backgroundImage: PropTypes.string,
-    id: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired
   }),
   authorisationStatus: PropTypes.string.isRequired,
   routerProps: PropTypes.shape({
@@ -154,8 +172,10 @@ MoviePage.propTypes = {
     rating: PropTypes.number.isRequired,
     ratings: PropTypes.number.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string),
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired
   })),
+  changeIsFavourite: PropTypes.func.isRequired
 };
 
 
@@ -170,4 +190,10 @@ const mapStateToProps = (state, ownProps) => {
 
 };
 
-export default connect(mapStateToProps)(MoviePage);
+const mapDispatchToProps = (dispatch) => ({
+  changeIsFavourite(id, status) {
+    dispatch(Operation.postIsFavourite(id, status));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

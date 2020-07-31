@@ -14,9 +14,11 @@ const UserBlock = (props) => {
       {authorisationStatus === AuthorisationStatus.NO_AUTH
         ? <Link to={AppRoute.LOGIN} className="user-block__link"> Sign-in </Link>
         : (
-          <div className="user-block__avatar">
-            <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
+          <Link to={AppRoute.MYLIST}>
+            <div className="user-block__avatar">
+              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+            </div>
+          </Link>
         )
       }
     </div>

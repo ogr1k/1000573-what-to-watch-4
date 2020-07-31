@@ -18,7 +18,8 @@ const film = {
   "preview_video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
   "background_image": ``,
   "background_color": `black`,
-  "run_time": 200
+  "run_time": 200,
+  "is_favorite": false
 };
 
 const parsedFilm = {
@@ -36,7 +37,8 @@ const parsedFilm = {
   video: film.preview_video_link,
   backgroundImage: film.background_image,
   backgroundColor: film.background_color,
-  runTime: film.run_time
+  runTime: film.run_time,
+  isFavourite: film.is_favorite
 };
 
 
@@ -51,6 +53,40 @@ const comments = [{
   "date": `2019-05-08T14:13:56.569Z`
 }];
 
+const favouriteMock = {
+  description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
+  director: `Sergio Leone`,
+  genre: `Crime`,
+  id: 1,
+  name: `Once Upon a Time in America`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg`,
+  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg`,
+  rating: 9.9,
+  year: 1984,
+  ratings: 276395,
+  starring: [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
+  video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  runTime: 500,
+  isFavourite: false
+};
+
+const expectedFavouriteMock = {
+  description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
+  director: `Sergio Leone`,
+  genre: `Crime`,
+  id: 1,
+  name: `Once Upon a Time in America`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg`,
+  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg`,
+  rating: 9.9,
+  year: 1984,
+  ratings: 276395,
+  starring: [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
+  video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  runTime: 500,
+  isFavourite: true
+};
+
 const api = createAPI(() => {});
 
 it(`Data reducer without additional parameters should return initial state`, () => {
@@ -58,6 +94,8 @@ it(`Data reducer without additional parameters should return initial state`, () 
     comments: [],
     films: [],
     promoFilm: {},
+    favouriteFilms: [],
+    isFavouriteFetching: false,
   });
 });
 
@@ -81,6 +119,79 @@ it(`Reducer should update comments by load comments`, () => {
   })).toEqual({
     comments,
   });
+});
+
+it(`Reducer should update comments by load comments`, () => {
+  expect(reducer({
+    comments: [],
+  }, {
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments,
+  })).toEqual({
+    comments,
+  });
+});
+
+it(`Reducer should update favourite status of all films by changeIsFavourite`, () => {
+
+  expect(reducer({
+    films: [favouriteMock]
+  }, {
+    type: ActionType.CHANGE_IS_FAVOURITE,
+    id: 1,
+  })).toEqual({
+    films: [expectedFavouriteMock],
+  });
+});
+
+it(`Reducer should update favourite status of promoFilm by changeIsFavouritePromo`, () => {
+
+  expect(reducer({
+    promoFilm: favouriteMock
+  }, {
+    type: ActionType.CHANGE_IS_FAVOURITE_PROMO,
+  })).toEqual({
+    promoFilm: expectedFavouriteMock
+  });
+});
+
+it(`Reducer should change isFavouriteFetching`, () => {
+
+  expect(reducer({
+    isFavouriteFetching: false
+  }, {
+    type: ActionType.CHANGE_IS_FAVOURITE_FETCH_STATUS,
+    payload: true
+  })).toEqual({
+    isFavouriteFetching: true,
+  });
+
+});
+
+
+it(`Reducer should update favouriteFilms by load favouriteFilms`, () => {
+
+  expect(reducer({
+    favouriteFilms: []
+  }, {
+    type: ActionType.LOAD_FAVOURITE_FILMS,
+    payload: [film]
+  })).toEqual({
+    favouriteFilms: [film],
+  });
+
+});
+
+it(`Reducer should clean favouriteFilmsData by cleanFavouriteFilmsData`, () => {
+
+  expect(reducer({
+    favouriteFilms: [film]
+  }, {
+    type: ActionType.CLEAN_FAVOURITE_FILMS_DATA,
+  })).toEqual({
+    favouriteFilms: [],
+  });
+
 });
 
 describe(`Operation work correctly`, () => {
@@ -138,6 +249,64 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_COMMENTS,
           payload: comments,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call to /favorite/id/status (isPromoFilm = false)`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const id = 1;
+    const isFavouriteStatus = false;
+    const isPromoFilm = false;
+
+    const dataLoader = Operation.postIsFavourite(id, isFavouriteStatus, isPromoFilm);
+
+    apiMock
+        .onPost(`/favorite/${id}/${Number(isFavouriteStatus)}`)
+        .reply(200);
+
+    return dataLoader(dispatch, () => {}, api)
+        .then(() => {
+          expect(dispatch).toHaveBeenCalledTimes(3);
+        });
+  });
+
+  it(`Should make a correct API call to /favorite/id/status (isPromoFilm = true)`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const id = 1;
+    const isFavouriteStatus = false;
+    const isPromoFilm = true;
+
+    const dataLoader = Operation.postIsFavourite(id, isFavouriteStatus, isPromoFilm);
+
+    apiMock
+        .onPost(`/favorite/${id}/${Number(isFavouriteStatus)}`)
+        .reply(200);
+
+    return dataLoader(dispatch, () => {}, api)
+        .then(() => {
+          expect(dispatch).toHaveBeenCalledTimes(4);
+        });
+  });
+
+  it(`Should make a correct API call to /favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadFavouriteFilms();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [film]);
+
+    return filmsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOAD_FAVOURITE_FILMS,
+          payload: [parsedFilm],
         });
       });
   });

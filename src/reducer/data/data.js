@@ -3,7 +3,9 @@ import {extend} from "../../utils.js";
 const initialState = {
   films: [],
   promoFilm: {},
-  comments: []
+  comments: [],
+  isFavouriteFetching: false,
+  favouriteFilms: []
 };
 
 const parseFilmData = (film) => {
@@ -29,7 +31,8 @@ const parseFilmData = (film) => {
     year: released,
     backgroundImage: film.background_image,
     backgroundColor: film.background_color,
-    runTime: film.run_time
+    runTime: film.run_time,
+    isFavourite: film.is_favorite
   };
 
 };
@@ -42,12 +45,16 @@ const parseData = (element) => {
 
 };
 
-
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   CLEAR_COMMENTS: `CLEAR_COMMENTS`,
+  CHANGE_IS_FAVOURITE: `CHANGE_IS_FAVOURITE`,
+  CHANGE_IS_FAVOURITE_PROMO: `CHANGE_IS_FAVOURITE_PROMO`,
+  CHANGE_IS_FAVOURITE_FETCH_STATUS: `CHANGE_IS_FAVOURITE_FETCH_STATUS`,
+  LOAD_FAVOURITE_FILMS: `LOAD_FAVOURITE_FILMS`,
+  CLEAN_FAVOURITE_FILMS_DATA: `CLEAN_FAVOURITE_FILMS_DATA`
 };
 
 const ActionCreator = {
@@ -65,6 +72,24 @@ const ActionCreator = {
   }),
   clearComments: () => ({
     type: ActionType.CLEAR_COMMENTS,
+  }),
+  changeIsFavourite: (id) => ({
+    type: ActionType.CHANGE_IS_FAVOURITE,
+    id
+  }),
+  changeIsFavouritePromo: () => ({
+    type: ActionType.CHANGE_IS_FAVOURITE_PROMO
+  }),
+  changeIsFavouriteFetching: (status) => ({
+    type: ActionType.CHANGE_IS_FAVOURITE_FETCH_STATUS,
+    payload: status
+  }),
+  loadFavouriteFilms: (films) => ({
+    type: ActionType.LOAD_FAVOURITE_FILMS,
+    payload: films
+  }),
+  cleanFavouriteFilmsData: () => ({
+    type: ActionType.CLEAN_FAVOURITE_FILMS_DATA
   })
 };
 
@@ -90,6 +115,30 @@ const Operation = {
           dispatch(ActionCreator.loadComments(response.data));
         });
   },
+  postIsFavourite: (id, status, isPromoFilm) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.changeIsFavouriteFetching(true));
+
+    return api.post(`/favorite/${Number(id)}/${Number(status)}`)
+    .then(() => {
+
+      if (isPromoFilm) {
+        dispatch(ActionCreator.changeIsFavouritePromo());
+      }
+
+      dispatch(ActionCreator.changeIsFavourite(id));
+      dispatch(ActionCreator.changeIsFavouriteFetching(false));
+    });
+  },
+  loadFavouriteFilms: () => (dispatch, getState, api) => {
+
+    dispatch(ActionCreator.cleanFavouriteFilmsData());
+
+    return api.get(`/favorite`)
+    .then((response) => {
+      const films = parseData(response.data);
+      dispatch(ActionCreator.loadFavouriteFilms(films));
+    });
+  }
 };
 
 
@@ -114,6 +163,59 @@ const reducer = (state = initialState, action) => {
     case ActionType.CLEAR_COMMENTS: {
       return extend(state, {
         comments: []
+      });
+    }
+    case ActionType.CHANGE_IS_FAVOURITE: {
+
+      const updatedFilms = [...state.films];
+      const currentFilmIndex = updatedFilms.findIndex((film) => film.id === action.id);
+
+      if (currentFilmIndex === -1) {
+        return state;
+      }
+
+      const updatedFilm = updatedFilms[currentFilmIndex];
+
+      const film = extend(updatedFilm, {
+        isFavourite: !updatedFilm.isFavourite
+      });
+
+      updatedFilms[currentFilmIndex] = film;
+
+
+      return extend(state, {
+        films: updatedFilms
+      });
+    }
+    case ActionType.CHANGE_IS_FAVOURITE_PROMO: {
+
+
+      const updatedPromoFilm = extend(state.promoFilm, {
+        isFavourite: !state.promoFilm.isFavourite
+      });
+
+
+      return extend(state, {
+        promoFilm: updatedPromoFilm
+      });
+
+    }
+    case ActionType.CHANGE_IS_FAVOURITE_FETCH_STATUS: {
+
+      return extend(state, {
+        isFavouriteFetching: action.payload
+      });
+    }
+    case ActionType.LOAD_FAVOURITE_FILMS: {
+
+      return extend(state, {
+        favouriteFilms: action.payload
+      });
+    }
+    case ActionType.CLEAN_FAVOURITE_FILMS_DATA: {
+
+      return extend(state, {
+        favouriteFilms: []
       });
     }
   }
