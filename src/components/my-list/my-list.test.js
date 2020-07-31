@@ -37,12 +37,17 @@ it(`Render MyList`, () => {
   });
 
   const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <MyList />
-          </BrowserRouter>
-        </Provider>
+    .create((
+      <Provider store={store}>
+        <BrowserRouter>
+          <MyList />
+        </BrowserRouter>
+      </Provider>
+    ), {
+      createNodeMock() {
+        return {};
+      }
+    }
     )
     .toJSON();
 

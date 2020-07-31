@@ -100,9 +100,7 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" disabled={isFavouriteFetching} type="button" onClick={() => {
-                  clickHandler();
-                }}>
+                <button className="btn btn--list movie-card__button" disabled={isFavouriteFetching} type="button" onClick={clickHandler}>
                   {promoFilm.isFavourite
                     ? <svg viewBox="0 0 18 14" width={18} height={14}>
                       <use xlinkHref="#in-list" />

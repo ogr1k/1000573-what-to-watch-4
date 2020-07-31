@@ -169,6 +169,11 @@ const reducer = (state = initialState, action) => {
 
       const updatedFilms = [...state.films];
       const currentFilmIndex = updatedFilms.findIndex((film) => film.id === action.id);
+
+      if (currentFilmIndex === -1) {
+        return state;
+      }
+
       const updatedFilm = updatedFilms[currentFilmIndex];
 
       const film = extend(updatedFilm, {
