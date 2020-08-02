@@ -7,15 +7,13 @@ const Player = (props) => {
 
   const {children, onPlayPauseClick, progress, film, duration, onFullScreenclick, isPlaying} = props;
 
-  console.log(film);
-
   const elapsedTime = new Date((duration - progress) * 1000).toISOString().substr(11, 8);
 
   const togglerPosition = progress / duration * 100;
 
-  // if (!film) {
-  //   return null;
-  // }
+  if (!film) {
+    return null;
+  }
 
   return (
     <div>

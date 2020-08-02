@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFilmById} from '../../reducer/data/selector.js';
 
-let WithMainPlayer;
+
+let WithMainForExyme;
 
 const withMainPlayer = (Component) => {
-  WithMainPlayer = class WithPlayer extends PureComponent {
+  class WithPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -48,10 +49,10 @@ const withMainPlayer = (Component) => {
 
     handlePlayOrPauseClick() {
 
-      if (!this.state.isPlaying) {
-        this._videoRef.current.play();
-      } else {
+      if (this.state.isPlaying) {
         this._videoRef.current.pause();
+      } else {
+        this._videoRef.current.play();
       }
 
     }
@@ -111,9 +112,9 @@ const withMainPlayer = (Component) => {
         </Component>
       );
     }
-  };
+  }
 
-  WithMainPlayer.propTypes = {
+  WithPlayer.propTypes = {
     film: PropTypes.shape({
       name: PropTypes.string.isRequired,
       previewImage: PropTypes.string.isRequired,
@@ -130,6 +131,8 @@ const withMainPlayer = (Component) => {
     }),
   };
 
+  WithMainForExyme = WithPlayer;
+
   const mapStateToProps = (state, ownProps) => {
 
 
@@ -140,8 +143,8 @@ const withMainPlayer = (Component) => {
   };
 
 
-  return connect(mapStateToProps)(WithMainPlayer);
+  return connect(mapStateToProps)(WithPlayer);
 };
 
+export {WithMainForExyme};
 export default withMainPlayer;
-export {WithMainPlayer};

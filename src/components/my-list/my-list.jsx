@@ -33,8 +33,6 @@ class MyList extends PureComponent {
 
     const {favouriteFilms} = this.props;
 
-    console.log(history);
-
 
     return (
       <div>

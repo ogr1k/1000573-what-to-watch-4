@@ -2,25 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withMainPlayer, {WithMainPlayer} from "./with-main-player.js";
+import withMainPlayer, {WithMainForExyme} from "./with-main-player.js";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import {Provider} from "react-redux";
 
+configure({adapter: new Adapter()});
+const mockStore = configureStore([]);
+
 const Player = (props) => {
-  const {children, onPlayPauseClick, onFullScreenclick} = props;
+  const {children, onPlayPauseClick} = props;
 
   return (
     <article onClick={onPlayPauseClick}>
-      <div onClick={onFullScreenclick}>
+      <div>
         {children}
       </div>
     </article>
   );
 };
-
-configure({adapter: new Adapter()});
-const mockStore = configureStore([]);
 
 Player.propTypes = {
   onPlayPauseClick: PropTypes.func.isRequired,
@@ -29,6 +29,7 @@ Player.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 const store = mockStore({
@@ -76,7 +77,7 @@ it(`Checks that HOC's main player callback starts video`, () => {
 
   window.HTMLMediaElement.prototype.play = () => {};
 
-  const instance = wrapper.find(WithMainPlayer).instance();
+  const instance = wrapper.find(WithMainForExyme).instance();
   const videoRef = instance._videoRef;
 
   jest.spyOn(videoRef.current, `play`);
@@ -101,18 +102,19 @@ it(`Checks that HOC's main player callback stops video`, () => {
         }}/>
       </Provider>);
 
-  window.HTMLMediaElement.prototype.play = () => {};
   window.HTMLMediaElement.prototype.pause = () => {};
 
-  const instance = wrapper.find(WithMainPlayer).instance();
+  const instance = wrapper.find(WithMainForExyme).instance();
   const videoRef = instance._videoRef;
 
-  jest.spyOn(videoRef.current, `play`);
+  jest.spyOn(videoRef.current, `pause`);
+  instance.setState({
+    isPlaying: true
+  });
 
   instance.componentDidMount();
 
   wrapper.find(`article`).simulate(`click`);
-  wrapper.find(`article`).simulate(`click`);
 
-  expect(videoRef.current.play).toHaveBeenCalledTimes(1);
+  expect(videoRef.current.pause).toHaveBeenCalledTimes(1);
 });
