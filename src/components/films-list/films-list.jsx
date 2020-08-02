@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withPlayer from "../../hoc/with-player/with-player.js";
+import withCardPlayer from "../../hoc/with-card-player/with-card-player.js";
 import Film from "../../components/film/film.jsx";
 
-const WrappedFilm = withPlayer(Film);
+const WrappedFilm = withCardPlayer(Film);
 
 const FilmsList = (props) => {
   const {films} = props;

@@ -13,6 +13,7 @@ import Copyright from "../copyright/copyright.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
+import {Link} from "react-router-dom";
 
 
 const Main = (props) => {
@@ -94,12 +95,12 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link className="btn btn--play movie-card__button" to={`${AppRoute.PLAYER}/${promoFilm.id}`}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" disabled={isFavouriteFetching} type="button" onClick={clickHandler}>
                   {promoFilm.isFavourite
                     ? <svg viewBox="0 0 18 14" width={18} height={14}>

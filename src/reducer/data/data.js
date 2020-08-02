@@ -32,7 +32,8 @@ const parseFilmData = (film) => {
     backgroundImage: film.background_image,
     backgroundColor: film.background_color,
     runTime: film.run_time,
-    isFavourite: film.is_favorite
+    isFavourite: film.is_favorite,
+    mainVideo: film.video_link
   };
 
 };

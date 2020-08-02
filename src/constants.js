@@ -2,7 +2,8 @@ export const AppRoute = {
   LOGIN: `/login`,
   FILM: `/films`,
   ROOT: `/`,
-  MYLIST: `/mylist`
+  MYLIST: `/mylist`,
+  PLAYER: `/player`
 };
 
 export const TabsNames = {

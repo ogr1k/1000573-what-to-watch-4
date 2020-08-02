@@ -1,13 +1,13 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from "prop-types";
 
+const VIDEO_PLAY_DELAY_MSECONDS = 1000;
 const VIDEO_WIDTH = `280`;
 const VIDEO_HEIGHT = `175`;
-const VIDEO_PLAY_DELAY_MSECONDS = 1000;
 
 
-const withPlayer = (Component) => {
-  class WithPlayer extends PureComponent {
+const withCardPlayer = (Component) => {
+  class WithCardPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -27,7 +27,7 @@ const withPlayer = (Component) => {
       const video = this._videoRef.current;
 
       const {film} = this.props;
-      const {video: videoSRC, previewImage} = film;
+      const {previewImage} = film;
 
       video.onplay = () => {
 
@@ -43,7 +43,6 @@ const withPlayer = (Component) => {
         video.load();
       };
 
-      video.src = videoSRC;
       video.poster = previewImage;
 
       video.muted = true;
@@ -70,6 +69,7 @@ const withPlayer = (Component) => {
     }
 
     handleEnter() {
+      this._videoRef.current.src = this.props.film.video;
       this.startVideoTimeOut = setTimeout(() => (this._videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
     }
 
@@ -89,7 +89,7 @@ const withPlayer = (Component) => {
     }
   }
 
-  WithPlayer.propTypes = {
+  WithCardPlayer.propTypes = {
     film: PropTypes.shape({
       name: PropTypes.string.isRequired,
       previewImage: PropTypes.string.isRequired,
@@ -105,7 +105,7 @@ const withPlayer = (Component) => {
     }).isRequired,
   };
 
-  return WithPlayer;
+  return WithCardPlayer;
 };
 
-export default withPlayer;
+export default withCardPlayer;
