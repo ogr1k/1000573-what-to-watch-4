@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getFilmById} from '../../reducer/data/selector.js';
 
 
-let WithMainForExyme;
+let WithMainForTests;
 
 const withMainPlayer = (Component) => {
   class WithPlayer extends PureComponent {
@@ -43,6 +43,8 @@ const withMainPlayer = (Component) => {
       const video = this._videoRef.current;
 
 
+      video.onloadedmetadata = null;
+      video.ontimeupdate = null;
       video.poster = ``;
       video.src = ``;
     }
@@ -131,7 +133,7 @@ const withMainPlayer = (Component) => {
     }),
   };
 
-  WithMainForExyme = WithPlayer;
+  WithMainForTests = WithPlayer;
 
   const mapStateToProps = (state, ownProps) => {
 
@@ -146,5 +148,5 @@ const withMainPlayer = (Component) => {
   return connect(mapStateToProps)(WithPlayer);
 };
 
-export {WithMainForExyme};
+export {WithMainForTests};
 export default withMainPlayer;

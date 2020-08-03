@@ -65,8 +65,8 @@ const withFormValues = (Component) => {
         return null;
       }
 
-      const isValid = (this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating);
-      const isFetching = (this.props.fetchStatus === FetchStatus.IS_FETCHING);
+      const isValid = this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating;
+      const isFetching = this.props.fetchStatus === FetchStatus.IS_FETCHING;
 
       if (this.props.fetchStatus === FetchStatus.DONE) {
         return <Redirect to={`${AppRoute.FILM}/${this.props.film.id}`} />;

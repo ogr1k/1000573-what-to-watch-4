@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withMainPlayer, {WithMainForExyme} from "./with-main-player.js";
+import withMainPlayer, {WithMainForTests} from "./with-main-player.js";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import {Provider} from "react-redux";
@@ -77,7 +77,7 @@ it(`Checks that HOC's main player callback starts video`, () => {
 
   window.HTMLMediaElement.prototype.play = () => {};
 
-  const instance = wrapper.find(WithMainForExyme).instance();
+  const instance = wrapper.find(WithMainForTests).instance();
   const videoRef = instance._videoRef;
 
   jest.spyOn(videoRef.current, `play`);
@@ -104,7 +104,7 @@ it(`Checks that HOC's main player callback stops video`, () => {
 
   window.HTMLMediaElement.prototype.pause = () => {};
 
-  const instance = wrapper.find(WithMainForExyme).instance();
+  const instance = wrapper.find(WithMainForTests).instance();
   const videoRef = instance._videoRef;
 
   jest.spyOn(videoRef.current, `pause`);
