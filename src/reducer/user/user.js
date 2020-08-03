@@ -1,4 +1,5 @@
 import {extend} from "../../utils.js";
+import {AppRoute} from "../../constants.js";
 
 const AuthorisationStatus = {
   AUTH: `AUTH`,
@@ -17,7 +18,7 @@ const ActionType = {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.get(AppRoute.LOGIN)
       .then(() => {
         dispatch(ActionCreator.requireAuthorisation(AuthorisationStatus.AUTH));
       })
@@ -26,7 +27,7 @@ const Operation = {
       });
   },
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
+    return api.post(AppRoute.LOGIN, {
       email: authData.login,
       password: authData.password,
     })

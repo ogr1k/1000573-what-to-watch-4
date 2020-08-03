@@ -36,7 +36,6 @@ class AddReview extends PureComponent {
     const {status, statusText} = error;
     const {name, poster, backgroundImage, id} = film;
 
-
     const shouldSubmitButtonBeDisabled = (isFetching || !isValid);
 
 

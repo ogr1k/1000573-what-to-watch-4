@@ -1,4 +1,5 @@
 import {extend} from "../../utils.js";
+import {AppRoute} from "../../constants.js";
 
 const initialState = {
   films: [],
@@ -96,14 +97,14 @@ const ActionCreator = {
 
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
+    return api.get(AppRoute.FILM)
         .then((response) => {
           const films = parseData(response.data);
           dispatch(ActionCreator.loadFilms(films));
         });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(AppRoute.PROMO)
         .then((response) => {
           const promoFilm = parseFilmData(response.data);
           dispatch(ActionCreator.loadPromoFilm(promoFilm));
@@ -111,7 +112,7 @@ const Operation = {
   },
   loadComments: (id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.clearComments());
-    return api.get(`comments/${id}`)
+    return api.get(`${AppRoute.COMMENTS}/${id}`)
         .then((response) => {
           dispatch(ActionCreator.loadComments(response.data));
         });
@@ -119,7 +120,7 @@ const Operation = {
   postIsFavourite: (id, status, isPromoFilm) => (dispatch, getState, api) => {
     dispatch(ActionCreator.changeIsFavouriteFetching(true));
 
-    return api.post(`/favorite/${Number(id)}/${Number(status)}`)
+    return api.post(`${AppRoute.FAVORITE}/${Number(id)}/${Number(status)}`)
     .then(() => {
 
       if (isPromoFilm) {
@@ -134,7 +135,7 @@ const Operation = {
 
     dispatch(ActionCreator.cleanFavouriteFilmsData());
 
-    return api.get(`/favorite`)
+    return api.get(AppRoute.FAVORITE)
     .then((response) => {
       const films = parseData(response.data);
       dispatch(ActionCreator.loadFavouriteFilms(films));

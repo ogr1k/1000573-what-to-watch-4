@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFilmById, getSameGenreFilms} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
-import UserBlock from "../user-block/user-block.jsx";
-import Copyright from "../copyright/copyright.jsx";
+import Header from "../header/header.jsx";
+import Footer from "../footer/footer.jsx";
 import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
@@ -72,16 +72,9 @@ const MoviePage = (props) => {
             <img src={backgroundImage} alt={name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to={AppRoute.ROOT} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-            <UserBlock authorisationStatus={authorisationStatus} />
-          </header>
+
+          <Header authorisationStatus={authorisationStatus} />
+
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{name}</h2>
@@ -106,11 +99,7 @@ const MoviePage = (props) => {
                     </svg>}
                   <span>My list</span>
                 </button>
-                <Link to={
-                  authorisationStatus === AuthorisationStatus.AUTH
-                    ? `${AppRoute.FILM}/${id}/review`
-                    : `${AppRoute.LOGIN}`
-                } className="btn movie-card__button">Add review</Link>
+                <Link to={`${AppRoute.FILM}/${id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -122,16 +111,7 @@ const MoviePage = (props) => {
           <h2 className="catalog__title">More like this</h2>
           <FilmsList films={sameGenreFilms}/>
         </section>
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-          <Copyright />
-        </footer>
+        <Footer />
       </div>
     </div>
 

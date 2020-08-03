@@ -1,4 +1,5 @@
 import {extend} from "../../utils.js";
+import {AppRoute} from "../../constants.js";
 
 const FetchStatus = {
   IS_FETCHING: `IS_FETCHING`,
@@ -35,7 +36,7 @@ const ActionCreator = {
 const Operation = {
   postReview: (review, id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.changeFetchStatus(FetchStatus.IS_FETCHING));
-    return api.post(`comments/${id}`, {
+    return api.post(`${AppRoute.COMMENTS}/${id}`, {
       rating: review.rating,
       comment: review.comment
     })

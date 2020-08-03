@@ -8,8 +8,8 @@ import {Operation} from "../../reducer/data/data.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {getPromoFilm, getFilmsByGenres, getGenres, getIsFavouriteFetching} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
-import UserBlock from "../user-block/user-block.jsx";
-import Copyright from "../copyright/copyright.jsx";
+import Header from "../header/header.jsx";
+import Footer from "../footer/footer.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
@@ -70,18 +70,7 @@ const Main = (props) => {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <UserBlock authorisationStatus={authorisationStatus} />
-        </header>
-
+        <Header authorisationStatus={authorisationStatus}/>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
@@ -128,18 +117,7 @@ const Main = (props) => {
           {renderShowMoreButton()}
 
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <Copyright />
-        </footer>
+        <Footer />
       </div>
     </>
   );

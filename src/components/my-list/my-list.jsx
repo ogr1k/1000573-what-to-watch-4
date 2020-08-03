@@ -4,7 +4,7 @@ import {Operation} from "../../reducer/data/data.js";
 import {getFavouriteFilms} from "../../reducer/data/selector.js";
 import {AppRoute} from "../../constants.js";
 import history from "../../history.js";
-import Copyright from "../copyright/copyright.jsx";
+import Footer from "../footer/footer.jsx";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
@@ -81,16 +81,7 @@ class MyList extends PureComponent {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
             <FilmsList films={favouriteFilms} />
           </section>
-          <footer className="page-footer">
-            <div className="logo">
-              <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-            <Copyright />
-          </footer>
+          <Footer />
         </div>
       </div>
     );

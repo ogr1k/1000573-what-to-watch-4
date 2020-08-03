@@ -14,6 +14,7 @@ import withFormValues from "../../hoc/with-form-values/with-form-values.js";
 import MyList from "../my-list/my-list.jsx";
 import withMainPlayer from "../../hoc/with-main-player/with-main-player.js";
 import Player from "../player/player.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
 
 const WrappedAddReview = withFormValues(AddReview);
 const WrappedPlayer = withMainPlayer(Player);
@@ -53,8 +54,8 @@ class App extends PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id/review`} component={WrappedAddReview}/>
-          <Route exact path={AppRoute.MYLIST} component={MyList}/>
+          <PrivateRoute exact path={`${AppRoute.FILM}/:id/review`} authorisationStatus={authorisationStatus} component={WrappedAddReview}/>
+          <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
           <Route exact path="/player/:id" component={WrappedPlayer}/>
         </Switch>
       </Router>

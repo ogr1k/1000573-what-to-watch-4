@@ -3,7 +3,10 @@ export const AppRoute = {
   FILM: `/films`,
   ROOT: `/`,
   MYLIST: `/mylist`,
-  PLAYER: `/player`
+  PLAYER: `/player`,
+  COMMENTS: `/comments`,
+  PROMO: `/films/promo`,
+  FAVORITE: `/favorite`
 };
 
 export const TabsNames = {

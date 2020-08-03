@@ -130,6 +130,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -150,21 +152,14 @@ Array [
       </div>
       <div
         className="user-block"
+        to="/mylist"
       >
         <a
+          className="user-block__link"
           href="/mylist"
           onClick={[Function]}
         >
-          <div
-            className="user-block__avatar"
-          >
-            <img
-              alt="User avatar"
-              height="63"
-              src="/img/avatar.jpg"
-              width="63"
-            />
-          </div>
+          Sign in
         </a>
       </div>
     </header>
