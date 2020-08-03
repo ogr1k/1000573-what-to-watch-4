@@ -12,9 +12,11 @@ import {AppRoute} from "../../constants.js";
 import AddReview from "../add-review/add-review.jsx";
 import withFormValues from "../../hoc/with-form-values/with-form-values.js";
 import MyList from "../my-list/my-list.jsx";
+import withMainPlayer from "../../hoc/with-main-player/with-main-player.js";
+import Player from "../player/player.jsx";
 
 const WrappedAddReview = withFormValues(AddReview);
-
+const WrappedPlayer = withMainPlayer(Player);
 
 class App extends PureComponent {
 
@@ -53,6 +55,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path={`${AppRoute.FILM}/:id/review`} component={WrappedAddReview}/>
           <Route exact path={AppRoute.MYLIST} component={MyList}/>
+          <Route exact path="/player/:id" component={WrappedPlayer}/>
         </Switch>
       </Router>
     );

@@ -5,6 +5,7 @@ import Main from "./main";
 import {films, PROMOFILM} from "../../mocks/test-mocks.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -26,11 +27,13 @@ it(`Should head button be pressed`, () => {
   const onHeadClick = jest.fn();
 
   const main = shallow(
-      <Provider store={store}>
-        <Main
-          onHeadClick={onHeadClick}
-        />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Main
+            onHeadClick={onHeadClick}
+          />
+        </Provider>
+      </BrowserRouter>
   );
 
   const headButtons = main.find(`.small-movie-card__title`);

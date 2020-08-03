@@ -2,20 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withPlayer from "./with-player.js";
+import withCardPlayer from "./with-card-player.js";
 
 const film = {
-  name: `Jojo Rabbit`,
-  poster: ``,
-  description: ``,
-  director: ``,
-  genre: ``,
-  rating: 1,
-  ratings: 1,
-  starring: ``,
-  year: 1,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  id: 1
+  description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
+  director: `Sergio Leone`,
+  genre: `Crime`,
+  id: 1,
+  name: `Once Upon a Time in America`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg`,
+  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg`,
+  rating: 9.9,
+  year: 1984,
+  ratings: 276395,
+  starring: [`Robert De Niro`, `James Woods`, `Elizabeth McGovern`],
+  video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  runTime: 500,
+  isFavourite: false,
 };
 
 const VIDEO_PLAY_DELAY_MSECONDS = 1000;
@@ -43,7 +46,7 @@ Film.propTypes = {
 
 
 it(`Checks that HOC's callback starts video`, () => {
-  const FilmWrapped = withPlayer(Film);
+  const FilmWrapped = withCardPlayer(Film);
   const wrapper = mount(<FilmWrapped
     key={1}
     onClick={() => {}}
@@ -65,7 +68,7 @@ it(`Checks that HOC's callback starts video`, () => {
 
 
 it(`Checks that HOC's callback stops video`, () => {
-  const FilmWrapped = withPlayer(Film);
+  const FilmWrapped = withCardPlayer(Film);
   const wrapper = mount(<FilmWrapped
     key={1}
     onClick={() => {}}

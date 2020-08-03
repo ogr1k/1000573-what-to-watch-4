@@ -15,6 +15,7 @@ class Authentification extends PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleSubmit(evt) {
     const {onSubmit} = this.props;
 
@@ -28,7 +29,6 @@ class Authentification extends PureComponent {
 
 
   render() {
-
 
     return (
       <div className="user-page">

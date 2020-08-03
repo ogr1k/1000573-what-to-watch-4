@@ -20,7 +20,9 @@ class Film extends PureComponent {
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
       >
-        {children}
+        <div className="small-movie-card__image">
+          {children}
+        </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" onClick={!isPlaying ? null : () => history.push(`${AppRoute.FILM}/${film.id}`)}>{film.name}</a>
         </h3>
