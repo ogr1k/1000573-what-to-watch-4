@@ -1,8 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withMainPlayer from "./with-main-player.js";
-import {BrowserRouter} from "react-router-dom";
-import PropTypes from "prop-types";
+import AddReviewPage from "./add-review-page.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+import {Router, BrowserRouter} from "react-router-dom";
+import history from "../../history.js";
+
+const mockStore = configureStore([]);
 
 const film = {
   "description": `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
@@ -27,41 +32,36 @@ const film = {
   "mainVideo": `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 };
 
+it(`Render AddReviewPage`, () => {
 
-const MockComponent = (props) => {
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      films: [film],
+    },
+    [NameSpace.REVIEW]: {
+      fetchStatus: ``
+    },
+  });
 
-  const {children} = props;
-
-  return (
-    <div>
-      {children}
-    </div>
-  );
-};
-
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
-
-
-const MockComponentWrapped = withMainPlayer(MockComponent);
-
-it(`withMainPlayer rendered correctly`, () => {
-
-
-  const tree = renderer.create(
-      <BrowserRouter>
-        <MockComponentWrapped film={film}/>
-      </BrowserRouter>, {
-        createNodeMock() {
-          return {};
-        }
-      }
-  )
-  .toJSON();
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Router history={history}>
+              <AddReviewPage match={{
+                "params": {
+                  "id": `1`
+                }
+              }}
+              />
+            </Router>
+          </Provider>
+        </BrowserRouter>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

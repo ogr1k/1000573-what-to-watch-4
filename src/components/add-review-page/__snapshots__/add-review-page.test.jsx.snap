@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Add Review 1`] = `
-Array [
+exports[`Render AddReviewPage 1`] = `
+<section
+  className="movie-card movie-card--full"
+>
   <div
     className="movie-card__header"
   >
@@ -9,7 +11,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Once Upon a Time in America"
+        alt="Moonrise Kingdom"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg"
       />
     </div>
     <h1
@@ -59,7 +62,7 @@ Array [
               href="/films/1"
               onClick={[Function]}
             >
-              Once Upon a Time in America
+              Moonrise Kingdom
             </a>
           </li>
           <li
@@ -92,13 +95,13 @@ Array [
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="Once Upon a Time in America"
+        alt="Moonrise Kingdom"
         height={327}
-        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg"
         width={218}
       />
     </div>
-  </div>,
+  </div>
   <div
     className="add-review"
   >
@@ -107,7 +110,11 @@ Array [
       className="add-review__form"
       onSubmit={[Function]}
     >
-      
+      <div
+        className="add-review__notice"
+      >
+        Please fill comment (50-400 symbols) and select rating by click on star
+      </div>
       <div
         className="rating"
       >
@@ -230,7 +237,7 @@ Array [
         >
           <button
             className="add-review__btn"
-            disabled={false}
+            disabled={true}
             type="submit"
           >
             Post
@@ -238,6 +245,6 @@ Array [
         </div>
       </div>
     </form>
-  </div>,
-]
+  </div>
+</section>
 `;

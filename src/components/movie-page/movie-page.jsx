@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFilmById, getSameGenreFilms} from "../../reducer/data/selector.js";
+import {getFilmById, getSameGenreFilms, getIsFilmsFetching} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
@@ -12,16 +12,18 @@ import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Operation} from "../../reducer/data/data.js";
 import history from "../../history.js";
+import Loader from "../loader/loader.jsx";
 
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
 const MoviePage = (props) => {
 
+  if (props.isFilmsFetching) {
+    return <Loader />;
+  }
+
   const {film, authorisationStatus, sameGenreFilms, changeIsFavourite} = props;
 
-  if (!film) {
-    return null;
-  }
 
   const {backgroundColor, backgroundImage, name, genre, year, id, isFavourite} = film;
 
@@ -165,7 +167,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     film: getFilmById(state, filmId),
-    sameGenreFilms: getSameGenreFilms(state, filmId)
+    sameGenreFilms: getSameGenreFilms(state, filmId),
+    isFilmsFetching: getIsFilmsFetching(state)
   };
 
 };

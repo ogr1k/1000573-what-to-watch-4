@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render User block 1`] = `
-<header
-  className="page-header movie-card__head"
+exports[`Render Footer 1`] = `
+<footer
+  className="page-footer"
 >
   <div
     className="logo"
   >
     <a
-      className="logo__link"
+      className="logo__link logo__link--light"
       href="/"
       onClick={[Function]}
     >
@@ -30,24 +30,13 @@ exports[`Render User block 1`] = `
     </a>
   </div>
   <div
-    className="user-block"
-    to="/mylist"
+    className="copyright"
   >
-    <a
-      href="/mylist"
-      onClick={[Function]}
-    >
-      <div
-        className="user-block__avatar"
-      >
-        <img
-          alt="User avatar"
-          height="63"
-          src="/img/avatar.jpg"
-          width="63"
-        />
-      </div>
-    </a>
+    <p>
+      © 
+      2020
+       What to watch Ltd.
+    </p>
   </div>
-</header>
+</footer>
 `;

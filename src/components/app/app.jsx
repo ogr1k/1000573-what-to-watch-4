@@ -9,15 +9,12 @@ import {getAuthorisationStatus} from "../../reducer/user/selector.js";
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
-import AddReview from "../add-review/add-review.jsx";
-import withFormValues from "../../hoc/with-form-values/with-form-values.js";
+import AddReviewPage from "../add-review-page/add-review-page.jsx";
 import MyList from "../my-list/my-list.jsx";
-import withMainPlayer from "../../hoc/with-main-player/with-main-player.js";
-import Player from "../player/player.jsx";
+import PlayerPage from "../player-page/player-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
-
-const WrappedAddReview = withFormValues(AddReview);
-const WrappedPlayer = withMainPlayer(Player);
+import ServerError from "../server-error/server-error.jsx";
+import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
 
 class App extends PureComponent {
 
@@ -38,15 +35,17 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authorisationStatus} = this.props;
+    const {authorisationStatus, isServerUvailable} = this.props;
+
+    if (!isServerUvailable) {
+      return <ServerError />;
+    }
 
     return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.ROOT}>
-            <Main
-              authorisationStatus={authorisationStatus}
-            />
+            <Main authorisationStatus={authorisationStatus}/>
           </Route>
           <Route exact path={`${AppRoute.FILM}/:id`} component={(props) =>
             <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
@@ -54,9 +53,13 @@ class App extends PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>
-          <PrivateRoute exact path={`${AppRoute.FILM}/:id/review`} authorisationStatus={authorisationStatus} component={WrappedAddReview}/>
+          <PrivateRoute exact path={`${AppRoute.FILM}/:id/review`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
           <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
-          <Route exact path="/player/:id" component={WrappedPlayer}/>
+          <Route exact path="/player/:id" component={PlayerPage}/>
+          <Route exact path="/dev" component={ServerError}/>
+          <Route >
+            <ServerError notFoundError={true}/>
+          </Route>
         </Switch>
       </Router>
     );
@@ -65,12 +68,15 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorisationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  isServerUvailable: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     authorisationStatus: getAuthorisationStatus(state),
+    loadFilmsError: getLoadFilmsError(state),
+    isServerUvailable: getServerError(state)
   };
 };
 

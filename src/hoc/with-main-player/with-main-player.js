@@ -1,10 +1,5 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {getFilmById} from '../../reducer/data/selector.js';
-
-
-let WithMainForTests;
 
 const withMainPlayer = (Component) => {
   class WithPlayer extends PureComponent {
@@ -24,19 +19,7 @@ const withMainPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
-
-      if (this.props.film && !video.poster) {
-        this._subscribeOnEventsAndAddProperties();
-      }
-    }
-
-    componentDidUpdate() {
-      const video = this._videoRef.current;
-
-      if (this.props.film && !video.poster) {
-        this._subscribeOnEventsAndAddProperties();
-      }
+      this._subscribeOnEventsAndAddProperties();
     }
 
     componentWillUnmount() {
@@ -133,20 +116,7 @@ const withMainPlayer = (Component) => {
     }),
   };
 
-  WithMainForTests = WithPlayer;
-
-  const mapStateToProps = (state, ownProps) => {
-
-
-    return {
-      film: getFilmById(state, ownProps.match.params.id)
-    };
-
-  };
-
-
-  return connect(mapStateToProps)(WithPlayer);
+  return WithPlayer;
 };
 
-export {WithMainForTests};
 export default withMainPlayer;

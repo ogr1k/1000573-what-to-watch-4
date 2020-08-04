@@ -96,6 +96,8 @@ it(`Data reducer without additional parameters should return initial state`, () 
     promoFilm: {},
     favouriteFilms: [],
     isFavouriteFetching: false,
+    isFilmsFetching: false,
+    isServerUvailable: true
   });
 });
 
@@ -107,6 +109,7 @@ it(`Reducer should update films by load films`, () => {
     payload: films,
   })).toEqual({
     films,
+    isFilmsFetching: false,
   });
 });
 
@@ -206,8 +209,8 @@ describe(`Operation work correctly`, () => {
 
     return filmsLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_FILMS,
           payload: [parsedFilm],
         });

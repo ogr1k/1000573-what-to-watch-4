@@ -1,5 +1,6 @@
 import {extend} from "../../utils.js";
 import {AppRoute} from "../../constants.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 
 const FetchStatus = {
   IS_FETCHING: `IS_FETCHING`,
@@ -7,21 +8,15 @@ const FetchStatus = {
 };
 
 const initialState = {
-  fetchStatus: ``,
-  errorMessage: {}
+  fetchStatus: ``
 };
 
 const ActionType = {
-  SET_ERROR: `SET_ERROR`,
   CHANGE_FETCH_STATUS: `CHANGE_FETCH_STATUS`,
   CLEAN_DATA: `CLEAN_DATA`
 };
 
 const ActionCreator = {
-  setError: (error) => ({
-    type: ActionType.SET_ERROR,
-    payload: error
-  }),
   changeFetchStatus: (status) => ({
     type: ActionType.CHANGE_FETCH_STATUS,
     payload: status
@@ -44,7 +39,11 @@ const Operation = {
       dispatch(ActionCreator.changeFetchStatus(FetchStatus.DONE));
     })
     .catch((err) => {
-      dispatch(ActionCreator.setError(err.response));
+      dispatch(ActionCreator.changeFetchStatus(FetchStatus.DONE));
+
+      if (!err.response) {
+        dispatch(DataActionCreator.changeIsServerUvailable());
+      }
     });
   }
 };
@@ -53,12 +52,6 @@ const Operation = {
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case ActionType.SET_ERROR: {
-      return extend(state, {
-        errorMessage: action.payload,
-        fetchStatus: ``
-      });
-    }
     case ActionType.CHANGE_FETCH_STATUS: {
       return extend(state, {
         fetchStatus: action.payload

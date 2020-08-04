@@ -32,21 +32,14 @@ class AddReview extends PureComponent {
 
   render() {
 
-    const {film, error, onSubmit, onClick, onChange, isValid, isFetching} = this.props;
-    const {status, statusText} = error;
+    const {film, onSubmit, onClick, onChange, isValid, isFetching} = this.props;
     const {name, poster, backgroundImage, id} = film;
 
     const shouldSubmitButtonBeDisabled = (isFetching || !isValid);
 
-
     return (
-      <section className="movie-card movie-card--full">
+      <Fragment>
         <div className="movie-card__header">
-          <div className="add-review__notice add-review__error">
-            {error.status ?
-              `${status} server error "${statusText}"`
-              : ``}
-          </div>
           <div className="movie-card__bg">
             <img src={backgroundImage} alt={name} />
           </div>
@@ -106,7 +99,7 @@ class AddReview extends PureComponent {
             </div>
           </form>
         </div>
-      </section>
+      </Fragment>
     );
   }
 }

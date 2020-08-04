@@ -1,5 +1,6 @@
 import {extend} from "../../utils.js";
 import {AppRoute} from "../../constants.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 
 const AuthorisationStatus = {
   AUTH: `AUTH`,
@@ -23,7 +24,9 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorisation(AuthorisationStatus.AUTH));
       })
       .catch((err) => {
-        throw err;
+        if (!err.response) {
+          dispatch(DataActionCreator.changeIsServerUvailable());
+        }
       });
   },
   login: (authData) => (dispatch, getState, api) => {
@@ -34,7 +37,9 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreator.requireAuthorisation(AuthorisationStatus.AUTH));
       }).catch((err) => {
-        throw err;
+        if (!err.response) {
+          dispatch(DataActionCreator.changeIsServerUvailable());
+        }
       });
   },
 };
