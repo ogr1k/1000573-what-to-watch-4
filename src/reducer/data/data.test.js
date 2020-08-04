@@ -197,6 +197,19 @@ it(`Reducer should clean favouriteFilmsData by cleanFavouriteFilmsData`, () => {
 
 });
 
+
+it(`Reducer should set networkError by setNetworkError`, () => {
+
+  expect(reducer({
+    isServerUvailable: true
+  }, {
+    type: ActionType.SET_NETWORK_ERROR,
+  })).toEqual({
+    isServerUvailable: false,
+  });
+
+});
+
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /films`, function () {
     const apiMock = new MockAdapter(api);

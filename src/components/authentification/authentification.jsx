@@ -4,6 +4,10 @@ import {Link} from "react-router-dom";
 import Footer from "../footer/footer.jsx";
 import {AppRoute} from "../../constants.js";
 
+const Error = {
+  BAD_REQUEST: 400
+};
+
 
 class Authentification extends PureComponent {
 
@@ -14,6 +18,12 @@ class Authentification extends PureComponent {
     this.passwordRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+
+    this.props.cleanLoginError();
+
   }
 
 
@@ -46,7 +56,7 @@ class Authentification extends PureComponent {
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
             <div className="sign-in__message">
-              <p>Please enter a valid email address</p>
+              <p>{this.props.loginError === Error.BAD_REQUEST ? `Please enter a valid email address` : ``}</p>
             </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -70,7 +80,9 @@ class Authentification extends PureComponent {
 }
 
 Authentification.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  cleanLoginError: PropTypes.func.isRequired,
+  loginError: PropTypes.string
 };
 
 export default Authentification;

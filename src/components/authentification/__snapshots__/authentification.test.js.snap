@@ -50,7 +50,7 @@ exports[`Render Authentification 1`] = `
         className="sign-in__message"
       >
         <p>
-          Please enter a valid email address
+          
         </p>
       </div>
       <div

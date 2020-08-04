@@ -32,13 +32,15 @@ class AddReview extends PureComponent {
 
   render() {
 
-    const {film, onSubmit, onClick, onChange, isValid, isFetching} = this.props;
+    const {film, onSubmit, onClick, onChange, isValid, isFetching, errorMessage} = this.props;
     const {name, poster, backgroundImage, id} = film;
+
 
     const shouldSubmitButtonBeDisabled = (isFetching || !isValid);
 
     return (
       <Fragment>
+        <div className="error">{errorMessage}</div>
         <div className="movie-card__header">
           <div className="movie-card__bg">
             <img src={backgroundImage} alt={name} />
@@ -120,7 +122,7 @@ AddReview.propTypes = {
     backgroundImage: PropTypes.string.isRequired
   }),
   fetchStatus: PropTypes.string,
-  error: PropTypes.object,
+  errorMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,

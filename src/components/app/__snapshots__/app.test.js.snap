@@ -14,15 +14,9 @@ exports[`Render App 1`] = `
         Oops!
       </h1>
       <h2>
-        Server is unavailable
+        SERVER UNAVAILABLE
       </h2>
     </div>
-    <a
-      href="#"
-      onClick={[Function]}
-    >
-      Refresh page
-    </a>
   </div>
 </div>
 `;

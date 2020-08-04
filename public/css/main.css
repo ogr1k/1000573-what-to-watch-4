@@ -1396,13 +1396,10 @@ main {
           transform: translateY(-50%);
         }
 
-.add-review__notice {
+.error {
+  background-color: red;
   text-align: center;
   font-weight: bold;
-}
-
-.add-review__error {
-  background-color: red;
 }
 
 .loading {

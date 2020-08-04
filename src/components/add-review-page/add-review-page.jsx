@@ -3,7 +3,7 @@ import AddReview from "../add-review/add-review.jsx";
 import withFormValues from "../../hoc/with-form-values/with-form-values.js";
 import {connect} from "react-redux";
 import {Operation, ActionCreator} from "../../reducer/review/review.js";
-import {getFetchStatus} from "../../reducer/review/selector.js";
+import {getFetchStatus, getErrorMessage} from "../../reducer/review/selector.js";
 import {getFilmById} from "../../reducer/data/selector.js";
 
 const WrappedAddReview = withFormValues(AddReview);
@@ -22,6 +22,7 @@ const AddReviewPage = (props) => {
 const mapStateToProps = (state, ownProps) => ({
   fetchStatus: getFetchStatus(state),
   film: getFilmById(state, ownProps.match.params.id),
+  errorMessage: getErrorMessage(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -30,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   cleanReviewState() {
     dispatch(ActionCreator.cleanData());
-  }
+  },
 });
 
 

@@ -3,6 +3,9 @@
 exports[`Render Add Review 1`] = `
 Array [
   <div
+    className="error"
+  />,
+  <div
     className="movie-card__header"
   >
     <div

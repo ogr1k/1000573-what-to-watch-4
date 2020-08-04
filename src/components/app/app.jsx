@@ -4,8 +4,8 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import PropTypes from "prop-types";
 import {Switch, Router, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {Operation, AuthorisationStatus} from "../../reducer/user/user.js";
-import {getAuthorisationStatus} from "../../reducer/user/selector.js";
+import {Operation, AuthorisationStatus, ActionCreator} from "../../reducer/user/user.js";
+import {getAuthorisationStatus, getLoginError} from "../../reducer/user/selector.js";
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
@@ -13,7 +13,7 @@ import AddReviewPage from "../add-review-page/add-review-page.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PlayerPage from "../player-page/player-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
-import ServerError from "../server-error/server-error.jsx";
+import Error from "../error/error.jsx";
 import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
 
 class App extends PureComponent {
@@ -30,6 +30,8 @@ class App extends PureComponent {
     return (
       <AuthScreen
         onSubmit={login}
+        loginError={this.props.loginError}
+        cleanLoginError={this.props.cleanLoginError}
       />
     );
   }
@@ -38,7 +40,7 @@ class App extends PureComponent {
     const {authorisationStatus, isServerUvailable} = this.props;
 
     if (!isServerUvailable) {
-      return <ServerError />;
+      return <Error />;
     }
 
     return (
@@ -56,9 +58,9 @@ class App extends PureComponent {
           <PrivateRoute exact path={`${AppRoute.FILM}/:id/review`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
           <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
           <Route exact path="/player/:id" component={PlayerPage}/>
-          <Route exact path="/dev" component={ServerError}/>
+          <Route exact path="/dev" component={Error}/>
           <Route >
-            <ServerError notFoundError={true}/>
+            <Error notFoundError={true}/>
           </Route>
         </Switch>
       </Router>
@@ -69,14 +71,16 @@ class App extends PureComponent {
 App.propTypes = {
   authorisationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
-  isServerUvailable: PropTypes.bool.isRequired
+  isServerUvailable: PropTypes.bool.isRequired,
+  loginError: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
     authorisationStatus: getAuthorisationStatus(state),
     loadFilmsError: getLoadFilmsError(state),
-    isServerUvailable: getServerError(state)
+    isServerUvailable: getServerError(state),
+    loginError: getLoginError(state)
   };
 };
 
@@ -84,6 +88,9 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(Operation.login(authData));
   },
+  cleanLoginError() {
+    dispatch(ActionCreator.cleanLoginError());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

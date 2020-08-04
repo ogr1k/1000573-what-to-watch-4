@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render ShowMoreButton 1`] = `
+exports[`Render Error 1`] = `
 <div
   id="servererror"
 >
@@ -14,15 +14,9 @@ exports[`Render ShowMoreButton 1`] = `
         Oops!
       </h1>
       <h2>
-        Server is unavailable
+        SERVER UNAVAILABLE
       </h2>
     </div>
-    <a
-      href="#"
-      onClick={[Function]}
-    >
-      Refresh page
-    </a>
   </div>
 </div>
 `;

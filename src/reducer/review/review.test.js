@@ -2,6 +2,7 @@ import {reducer, ActionType, FetchStatus} from "./review.js";
 
 const initialState = {
   fetchStatus: ``,
+  errorMessage: ``
 };
 
 it(`Review reducer without additional parameters should return initial state`, () => {
@@ -35,4 +36,17 @@ it(`Reducer should clean state by clean data`, () => {
   }, {
     type: ActionType.CLEAN_DATA,
   })).toEqual(initialState);
+});
+
+it(`Reducer should update errorMessage state by setErrorMessage`, () => {
+  expect(reducer({
+    errorMessage: ``,
+    fetchStatus: `IS_FETCHING`
+  }, {
+    type: ActionType.SET_ERROR_MESSAGE,
+    payload: `errortext`
+  })).toEqual({
+    errorMessage: `errortext`,
+    fetchStatus: ``
+  });
 });

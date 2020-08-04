@@ -5,6 +5,9 @@ exports[`Render AddReviewPage 1`] = `
   className="movie-card movie-card--full"
 >
   <div
+    className="error"
+  />
+  <div
     className="movie-card__header"
   >
     <div
