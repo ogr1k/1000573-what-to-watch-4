@@ -114,11 +114,8 @@ const Operation = {
           const films = parseData(response.data);
           dispatch(ActionCreator.loadFilms(films));
         })
-        .catch((err) => {
+        .catch(() => {
           dispatch(ActionCreator.changeIsFilmsFetching(false));
-          if (!err.response) {
-            dispatch(ActionCreator.changeIsServerUvailable());
-          }
         });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
@@ -126,10 +123,6 @@ const Operation = {
         .then((response) => {
           const promoFilm = parseFilmData(response.data);
           dispatch(ActionCreator.loadPromoFilm(promoFilm));
-        }).catch((err) => {
-          if (!err.response) {
-            dispatch(ActionCreator.changeIsServerUvailable());
-          }
         });
   },
   loadComments: (id) => (dispatch, getState, api) => {
@@ -137,11 +130,6 @@ const Operation = {
     return api.get(`${AppRoute.COMMENTS}/${id}`)
         .then((response) => {
           dispatch(ActionCreator.loadComments(response.data));
-        })
-        .catch((err) => {
-          if (!err.response) {
-            dispatch(ActionCreator.changeIsServerUvailable());
-          }
         });
   },
   postIsFavourite: (id, status, isPromoFilm) => (dispatch, getState, api) => {
@@ -157,12 +145,8 @@ const Operation = {
       dispatch(ActionCreator.changeIsFavourite(id));
       dispatch(ActionCreator.changeIsFavouriteFetching(false));
     })
-    .catch((err) => {
-
+    .catch(() => {
       dispatch(ActionCreator.changeIsFavouriteFetching(false));
-      if (!err.response) {
-        dispatch(ActionCreator.changeIsServerUvailable());
-      }
     });
   },
   loadFavouriteFilms: () => (dispatch, getState, api) => {
@@ -173,11 +157,6 @@ const Operation = {
     .then((response) => {
       const films = parseData(response.data);
       dispatch(ActionCreator.loadFavouriteFilms(films));
-    })
-    .catch((err) => {
-      if (!err.response) {
-        dispatch(ActionCreator.changeIsServerUvailable());
-      }
     });
   }
 };

@@ -49,16 +49,15 @@ class App extends PureComponent {
           <Route exact path={AppRoute.ROOT}>
             <Main authorisationStatus={authorisationStatus}/>
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) =>
+          <Route exact path={`${AppRoute.FILM}/${AppRoute.ID}`} component={(props) =>
             <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
           }/>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>
-          <PrivateRoute exact path={`${AppRoute.FILM}/:id/review`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
+          <PrivateRoute exact path={`${AppRoute.FILM}/${AppRoute.ID}${AppRoute.REVIEW}`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
           <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
-          <Route exact path="/player/:id" component={PlayerPage}/>
-          <Route exact path="/dev" component={Error}/>
+          <Route exact path={`${AppRoute.PLAYER}/${AppRoute.ID}`} component={PlayerPage}/>
           <Route >
             <Error notFoundError={true}/>
           </Route>

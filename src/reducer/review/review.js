@@ -1,5 +1,4 @@
 import {extend} from "../../utils.js";
-import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import {AppRoute} from "../../constants.js";
 
 const FetchStatus = {
@@ -45,11 +44,7 @@ const Operation = {
       dispatch(ActionCreator.changeFetchStatus(FetchStatus.DONE));
     })
     .catch((err) => {
-      if (!err.response) {
-        dispatch(DataActionCreator.changeIsServerUvailable());
-      } else {
-        dispatch(ActionCreator.setErrorMessage(err.message));
-      }
+      dispatch(ActionCreator.setErrorMessage(err.message));
     });
   }
 };
