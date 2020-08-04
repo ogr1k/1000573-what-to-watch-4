@@ -1,16 +1,15 @@
 import React from "react";
-import UserBlock from "./user-block.jsx";
+import Footer from "./footer.jsx";
 import renderer from "react-test-renderer";
 import {BrowserRouter} from "react-router-dom";
 
 
-it(`Render User block`, () => {
+it(`Render Footer`, () => {
   const tree = renderer
     .create(
         <BrowserRouter>
-          <UserBlock authorisationStatus="AUTH"/>
-        </BrowserRouter>
-    )
+          <Footer />
+        </BrowserRouter>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

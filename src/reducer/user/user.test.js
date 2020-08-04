@@ -7,7 +7,8 @@ const api = createAPI(() => {});
 
 it(`User reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
-    authorisationStatus: AuthorisationStatus.NO_AUTH
+    authorisationStatus: AuthorisationStatus.NO_AUTH,
+    loginError: ``
   });
 });
 
@@ -29,6 +30,27 @@ it(`Reducer should update authorisation status by require authorisation`, () => 
     payload: AuthorisationStatus.NO_AUTH,
   })).toEqual({
     authorisationStatus: AuthorisationStatus.NO_AUTH,
+  });
+});
+
+it(`Reducer should update loginError by setLoginError`, () => {
+  expect(reducer({
+    loginError: ``,
+  }, {
+    type: ActionType.SET_LOGIN_ERROR,
+    payload: 400,
+  })).toEqual({
+    loginError: 400,
+  });
+});
+
+it(`Reducer should clean loginError by cleanLoginError`, () => {
+  expect(reducer({
+    loginError: 400,
+  }, {
+    type: ActionType.CLEAN_LOGIN_ERROR
+  })).toEqual({
+    loginError: ``,
   });
 });
 

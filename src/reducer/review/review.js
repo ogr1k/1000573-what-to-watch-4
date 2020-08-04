@@ -1,4 +1,5 @@
 import {extend} from "../../utils.js";
+import {AppRoute} from "../../constants.js";
 
 const FetchStatus = {
   IS_FETCHING: `IS_FETCHING`,
@@ -7,20 +8,16 @@ const FetchStatus = {
 
 const initialState = {
   fetchStatus: ``,
-  errorMessage: {}
+  errorMessage: ``
 };
 
 const ActionType = {
-  SET_ERROR: `SET_ERROR`,
   CHANGE_FETCH_STATUS: `CHANGE_FETCH_STATUS`,
-  CLEAN_DATA: `CLEAN_DATA`
+  CLEAN_DATA: `CLEAN_DATA`,
+  SET_ERROR_MESSAGE: `SET_ERROR_MESSAGE`
 };
 
 const ActionCreator = {
-  setError: (error) => ({
-    type: ActionType.SET_ERROR,
-    payload: error
-  }),
   changeFetchStatus: (status) => ({
     type: ActionType.CHANGE_FETCH_STATUS,
     payload: status
@@ -29,13 +26,17 @@ const ActionCreator = {
     return ({
       type: ActionType.CLEAN_DATA
     });
-  }
+  },
+  setErrorMessage: (error) => ({
+    type: ActionType.SET_ERROR_MESSAGE,
+    payload: error
+  })
 };
 
 const Operation = {
   postReview: (review, id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.changeFetchStatus(FetchStatus.IS_FETCHING));
-    return api.post(`comments/${id}`, {
+    return api.post(`${AppRoute.COMMENTS}/${id}`, {
       rating: review.rating,
       comment: review.comment
     })
@@ -43,7 +44,7 @@ const Operation = {
       dispatch(ActionCreator.changeFetchStatus(FetchStatus.DONE));
     })
     .catch((err) => {
-      dispatch(ActionCreator.setError(err.response));
+      dispatch(ActionCreator.setErrorMessage(err.message));
     });
   }
 };
@@ -52,12 +53,6 @@ const Operation = {
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case ActionType.SET_ERROR: {
-      return extend(state, {
-        errorMessage: action.payload,
-        fetchStatus: ``
-      });
-    }
     case ActionType.CHANGE_FETCH_STATUS: {
       return extend(state, {
         fetchStatus: action.payload
@@ -65,6 +60,13 @@ const reducer = (state = initialState, action) => {
     }
     case ActionType.CLEAN_DATA: {
       return extend(state, initialState);
+    }
+    case ActionType.SET_ERROR_MESSAGE: {
+
+      return extend(state, {
+        errorMessage: action.payload,
+        fetchStatus: ``
+      });
     }
   }
 

@@ -1,10 +1,5 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {getFilmById} from '../../reducer/data/selector.js';
-
-
-let WithMainForExyme;
 
 const withMainPlayer = (Component) => {
   class WithPlayer extends PureComponent {
@@ -24,25 +19,15 @@ const withMainPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
-
-      if (this.props.film && !video.poster) {
-        this._subscribeOnEventsAndAddProperties();
-      }
-    }
-
-    componentDidUpdate() {
-      const video = this._videoRef.current;
-
-      if (this.props.film && !video.poster) {
-        this._subscribeOnEventsAndAddProperties();
-      }
+      this._subscribeOnEventsAndAddProperties();
     }
 
     componentWillUnmount() {
       const video = this._videoRef.current;
 
 
+      video.onloadedmetadata = null;
+      video.ontimeupdate = null;
       video.poster = ``;
       video.src = ``;
     }
@@ -131,20 +116,7 @@ const withMainPlayer = (Component) => {
     }),
   };
 
-  WithMainForExyme = WithPlayer;
-
-  const mapStateToProps = (state, ownProps) => {
-
-
-    return {
-      film: getFilmById(state, ownProps.match.params.id)
-    };
-
-  };
-
-
-  return connect(mapStateToProps)(WithPlayer);
+  return WithPlayer;
 };
 
-export {WithMainForExyme};
 export default withMainPlayer;

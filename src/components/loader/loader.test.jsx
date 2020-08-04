@@ -1,11 +1,13 @@
 import React from "react";
-import Copyright from "./copyright.jsx";
 import renderer from "react-test-renderer";
+import Loader from "./loader.jsx";
 
 
-it(`Render Copyright`, () => {
+it(`Render Loader`, () => {
   const tree = renderer
-    .create(<Copyright />)
+    .create(
+        <Loader />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

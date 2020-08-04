@@ -1,17 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Add Review 1`] = `
-<section
-  className="movie-card movie-card--full"
->
+Array [
+  <div
+    className="error"
+  />,
   <div
     className="movie-card__header"
   >
-    <div
-      className="add-review__notice add-review__error"
-    >
-      
-    </div>
     <div
       className="movie-card__bg"
     >
@@ -105,7 +101,7 @@ exports[`Render Add Review 1`] = `
         width={218}
       />
     </div>
-  </div>
+  </div>,
   <div
     className="add-review"
   >
@@ -245,6 +241,6 @@ exports[`Render Add Review 1`] = `
         </div>
       </div>
     </form>
-  </div>
-</section>
+  </div>,
+]
 `;

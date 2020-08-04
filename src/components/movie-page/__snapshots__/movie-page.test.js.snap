@@ -163,6 +163,7 @@ exports[`Render Movie-Page 1`] = `
         </div>
         <div
           className="user-block"
+          to="/mylist"
         >
           <a
             href="/mylist"

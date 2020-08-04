@@ -1,7 +1,12 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import Copyright from "../copyright/copyright.jsx";
+import Footer from "../footer/footer.jsx";
+import {AppRoute} from "../../constants.js";
+
+const Error = {
+  BAD_REQUEST: 400
+};
 
 
 class Authentification extends PureComponent {
@@ -13,6 +18,12 @@ class Authentification extends PureComponent {
     this.passwordRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+
+    this.props.cleanLoginError();
+
   }
 
 
@@ -34,7 +45,7 @@ class Authentification extends PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to="/" className="logo__link">
+            <Link to={AppRoute.ROOT} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -45,7 +56,7 @@ class Authentification extends PureComponent {
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
             <div className="sign-in__message">
-              <p>Please enter a valid email address</p>
+              <p>{this.props.loginError === Error.BAD_REQUEST ? `Please enter a valid email address` : ``}</p>
             </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -62,23 +73,16 @@ class Authentification extends PureComponent {
             </div>
           </form>
         </div>
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-          <Copyright />
-        </footer>
+        <Footer />
       </div>
     );
   }
 }
 
 Authentification.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  cleanLoginError: PropTypes.func.isRequired,
+  loginError: PropTypes.string
 };
 
 export default Authentification;

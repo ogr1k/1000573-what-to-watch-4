@@ -6,18 +6,24 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import {Operation} from "../../reducer/data/data.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {getPromoFilm, getFilmsByGenres, getGenres, getIsFavouriteFetching} from "../../reducer/data/selector.js";
+import {getPromoFilm, getFilmsByGenres, getGenres, getIsFavouriteFetching, getIsFilmsFetching} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
-import UserBlock from "../user-block/user-block.jsx";
-import Copyright from "../copyright/copyright.jsx";
+import Header from "../header/header.jsx";
+import Footer from "../footer/footer.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
+import Loader from "../loader/loader.jsx";
 
 
 const Main = (props) => {
-  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick, maxCards, authorisationStatus, changeIsFavourite, isFavouriteFetching} = props;
+  const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick,
+    maxCards, authorisationStatus, changeIsFavourite, isFavouriteFetching, isFilmsFetching} = props;
+
+  if (isFilmsFetching) {
+    return <Loader />;
+  }
 
   const renderShowMoreButton = () => {
 
@@ -70,18 +76,7 @@ const Main = (props) => {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <UserBlock authorisationStatus={authorisationStatus} />
-        </header>
-
+        <Header authorisationStatus={authorisationStatus}/>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
@@ -128,18 +123,7 @@ const Main = (props) => {
           {renderShowMoreButton()}
 
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <Copyright />
-        </footer>
+        <Footer />
       </div>
     </>
   );
@@ -173,7 +157,8 @@ Main.propTypes = {
   maxCards: PropTypes.number.isRequired,
   authorisationStatus: PropTypes.string.isRequired,
   changeIsFavourite: PropTypes.func.isRequired,
-  isFavouriteFetching: PropTypes.bool.isRequired
+  isFavouriteFetching: PropTypes.bool.isRequired,
+  isFilmsFetching: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -185,7 +170,8 @@ const mapStateToProps = (state) => {
     promoFilm: getPromoFilm(state),
     genres: getGenres(state),
     maxCards: getMaxCardsCount(state),
-    isFavouriteFetching: getIsFavouriteFetching(state)
+    isFavouriteFetching: getIsFavouriteFetching(state),
+    isFilmsFetching: getIsFilmsFetching(state)
   };
 };
 

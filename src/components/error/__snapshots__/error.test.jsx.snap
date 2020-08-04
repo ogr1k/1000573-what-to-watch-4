@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Error 1`] = `
+<div
+  id="servererror"
+>
+  <div
+    className="servererror"
+  >
+    <div
+      className="servererror-message"
+    >
+      <h1>
+        Oops!
+      </h1>
+      <h2>
+        SERVER UNAVAILABLE
+      </h2>
+    </div>
+  </div>
+</div>
+`;

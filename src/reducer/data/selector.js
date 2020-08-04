@@ -85,3 +85,19 @@ export const getFavouriteFilms = (state) => {
 
   return state.DATA.favouriteFilms;
 };
+
+export const getIsFilmsFetching = (state) => {
+
+  return state[NAME_SPACE].isFilmsFetching;
+};
+
+
+export const getLoadFilmsError = (state) => {
+
+  return state[NAME_SPACE].loadFilmsError;
+};
+
+export const getServerError = (state) => {
+
+  return state[NAME_SPACE].isServerUvailable;
+};

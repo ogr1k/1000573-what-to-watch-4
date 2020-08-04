@@ -4,19 +4,17 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import PropTypes from "prop-types";
 import {Switch, Router, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {Operation, AuthorisationStatus} from "../../reducer/user/user.js";
-import {getAuthorisationStatus} from "../../reducer/user/selector.js";
+import {Operation, AuthorisationStatus, ActionCreator} from "../../reducer/user/user.js";
+import {getAuthorisationStatus, getLoginError} from "../../reducer/user/selector.js";
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
-import AddReview from "../add-review/add-review.jsx";
-import withFormValues from "../../hoc/with-form-values/with-form-values.js";
+import AddReviewPage from "../add-review-page/add-review-page.jsx";
 import MyList from "../my-list/my-list.jsx";
-import withMainPlayer from "../../hoc/with-main-player/with-main-player.js";
-import Player from "../player/player.jsx";
-
-const WrappedAddReview = withFormValues(AddReview);
-const WrappedPlayer = withMainPlayer(Player);
+import PlayerPage from "../player-page/player-page.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
+import Error from "../error/error.jsx";
+import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
 
 class App extends PureComponent {
 
@@ -32,30 +30,37 @@ class App extends PureComponent {
     return (
       <AuthScreen
         onSubmit={login}
+        loginError={this.props.loginError}
+        cleanLoginError={this.props.cleanLoginError}
       />
     );
   }
 
   render() {
-    const {authorisationStatus} = this.props;
+    const {authorisationStatus, isServerUvailable} = this.props;
+
+    if (!isServerUvailable) {
+      return <Error />;
+    }
 
     return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.ROOT}>
-            <Main
-              authorisationStatus={authorisationStatus}
-            />
+            <Main authorisationStatus={authorisationStatus}/>
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id`} component={(props) =>
+          <Route exact path={`${AppRoute.FILM}/${AppRoute.ID}`} component={(props) =>
             <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
           }/>
           <Route exact path={AppRoute.LOGIN}>
             {this.renderAuthScreen()}
           </Route>
-          <Route exact path={`${AppRoute.FILM}/:id/review`} component={WrappedAddReview}/>
-          <Route exact path={AppRoute.MYLIST} component={MyList}/>
-          <Route exact path="/player/:id" component={WrappedPlayer}/>
+          <PrivateRoute exact path={`${AppRoute.FILM}/${AppRoute.ID}${AppRoute.REVIEW}`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
+          <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
+          <Route exact path={`${AppRoute.PLAYER}/${AppRoute.ID}`} component={PlayerPage}/>
+          <Route >
+            <Error notFoundError={true}/>
+          </Route>
         </Switch>
       </Router>
     );
@@ -64,12 +69,18 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorisationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  isServerUvailable: PropTypes.bool.isRequired,
+  loginError: PropTypes.string,
+  cleanLoginError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     authorisationStatus: getAuthorisationStatus(state),
+    loadFilmsError: getLoadFilmsError(state),
+    isServerUvailable: getServerError(state),
+    loginError: getLoginError(state)
   };
 };
 
@@ -77,6 +88,9 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(Operation.login(authData));
   },
+  cleanLoginError() {
+    dispatch(ActionCreator.cleanLoginError());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

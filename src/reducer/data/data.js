@@ -1,11 +1,14 @@
 import {extend} from "../../utils.js";
+import {AppRoute} from "../../constants.js";
 
 const initialState = {
   films: [],
+  isFilmsFetching: false,
   promoFilm: {},
   comments: [],
   isFavouriteFetching: false,
-  favouriteFilms: []
+  favouriteFilms: [],
+  isServerUvailable: true
 };
 
 const parseFilmData = (film) => {
@@ -48,6 +51,7 @@ const parseData = (element) => {
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
+  IS_FILMS_FETCHING: `IS_FILMS_FETCHING`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   CLEAR_COMMENTS: `CLEAR_COMMENTS`,
@@ -55,7 +59,8 @@ const ActionType = {
   CHANGE_IS_FAVOURITE_PROMO: `CHANGE_IS_FAVOURITE_PROMO`,
   CHANGE_IS_FAVOURITE_FETCH_STATUS: `CHANGE_IS_FAVOURITE_FETCH_STATUS`,
   LOAD_FAVOURITE_FILMS: `LOAD_FAVOURITE_FILMS`,
-  CLEAN_FAVOURITE_FILMS_DATA: `CLEAN_FAVOURITE_FILMS_DATA`
+  CLEAN_FAVOURITE_FILMS_DATA: `CLEAN_FAVOURITE_FILMS_DATA`,
+  SET_NETWORK_ERROR: `SET_NETWORK_ERROR`
 };
 
 const ActionCreator = {
@@ -91,19 +96,30 @@ const ActionCreator = {
   }),
   cleanFavouriteFilmsData: () => ({
     type: ActionType.CLEAN_FAVOURITE_FILMS_DATA
+  }),
+  changeIsFilmsFetching: (status) => ({
+    type: ActionType.IS_FILMS_FETCHING,
+    payload: status
+  }),
+  changeIsServerUvailable: () => ({
+    type: ActionType.SET_NETWORK_ERROR,
   })
 };
 
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
+    dispatch(ActionCreator.changeIsFilmsFetching(true));
+    return api.get(`${AppRoute.FILM}`)
         .then((response) => {
           const films = parseData(response.data);
           dispatch(ActionCreator.loadFilms(films));
+        })
+        .catch(() => {
+          dispatch(ActionCreator.changeIsFilmsFetching(false));
         });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(AppRoute.PROMO)
         .then((response) => {
           const promoFilm = parseFilmData(response.data);
           dispatch(ActionCreator.loadPromoFilm(promoFilm));
@@ -111,7 +127,7 @@ const Operation = {
   },
   loadComments: (id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.clearComments());
-    return api.get(`comments/${id}`)
+    return api.get(`${AppRoute.COMMENTS}/${id}`)
         .then((response) => {
           dispatch(ActionCreator.loadComments(response.data));
         });
@@ -119,7 +135,7 @@ const Operation = {
   postIsFavourite: (id, status, isPromoFilm) => (dispatch, getState, api) => {
     dispatch(ActionCreator.changeIsFavouriteFetching(true));
 
-    return api.post(`/favorite/${Number(id)}/${Number(status)}`)
+    return api.post(`${AppRoute.FAVORITE}/${Number(id)}/${Number(status)}`)
     .then(() => {
 
       if (isPromoFilm) {
@@ -128,13 +144,16 @@ const Operation = {
 
       dispatch(ActionCreator.changeIsFavourite(id));
       dispatch(ActionCreator.changeIsFavouriteFetching(false));
+    })
+    .catch(() => {
+      dispatch(ActionCreator.changeIsFavouriteFetching(false));
     });
   },
   loadFavouriteFilms: () => (dispatch, getState, api) => {
 
     dispatch(ActionCreator.cleanFavouriteFilmsData());
 
-    return api.get(`/favorite`)
+    return api.get(AppRoute.FAVORITE)
     .then((response) => {
       const films = parseData(response.data);
       dispatch(ActionCreator.loadFavouriteFilms(films));
@@ -149,11 +168,17 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILMS: {
       return extend(state, {
         films: action.payload,
+        isFilmsFetching: false
+      });
+    }
+    case ActionType.IS_FILMS_FETCHING: {
+      return extend(state, {
+        isFilmsFetching: action.payload
       });
     }
     case ActionType.LOAD_PROMO_FILM: {
       return extend(state, {
-        promoFilm: action.payload
+        promoFilm: action.payload,
       });
     }
     case ActionType.LOAD_COMMENTS: {
@@ -217,6 +242,12 @@ const reducer = (state = initialState, action) => {
 
       return extend(state, {
         favouriteFilms: []
+      });
+    }
+    case ActionType.SET_NETWORK_ERROR: {
+
+      return extend(state, {
+        isServerUvailable: false
       });
     }
   }

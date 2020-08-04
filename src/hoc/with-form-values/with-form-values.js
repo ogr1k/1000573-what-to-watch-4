@@ -1,11 +1,8 @@
 import React, {PureComponent} from 'react';
-import {Operation, FetchStatus, ActionCreator} from "../../reducer/review/review.js";
-import {getErrorMessage, getFetchStatus} from "../../reducer/review/selector.js";
-import {getFilmById} from '../../reducer/data/selector.js';
-import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {AppRoute} from '../../constants.js';
 import PropTypes from "prop-types";
+import {FetchStatus} from '../../reducer/review/review.js';
 
 const MAX_COMMENT_SYMBOLS = 400;
 const MIN_COMMENT_SYMBOLS = 50;
@@ -28,6 +25,7 @@ const withFormValues = (Component) => {
     componentWillUnmount() {
 
       this.props.cleanReviewState();
+
     }
 
     handleChange(e) {
@@ -61,16 +59,12 @@ const withFormValues = (Component) => {
 
     render() {
 
-      if (!this.props.film) {
-        return null;
-      }
-
-      const isValid = (this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating);
-      const isFetching = (this.props.fetchStatus === FetchStatus.IS_FETCHING);
-
       if (this.props.fetchStatus === FetchStatus.DONE) {
         return <Redirect to={`${AppRoute.FILM}/${this.props.film.id}`} />;
       }
+
+      const isValid = Boolean(this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating);
+      const isFetching = this.props.fetchStatus === FetchStatus.IS_FETCHING;
 
       return (
 
@@ -106,33 +100,11 @@ const withFormValues = (Component) => {
     fetchStatus: PropTypes.string,
     postReview: PropTypes.func.isRequired,
     error: PropTypes.object,
-    cleanReviewState: PropTypes.func.isRequired
+    cleanReviewState: PropTypes.func.isRequired,
+    loadFilmsIsFetching: PropTypes.bool
   };
 
-  const mapStateToProps = (state, ownProps) => {
-
-
-    return {
-      fetchStatus: getFetchStatus(state),
-      error: getErrorMessage(state),
-      film: getFilmById(state, ownProps.match.params.id)
-    };
-
-  };
-
-  const mapDispatchToProps = (dispatch, ownProps) => (
-    {
-      postReview(review) {
-        dispatch(Operation.postReview(review, ownProps.match.params.id));
-      },
-      cleanReviewState() {
-        dispatch(ActionCreator.cleanData());
-      }
-    }
-  );
-
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithFormValues);
+  return WithFormValues;
 };
 
 

@@ -96,6 +96,8 @@ it(`Data reducer without additional parameters should return initial state`, () 
     promoFilm: {},
     favouriteFilms: [],
     isFavouriteFetching: false,
+    isFilmsFetching: false,
+    isServerUvailable: true
   });
 });
 
@@ -107,6 +109,7 @@ it(`Reducer should update films by load films`, () => {
     payload: films,
   })).toEqual({
     films,
+    isFilmsFetching: false,
   });
 });
 
@@ -194,6 +197,19 @@ it(`Reducer should clean favouriteFilmsData by cleanFavouriteFilmsData`, () => {
 
 });
 
+
+it(`Reducer should set networkError by setNetworkError`, () => {
+
+  expect(reducer({
+    isServerUvailable: true
+  }, {
+    type: ActionType.SET_NETWORK_ERROR,
+  })).toEqual({
+    isServerUvailable: false,
+  });
+
+});
+
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /films`, function () {
     const apiMock = new MockAdapter(api);
@@ -206,8 +222,8 @@ describe(`Operation work correctly`, () => {
 
     return filmsLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_FILMS,
           payload: [parsedFilm],
         });
