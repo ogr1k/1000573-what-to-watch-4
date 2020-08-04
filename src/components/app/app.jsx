@@ -72,7 +72,8 @@ App.propTypes = {
   authorisationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   isServerUvailable: PropTypes.bool.isRequired,
-  loginError: PropTypes.string
+  loginError: PropTypes.string,
+  cleanLoginError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

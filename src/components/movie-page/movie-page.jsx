@@ -157,7 +157,8 @@ MoviePage.propTypes = {
     year: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired
   })),
-  changeIsFavourite: PropTypes.func.isRequired
+  changeIsFavourite: PropTypes.func.isRequired,
+  isFilmsFetching: PropTypes.bool
 };
 
 
