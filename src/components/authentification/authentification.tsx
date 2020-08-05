@@ -1,21 +1,29 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from "react-router-dom";
 import Footer from "../footer/footer.jsx";
 import {AppRoute} from "../../constants.js";
 
-const Error = {
-  BAD_REQUEST: 400
+enum Error {
+  BAD_REQUEST = 400
 };
 
+interface Props {
+  cleanLoginError: () => void;
+  loginError?: number;
+  onSubmit: (loginData: {login: string; password: string}) => void;
+}
 
-class Authentification extends PureComponent {
+
+class Authentification extends React.PureComponent<Props> {
+
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,10 +35,10 @@ class Authentification extends PureComponent {
   }
 
 
-  handleSubmit(evt) {
+  handleSubmit(e: React.FormEvent) {
     const {onSubmit} = this.props;
 
-    evt.preventDefault();
+    e.preventDefault();
 
     onSubmit({
       login: this.loginRef.current.value,
@@ -78,11 +86,5 @@ class Authentification extends PureComponent {
     );
   }
 }
-
-Authentification.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  cleanLoginError: PropTypes.func.isRequired,
-  loginError: PropTypes.string
-};
 
 export default Authentification;

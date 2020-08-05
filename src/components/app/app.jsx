@@ -6,7 +6,7 @@ import {Switch, Router, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {Operation, AuthorisationStatus, ActionCreator} from "../../reducer/user/user.js";
 import {getAuthorisationStatus, getLoginError} from "../../reducer/user/selector.js";
-import AuthScreen from "../authentification/authentification.jsx";
+import AuthScreen from "../authentification/authentification";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import AddReviewPage from "../add-review-page/add-review-page";
