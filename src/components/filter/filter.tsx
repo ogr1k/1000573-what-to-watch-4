@@ -1,13 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const Filter = (props) => {
-  const {genre, onClick, activeFilter} = props;
+interface Props {
+  clickHandler: (genre: string) => void;
+  genre: string;
+  activeFilter: string;
+}
 
-  const onFilterClickHandler = (e) => {
+
+const Filter: React.FunctionComponent<Props> = (props: Props) => {
+  const {genre, clickHandler, activeFilter} = props;
+
+  const onFilterClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     if (genre !== activeFilter) {
-      onClick(genre);
+      clickHandler(genre);
     }
   };
 
@@ -18,12 +24,6 @@ const Filter = (props) => {
       }}>{genre}</a>
     </li>
   );
-};
-
-Filter.propTypes = {
-  genre: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  activeFilter: PropTypes.string.isRequired
 };
 
 export default Filter;

@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
 
-const ServerError = (props) => {
+interface Props {
+  notFoundError: boolean;
+}
+
+const ServerError: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <div id="servererror">
@@ -14,10 +17,8 @@ const ServerError = (props) => {
       </div>
     </div>
   );
+
 };
 
-ServerError.propTypes = {
-  notFoundError: PropTypes.bool
-};
 
 export default ServerError;

@@ -13,7 +13,7 @@ import AddReviewPage from "../add-review-page/add-review-page.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PlayerPage from "../player-page/player-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
-import Error from "../error/error.jsx";
+import Error from "../error/error.tsx";
 import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
 
 class App extends PureComponent {
