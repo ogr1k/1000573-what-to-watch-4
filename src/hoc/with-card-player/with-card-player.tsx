@@ -91,7 +91,7 @@ const withCardPlayer = (Component) => {
 
       return (
         <Component
-          {...this.props}
+          film={this.props.film}
           handleEnter={this.handleEnter}
           handleLeave={this.handleLeave}
           isPlaying={this.state.isPlaying}

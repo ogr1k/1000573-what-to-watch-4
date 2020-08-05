@@ -1,45 +1,51 @@
-import React, {PureComponent, Fragment} from "react";
-import {Link} from "react-router-dom";
+import * as React from "react";
+import {Link, Redirect} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
-import PropTypes from "prop-types";
+import {FetchStatus} from "../../reducer/review/review.js";
+import {Film} from "../../types.js";
+import {InjectedProps} from "../../hoc/with-form-values/with-form-values";
 
 
 const MAX_RATING = 5;
 
+interface Props extends InjectedProps {
+  film: Film;
+  errorMessage?: string;
+  fetchStatus?: string;
+}
 
-class AddReview extends PureComponent {
 
-  constructor(props) {
-    super(props);
+const AddReview: React.FunctionComponent<Props> = (props: Props) => {
+
+  if (props.fetchStatus === FetchStatus.DONE) {
+    return <Redirect to={`${AppRoute.FILM}/${props.film.id}`} />;
   }
 
-
-  _renderStars() {
+  const renderStars = (isFetching: boolean) => {
 
     const result = [];
 
     for (let i = 0; i <= MAX_RATING; i++) {
       result.push(
-          <Fragment key={i}>
-            <input className="rating__input" id={`star-${i}`} type="radio" disabled={this.props.isFetching} name="rating" defaultValue={i} defaultChecked={i === 0}/>
+          <React.Fragment key={i}>
+            <input className="rating__input" id={`star-${i}`} type="radio" disabled={isFetching} name="rating" defaultValue={i} defaultChecked={i === 0}/>
             <label className={`rating__label ${i === 0 ? `visually-hidden` : ``}`} htmlFor={`star-${i}`}>Rating ${i}</label>
-          </Fragment>
+          </React.Fragment>
       );
     }
 
     return result;
   }
 
-  render() {
-
-    const {film, onSubmit, onClick, onChange, isValid, isFetching, errorMessage} = this.props;
+    const {film, onSubmit, onClick, onChange, isValid, errorMessage, fetchStatus} = props;
     const {name, poster, backgroundImage, id} = film;
 
+    const isFetching = fetchStatus === FetchStatus.IS_FETCHING;
 
     const shouldSubmitButtonBeDisabled = (isFetching || !isValid);
 
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="error">{errorMessage}</div>
         <div className="movie-card__header">
           <div className="movie-card__bg">
@@ -87,7 +93,7 @@ class AddReview extends PureComponent {
               <div className="rating__stars" onClick={(e) => {
                 onClick(e);
               }}>
-                {this._renderStars()}
+                {renderStars(isFetching)}
               </div>
             </div>
             <div className="add-review__text">
@@ -101,33 +107,9 @@ class AddReview extends PureComponent {
             </div>
           </form>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
-  }
 }
 
-AddReview.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    backgroundImage: PropTypes.string.isRequired
-  }),
-  fetchStatus: PropTypes.string,
-  errorMessage: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  isValid: PropTypes.bool.isRequired,
-  isFetching: PropTypes.bool.isRequired
-};
 
 export default AddReview;

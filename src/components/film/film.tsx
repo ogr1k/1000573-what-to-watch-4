@@ -29,7 +29,6 @@ const Film: React.FunctionComponent<Props> = (props: Props) => {
         </h3>
       </article>
     );
-
 }
 
 export default Film;

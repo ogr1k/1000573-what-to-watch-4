@@ -1,3 +1,5 @@
+import { string } from "prop-types"
+
 export interface Film {
       description: string;
       director: string;
@@ -17,3 +19,8 @@ export interface Film {
       isFavourite: boolean;
       mainVideo: string;
     };
+
+export interface Review {
+    rating: string;
+    comment: string;
+  };

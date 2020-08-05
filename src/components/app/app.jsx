@@ -9,7 +9,7 @@ import {getAuthorisationStatus, getLoginError} from "../../reducer/user/selector
 import AuthScreen from "../authentification/authentification.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
-import AddReviewPage from "../add-review-page/add-review-page.jsx";
+import AddReviewPage from "../add-review-page/add-review-page";
 import MyList from "../my-list/my-list.jsx";
 import PlayerPage from "../player-page/player-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
