@@ -1,22 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 import {getFilmById, getSameGenreFilms, getIsFilmsFetching} from "../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
-import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.jsx";
+import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block";
 import FilmsList from "../films-list/films-list";
-import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
+import withActiveTab from "../../hoc/with-active-tab/with-active-tab";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Operation} from "../../reducer/data/data.js";
 import history from "../../history.js";
 import Loader from "../loader/loader.jsx";
+import {Film} from "../../types";
 
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
-const MoviePage = (props) => {
+interface Props {
+  film: Film,
+  authorisationStatus: string;
+  sameGenreFilms: Film[];
+  changeIsFavourite: (id: number, isFavourite: boolean) => void;
+  isFilmsFetching: boolean;
+}
+
+const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
 
   if (props.isFilmsFetching) {
     return <Loader />;
@@ -24,14 +32,13 @@ const MoviePage = (props) => {
 
   const {film, authorisationStatus, sameGenreFilms, changeIsFavourite} = props;
 
-
   const {backgroundColor, backgroundImage, name, genre, year, id, isFavourite} = film;
 
 
   const clickHandler = () => {
 
     if (authorisationStatus === AuthorisationStatus.AUTH) {
-      changeIsFavourite(id, !isFavourite, true);
+      changeIsFavourite(id, !isFavourite);
     } else {
       history.push(AppRoute.LOGIN);
     }
@@ -120,47 +127,6 @@ const MoviePage = (props) => {
   );
 
 };
-
-MoviePage.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    backgroundColor: PropTypes.string,
-    backgroundImage: PropTypes.string,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired
-  }),
-  authorisationStatus: PropTypes.string.isRequired,
-  routerProps: PropTypes.shape({
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        tab: PropTypes.string
-      })
-    })
-  }),
-  sameGenreFilms: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    year: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired
-  })),
-  changeIsFavourite: PropTypes.func.isRequired,
-  isFilmsFetching: PropTypes.bool
-};
-
 
 const mapStateToProps = (state, ownProps) => {
 

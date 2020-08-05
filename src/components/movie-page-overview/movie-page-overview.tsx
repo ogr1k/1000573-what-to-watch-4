@@ -1,6 +1,7 @@
-import React from "react";
-import MoviePageTabs from "../movie-page-tabs/movie-page-tabs.jsx";
-import PropTypes from "prop-types";
+import * as React from "react";
+import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
+import {InfoBlockCommonProps} from "../../types";
+
 
 
 const getRatingText = (rating) => {
@@ -18,7 +19,9 @@ const getRatingText = (rating) => {
   }
 };
 
-const MoviePageOverview = (props) => {
+interface Props  extends InfoBlockCommonProps{};
+
+const MoviePageOverview: React.FunctionComponent<Props> = (props: Props) => {
 
   const {film, activeTab, onClick} = props;
   const {poster, id, rating, ratings, description, director, starring, name} = film;
@@ -46,24 +49,6 @@ const MoviePageOverview = (props) => {
         </div>
     </>
   );
-};
-
-MoviePageOverview.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired
-  }),
-  activeTab: PropTypes.string,
-  onClick: PropTypes.func.isRequired
 };
 
 export default MoviePageOverview;

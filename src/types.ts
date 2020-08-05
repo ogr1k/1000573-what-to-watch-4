@@ -1,4 +1,5 @@
-import { string } from "prop-types"
+import {InjectingProps as ActiveTypeInjectedProps} from "./hoc/with-active-tab/with-active-tab";
+
 
 export interface Film {
       description: string;
@@ -24,3 +25,9 @@ export interface Review {
     rating: string;
     comment: string;
   };
+
+export interface InfoBlockCommonProps {
+  film: Film;
+  activeTab: string;
+  onClick: (tab: string) => void;
+}

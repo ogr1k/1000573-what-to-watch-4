@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
-import MoviePage from "../movie-page/movie-page.jsx";
+import MoviePage from "../movie-page/movie-page";
 import PropTypes from "prop-types";
 import {Switch, Router, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";

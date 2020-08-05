@@ -1,12 +1,31 @@
-import React from "react";
-import MoviePageTabs from "../movie-page-tabs/movie-page-tabs.jsx";
-import PropTypes from "prop-types";
+import * as React from "react";
+import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {getComments} from "../../reducer/data/selector.js";
 import {connect} from "react-redux";
 import Review from "../review/review.jsx";
+import {InfoBlockCommonProps} from "../../types";
 
-class MoviePageReviews extends React.PureComponent {
+interface User {
+  id: number;
+  name: string;
+}
+
+interface Comment {
+  id: number;
+  rating: number;
+  comment: string;
+  date: string;
+  user: User;
+}
+
+
+interface Props extends InfoBlockCommonProps {
+  loadComments: (id: number) => void;
+  comments: Comment[];
+}
+
+class MoviePageReviews extends React.PureComponent<Props> {
 
   constructor(props) {
     super(props);
@@ -50,34 +69,6 @@ class MoviePageReviews extends React.PureComponent {
 
 }
 
-MoviePageReviews.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired
-  }),
-  activeTab: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }),
-    rating: PropTypes.number.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  })),
-  loadComments: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state) => (
   {

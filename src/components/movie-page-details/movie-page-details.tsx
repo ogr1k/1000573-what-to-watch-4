@@ -1,6 +1,6 @@
-import React from "react";
-import MoviePageTabs from "../movie-page-tabs/movie-page-tabs.jsx";
-import PropTypes from "prop-types";
+import * as React from "react";
+import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
+import { InfoBlockCommonProps } from "../../types";
 
 
 const minutesToHoursMinutes = (minutes) => {
@@ -13,7 +13,10 @@ const minutesToHoursMinutes = (minutes) => {
   return `${hDisplay} ${mDisplay}`;
 };
 
-const MoviePageDetails = (props) => {
+interface Props extends InfoBlockCommonProps {}
+
+
+const MoviePageDetails: React.FunctionComponent<Props> = (props: Props) => {
 
   const {film, activeTab, onClick} = props;
   const {poster, name, id, runTime, genre, year, director, starring} = film;
@@ -60,22 +63,5 @@ const MoviePageDetails = (props) => {
   );
 };
 
-MoviePageDetails.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired
-  }),
-  activeTab: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
-};
-
 export default MoviePageDetails;
+export {Props as InfoBlockProps};

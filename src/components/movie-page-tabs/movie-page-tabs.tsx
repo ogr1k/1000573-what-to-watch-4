@@ -1,11 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {TabsNames} from "../../constants.js";
+import { InfoBlockCommonProps } from "../../types.js";
+
 
 const Tabs = [TabsNames.OVERVIEW, TabsNames.DETAILS, TabsNames.REVIEWS];
 
+interface Props extends Pick<InfoBlockCommonProps, "activeTab" | "onClick">  {
+  filmId?: number;
+}
 
-const MoviePageTabs = (props) => {
+const MoviePageTabs: React.FunctionComponent<Props> = (props: Props) => {
 
   const {activeTab, onClick} = props;
 
@@ -38,10 +42,5 @@ const MoviePageTabs = (props) => {
   );
 };
 
-
-MoviePageTabs.propTypes = {
-  activeTab: PropTypes.string,
-  onClick: PropTypes.func.isRequired
-};
 
 export default MoviePageTabs;

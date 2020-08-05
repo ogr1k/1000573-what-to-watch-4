@@ -1,8 +1,22 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {TabsNames} from "../../constants.js";
+import {Subtract} from "utility-types";
+
+interface State {
+  activeTab: string;
+}
+
+interface InjectingProps {
+  onClick: (tab: string) => void;
+}
 
 const withActiveTab = (Component) => {
-  class WithActiveTab extends PureComponent {
+
+
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveTab extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -13,7 +27,7 @@ const withActiveTab = (Component) => {
       this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(tab) {
+    handleClick(tab: string) {
       this.setState({
         activeTab: tab
       });
@@ -39,3 +53,4 @@ const withActiveTab = (Component) => {
 };
 
 export default withActiveTab;
+export {InjectingProps};
