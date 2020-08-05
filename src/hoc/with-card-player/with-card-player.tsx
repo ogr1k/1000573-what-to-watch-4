@@ -92,8 +92,8 @@ const withCardPlayer = (Component) => {
       return (
         <Component
           film={this.props.film}
-          handleEnter={this.handleEnter}
-          handleLeave={this.handleLeave}
+          onCardMouseEnter={this.handleEnter}
+          onCardMouseLeave={this.handleLeave}
           isPlaying={this.state.isPlaying}
         >
           <video ref={this.videoRef}/>

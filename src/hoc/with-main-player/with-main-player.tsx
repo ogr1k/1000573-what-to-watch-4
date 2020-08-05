@@ -1,12 +1,26 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from "prop-types";
+import * as React from 'react';
+import { Film } from '../../types';
+
+interface Props {
+  film: Film;
+}
+
+interface State {
+  isPlaying: boolean;
+  progress: number;
+  duration: number;
+}
+
 
 const withMainPlayer = (Component) => {
-  class WithPlayer extends PureComponent {
+  class WithPlayer extends React.PureComponent<Props, State> {
+
+    private videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         isPlaying: false,
@@ -23,7 +37,7 @@ const withMainPlayer = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
 
       video.onloadedmetadata = null;
@@ -35,21 +49,21 @@ const withMainPlayer = (Component) => {
     handlePlayOrPauseClick() {
 
       if (this.state.isPlaying) {
-        this._videoRef.current.pause();
+        this.videoRef.current.pause();
       } else {
-        this._videoRef.current.play();
+        this.videoRef.current.play();
       }
 
     }
 
     fullScreenClick() {
 
-      this._videoRef.current.requestFullscreen();
+      this.videoRef.current.requestFullscreen();
     }
 
     _subscribeOnEventsAndAddProperties() {
 
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.poster = this.props.film.previewImage;
       video.src = this.props.film.mainVideo;
@@ -85,7 +99,6 @@ const withMainPlayer = (Component) => {
 
       return (
         <Component
-          {...this.props}
           onPlayPauseClick={this.handlePlayOrPauseClick}
           onFullScreenclick={this.fullScreenClick}
           progress={this.state.progress}
@@ -93,28 +106,11 @@ const withMainPlayer = (Component) => {
           duration={this.state.duration}
           isPlaying={this.state.isPlaying}
         >
-          <video ref={this._videoRef} className="player__video"/>
+          <video ref={this.videoRef} className="player__video"/>
         </Component>
       );
     }
   }
-
-  WithPlayer.propTypes = {
-    film: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      director: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      ratings: PropTypes.number.isRequired,
-      starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-      year: PropTypes.number.isRequired,
-      video: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      mainVideo: PropTypes.string
-    }),
-  };
 
   return WithPlayer;
 };

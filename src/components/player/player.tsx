@@ -1,10 +1,22 @@
 
-import React, {Fragment} from "react";
+import * as React from "react";
 import {AppRoute} from "../../constants";
 import history from "../../history.js";
-import PropTypes from "prop-types";
+import { Film } from "../../types";
 
-const Player = (props) => {
+interface Props {
+  film: Film;
+  isPlaying: boolean;
+  onPlayPauseClick: () => void;
+  handleLeave: () => void;
+  onFullScreenclick: () => void;
+  children: React.ReactNode;
+  progress: number;
+  duration: number;
+}
+
+
+const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   const {children, onPlayPauseClick, progress, film, duration, onFullScreenclick, isPlaying} = props;
 
@@ -12,7 +24,7 @@ const Player = (props) => {
   const togglerPosition = progress / duration * 100;
 
   return (
-    <Fragment>
+    <React.Fragment>
       {children}
       <button type="button" className="player__exit" onClick={() => history.push(`${AppRoute.FILM}/${film.id}`)}>Exit</button>
       <div className="player__controls">
@@ -45,33 +57,8 @@ const Player = (props) => {
           </button>
         </div>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
-};
-
-Player.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired,
-    backgroundColor: PropTypes.string,
-    backgroundImage: PropTypes.string,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired
-  }),
-  children: PropTypes.element,
-  onPlayPauseClick: PropTypes.func,
-  progress: PropTypes.number,
-  duration: PropTypes.number,
-  onFullScreenclick: PropTypes.func,
-  isPlaying: PropTypes.bool,
-  isFilmsFetching: PropTypes.bool
 };
 
 export default Player;

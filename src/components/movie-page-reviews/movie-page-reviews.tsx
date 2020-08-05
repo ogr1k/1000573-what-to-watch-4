@@ -3,21 +3,10 @@ import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {getComments} from "../../reducer/data/selector.js";
 import {connect} from "react-redux";
-import Review from "../review/review.jsx";
-import {InfoBlockCommonProps} from "../../types";
+import Review from "../review/review";
+import {InfoBlockCommonProps, Comment} from "../../types";
 
-interface User {
-  id: number;
-  name: string;
-}
 
-interface Comment {
-  id: number;
-  rating: number;
-  comment: string;
-  date: string;
-  user: User;
-}
 
 
 interface Props extends InfoBlockCommonProps {

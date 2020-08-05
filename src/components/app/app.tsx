@@ -1,7 +1,6 @@
-import React, {PureComponent} from "react";
-import Main from "../main/main.jsx";
+import * as React  from "react";
+import Main from "../main/main";
 import MoviePage from "../movie-page/movie-page";
-import PropTypes from "prop-types";
 import {Switch, Router, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {Operation, AuthorisationStatus, ActionCreator} from "../../reducer/user/user.js";
@@ -10,18 +9,26 @@ import AuthScreen from "../authentification/authentification";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import AddReviewPage from "../add-review-page/add-review-page";
-import MyList from "../my-list/my-list.jsx";
-import PlayerPage from "../player-page/player-page.jsx";
-import PrivateRoute from "../private-route/private-route.jsx";
-import Error from "../error/error.tsx";
+import MyList from "../my-list/my-list";
+import PlayerPage from "../player-page/player-page";
+import PrivateRoute from "../private-route/private-route";
+import Error from "../error/error";
 import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
 
-class App extends PureComponent {
 
-  renderAuthScreen() {
+interface Props {
+  login: (loginData: {login: string; password: string}) => void;
+  authorisationStatus: string;
+  isServerAvailable: boolean;
+  loginError: number;
+  cleanLoginError: () => void;
+}
 
-    const {authorisationStatus, login} = this.props;
+const App: React.FunctionComponent<Props> = (props: Props) => {
 
+  const {authorisationStatus, isServerAvailable, login, loginError, cleanLoginError} = props;
+
+  const renderAuthScreen = () => {
 
     if (authorisationStatus === AuthorisationStatus.AUTH) {
       return <Redirect to={AppRoute.ROOT} />;
@@ -30,16 +37,13 @@ class App extends PureComponent {
     return (
       <AuthScreen
         onSubmit={login}
-        loginError={this.props.loginError}
-        cleanLoginError={this.props.cleanLoginError}
+        loginError={loginError}
+        cleanLoginError={cleanLoginError}
       />
     );
   }
 
-  render() {
-    const {authorisationStatus, isServerUvailable} = this.props;
-
-    if (!isServerUvailable) {
+    if (!isServerAvailable) {
       return <Error />;
     }
 
@@ -53,7 +57,7 @@ class App extends PureComponent {
             <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
           }/>
           <Route exact path={AppRoute.LOGIN}>
-            {this.renderAuthScreen()}
+            {renderAuthScreen()}
           </Route>
           <PrivateRoute exact path={`${AppRoute.FILM}/${AppRoute.ID}${AppRoute.REVIEW}`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
           <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
@@ -64,22 +68,13 @@ class App extends PureComponent {
         </Switch>
       </Router>
     );
-  }
 }
-
-App.propTypes = {
-  authorisationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  isServerUvailable: PropTypes.bool.isRequired,
-  loginError: PropTypes.string,
-  cleanLoginError: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state) => {
   return {
     authorisationStatus: getAuthorisationStatus(state),
     loadFilmsError: getLoadFilmsError(state),
-    isServerUvailable: getServerError(state),
+    isServerAvailable: getServerError(state),
     loginError: getLoginError(state)
   };
 };

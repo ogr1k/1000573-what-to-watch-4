@@ -1,15 +1,20 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
 import {getFavouriteFilms} from "../../reducer/data/selector.js";
 import {AppRoute} from "../../constants.js";
 import history from "../../history.js";
-import Footer from "../footer/footer.jsx";
+import Footer from "../footer/footer";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list";
+import {Film} from "../../types.js";
 
-class MyList extends PureComponent {
+interface Props {
+    favouriteFilms: Film[];
+    loadFavouriteFilms: () => void;
+}
+
+class MyList extends React.PureComponent<Props> {
 
   constructor(props) {
 
@@ -89,20 +94,6 @@ class MyList extends PureComponent {
   }
 }
 
-MyList.propTypes = {
-  favouriteFilms: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired
-  })).isRequired,
-  loadFavouriteFilms: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state) => ({
 

@@ -2,7 +2,7 @@ import * as React from "react";
 
 
 interface Props {
-  notFoundError: boolean;
+  notFoundError?: boolean;
 }
 
 const ServerError: React.FunctionComponent<Props> = (props: Props) => {

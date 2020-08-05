@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import Footer from "../footer/footer.jsx";
+import Footer from "../footer/footer";
 import {AppRoute} from "../../constants.js";
 
 enum Error {

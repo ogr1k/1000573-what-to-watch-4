@@ -1,10 +1,14 @@
-import React from "react";
+import * as React from "react";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../constants.js";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
 
-const UserBlock = (props) => {
+
+interface Props {
+  authorisationStatus: string;
+}
+
+const UserBlock: React.FunctionComponent<Props> = (props: Props) => {
 
   const {authorisationStatus} = props;
 
@@ -19,7 +23,7 @@ const UserBlock = (props) => {
         </Link>
       </div>
 
-      <div to={AppRoute.MYLIST} className="user-block">
+      <div className="user-block">
 
         {authorisationStatus === AuthorisationStatus.AUTH
           ?
@@ -36,10 +40,5 @@ const UserBlock = (props) => {
     </header>
   );
 };
-
-UserBlock.propTypes = {
-  authorisationStatus: PropTypes.string.isRequired
-};
-
 
 export default UserBlock;

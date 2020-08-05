@@ -1,9 +1,9 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {getFilmById, getSameGenreFilms, getIsFilmsFetching} from "../../reducer/data/selector.js";
-import {Link} from "react-router-dom";
-import Header from "../header/header.jsx";
-import Footer from "../footer/footer.jsx";
+import {Link, RouteProps} from "react-router-dom";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block";
 import FilmsList from "../films-list/films-list";
 import withActiveTab from "../../hoc/with-active-tab/with-active-tab";
@@ -11,7 +11,7 @@ import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Operation} from "../../reducer/data/data.js";
 import history from "../../history.js";
-import Loader from "../loader/loader.jsx";
+import Loader from "../loader/loader";
 import {Film} from "../../types";
 
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);

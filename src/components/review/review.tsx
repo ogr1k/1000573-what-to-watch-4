@@ -1,14 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import { Comment } from "../../types";
 
-const formatDate = (date) => {
+interface Props {
+  comment: Comment;
+}
+
+const formatDate = (date: Date) => {
 
   const options = {year: `numeric`, month: `long`, day: `numeric`};
 
   return date.toLocaleString(`en-US`, options);
 };
 
-const Review = (props) => {
+const Review: React.FunctionComponent<Props> = (props: Props) => {
 
   const {comment} = props;
   const {date, rating, comment: commentText, user} = comment;
@@ -30,17 +34,5 @@ const Review = (props) => {
   );
 };
 
-Review.propTypes = {
-  comment: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }),
-    rating: PropTypes.number.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  }),
-};
 
 export default Review;

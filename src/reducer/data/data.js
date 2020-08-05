@@ -8,7 +8,7 @@ const initialState = {
   comments: [],
   isFavouriteFetching: false,
   favouriteFilms: [],
-  isServerUvailable: true
+  isServerAvailable: true
 };
 
 const parseFilmData = (film) => {
@@ -101,7 +101,7 @@ const ActionCreator = {
     type: ActionType.IS_FILMS_FETCHING,
     payload: status
   }),
-  changeIsServerUvailable: () => ({
+  changeIsServerAvailable: () => ({
     type: ActionType.SET_NETWORK_ERROR,
   })
 };
@@ -247,7 +247,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_NETWORK_ERROR: {
 
       return extend(state, {
-        isServerUvailable: false
+        isServerAvailable: false
       });
     }
   }

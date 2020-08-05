@@ -1,23 +1,37 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import FilmsList from "../films-list/films-list";
-import GenresList from "../genres-list/genres-list.tsx";
+import GenresList from "../genres-list/genres-list";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/main-page/main-page.js";
 import {Operation} from "../../reducer/data/data.js";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import ShowMoreButton from "../show-more-button/show-more-button";
 import {getPromoFilm, getFilmsByGenres, getGenres, getIsFavouriteFetching, getIsFilmsFetching} from "../../reducer/data/selector.js";
 import {getActiveFilter, getMaxCardsCount} from "../../reducer/main-page/selector.js";
-import Header from "../header/header.jsx";
-import Footer from "../footer/footer.jsx";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
-import Loader from "../loader/loader.jsx";
+import Loader from "../loader/loader";
+import { Film } from "../../types";
+
+interface Props {
+  promoFilm: Film;
+  films: Film[];
+  genres: string[];
+  activeFilter: string;
+  onFilterClick: (filterName: string) => void;
+  onShowMoreButtonClick: () => void;
+  maxCards: number;
+  authorisationStatus: string;
+  changeIsFavourite: (id: number, status: boolean, isPromoFilm: boolean) => void;
+  isFavouriteFetching?: boolean;
+  isFilmsFetching?: boolean;
+}
 
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {promoFilm, films, genres, activeFilter, onFilterClick, onShowMoreButtonClick,
     maxCards, authorisationStatus, changeIsFavourite, isFavouriteFetching, isFilmsFetching} = props;
 
@@ -129,37 +143,6 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratings: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    year: PropTypes.number.isRequired
-  })).isRequired,
-  promoFilm: PropTypes.shape({
-    name: PropTypes.string,
-    year: PropTypes.number,
-    genre: PropTypes.string,
-    poster: PropTypes.string,
-    backgroundImage: PropTypes.string,
-    id: PropTypes.number,
-    isFavourite: PropTypes.bool
-  }).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-  maxCards: PropTypes.number.isRequired,
-  authorisationStatus: PropTypes.string.isRequired,
-  changeIsFavourite: PropTypes.func.isRequired,
-  isFavouriteFetching: PropTypes.bool.isRequired,
-  isFilmsFetching: PropTypes.bool.isRequired
-};
 
 const mapStateToProps = (state) => {
 

@@ -31,3 +31,14 @@ export interface InfoBlockCommonProps {
   activeTab: string;
   onClick: (tab: string) => void;
 }
+
+export interface Comment {
+  id: number;
+  rating: number;
+  comment: string;
+  date: string;
+  user: {
+    id: number;
+    name: string;
+  };
+}

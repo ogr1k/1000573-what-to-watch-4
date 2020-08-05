@@ -6,20 +6,20 @@ import {Film} from "../../types.js";
 interface Props {
   film: Film,
   isPlaying: boolean;
-  handleEnter: () => void;
-  handleLeave: () => void;
+  onCardMouseEnter: () => void;
+  onCardMouseLeave: () => void;
   children: React.ReactNode;
 }
 
 const Film: React.FunctionComponent<Props> = (props: Props) => {
 
-    const {film, isPlaying, handleEnter, handleLeave, children} = props;
+    const {film, isPlaying, onCardMouseEnter, onCardMouseLeave, children} = props;
 
     return (
       <article className="small-movie-card catalog__movies-card"
         onClick={isPlaying ? null : () => history.push(`${AppRoute.FILM}/${film.id}`)}
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
+        onMouseEnter={onCardMouseEnter}
+        onMouseLeave={onCardMouseLeave}
       >
         <div className="small-movie-card__image">
           {children}

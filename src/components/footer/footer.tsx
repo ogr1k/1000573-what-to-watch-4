@@ -1,8 +1,8 @@
-import React from "react";
+import * as React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants";
 
-const Copyright = () => {
+const Footer: React.FunctionComponent = () => {
 
   return (
 
@@ -22,4 +22,4 @@ const Copyright = () => {
   );
 };
 
-export default Copyright;
+export default Footer;
