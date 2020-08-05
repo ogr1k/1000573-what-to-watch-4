@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
+import FilmsList from "../films-list/films-list";
 import GenresList from "../genres-list/genres-list.tsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/main-page/main-page.js";

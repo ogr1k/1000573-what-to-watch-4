@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
 import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block.jsx";
-import FilmsList from "../films-list/films-list.jsx";
+import FilmsList from "../films-list/films-list";
 import withActiveTab from "../../hoc/with-active-tab/with-active-tab.js";
 import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";

@@ -7,7 +7,7 @@ import history from "../../history.js";
 import Footer from "../footer/footer.jsx";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
+import FilmsList from "../films-list/films-list";
 
 class MyList extends PureComponent {
 

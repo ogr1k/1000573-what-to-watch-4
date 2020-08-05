@@ -1,17 +1,30 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from "prop-types";
+import * as React from 'react';
+import {Film} from '../../types';
 
 const VIDEO_PLAY_DELAY_MSECONDS = 1000;
-const VIDEO_WIDTH = `280`;
-const VIDEO_HEIGHT = `175`;
+const VIDEO_WIDTH = 280;
+const VIDEO_HEIGHT = 175;
+
+interface Props {
+  film: Film
+}
+
+interface State {
+  isPlaying: boolean;
+}
 
 
 const withCardPlayer = (Component) => {
-  class WithCardPlayer extends PureComponent {
+
+  class WithCardPlayer extends React.PureComponent<Props, State> {
+
+    private videoRef: React.RefObject<HTMLVideoElement>;
+    private startVideoTimeOut: ReturnType<typeof setTimeout>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         isPlaying: false
@@ -24,7 +37,7 @@ const withCardPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       const {film} = this.props;
       const {previewImage} = film;
@@ -52,7 +65,7 @@ const withCardPlayer = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.muted = null;
       video.loop = null;
@@ -63,14 +76,14 @@ const withCardPlayer = (Component) => {
     }
 
     handleLeave() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       video.pause();
       clearTimeout(this.startVideoTimeOut);
     }
 
     handleEnter() {
-      this._videoRef.current.src = this.props.film.video;
-      this.startVideoTimeOut = setTimeout(() => (this._videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
+      this.videoRef.current.src = this.props.film.video;
+      this.startVideoTimeOut = setTimeout(() => (this.videoRef.current.play()), VIDEO_PLAY_DELAY_MSECONDS);
     }
 
 
@@ -83,27 +96,11 @@ const withCardPlayer = (Component) => {
           handleLeave={this.handleLeave}
           isPlaying={this.state.isPlaying}
         >
-          <video ref={this._videoRef}/>
+          <video ref={this.videoRef}/>
         </Component>
       );
     }
   }
-
-  WithCardPlayer.propTypes = {
-    film: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      director: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      ratings: PropTypes.number.isRequired,
-      starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-      year: PropTypes.number.isRequired,
-      video: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired
-    }).isRequired,
-  };
 
   return WithCardPlayer;
 };
