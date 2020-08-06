@@ -55,10 +55,10 @@ const withFormValues = (Component) => {
 
     }
 
-    handleClick(rating) {
+    handleClick(e) {
 
       this.setState({
-        rating,
+        rating: e.target.value,
       });
 
     }
@@ -68,7 +68,6 @@ const withFormValues = (Component) => {
 
       const {postReview} = this.props;
 
-
       postReview({
         rating: this.state.rating,
         comment: this.state.comment
@@ -77,6 +76,7 @@ const withFormValues = (Component) => {
 
 
     render() {
+
 
       const isValid = Boolean(this.state.comment.length >= MIN_COMMENT_SYMBOLS && this.state.comment.length <= MAX_COMMENT_SYMBOLS && this.state.rating);
 
