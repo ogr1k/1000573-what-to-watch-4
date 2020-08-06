@@ -130,7 +130,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList genres={genres} clickHandler={onFilterClick} activeFilter={activeFilter}/>
+          <GenresList genres={genres} onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
           <FilmsList films={films.slice(0, maxCards)} />
 

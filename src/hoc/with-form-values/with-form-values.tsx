@@ -18,7 +18,7 @@ interface State {
 interface InjectedProps {
   onChange: (e: React.FormEvent) => void;
   onSubmit: (e: React.FormEvent) => void;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (rating: React.MouseEvent) => void;
   isValid: boolean;
 }
 
@@ -55,10 +55,10 @@ const withFormValues = (Component) => {
 
     }
 
-    handleClick(e) {
+    handleClick(rating) {
 
       this.setState({
-        rating: e.target.value
+        rating,
       });
 
     }

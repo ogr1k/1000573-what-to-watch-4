@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Film 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="small-movie-card__image"
+  >
+    <div />
+  </div>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      onClick={null}
+    >
+      Once Upon a Time in America
+    </a>
+  </h3>
+</article>
+`;

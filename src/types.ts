@@ -16,12 +16,12 @@ export interface Film {
       runTime: number;
       isFavourite: boolean;
       mainVideo: string;
-    };
+    }
 
 export interface Review {
     rating: string;
     comment: string;
-  };
+  }
 
 export interface InfoBlockCommonProps {
   film: Film;

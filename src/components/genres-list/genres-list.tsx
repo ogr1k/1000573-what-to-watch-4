@@ -6,7 +6,7 @@ const MAX_GENRES = 9;
 
 
 interface Props {
-  clickHandler: (genre: string) => void;
+  onFilterClick: (genre: string) => void;
   genres: string[];
   activeFilter: string;
 }

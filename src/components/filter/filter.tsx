@@ -1,19 +1,19 @@
 import * as React from "react";
 
 interface Props {
-  clickHandler: (genre: string) => void;
+  onFilterClick: (genre: string) => void;
   genre: string;
   activeFilter: string;
 }
 
 
 const Filter: React.FunctionComponent<Props> = (props: Props) => {
-  const {genre, clickHandler, activeFilter} = props;
+  const {genre, onFilterClick, activeFilter} = props;
 
   const onFilterClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     if (genre !== activeFilter) {
-      clickHandler(genre);
+      onFilterClick(genre);
     }
   };
 

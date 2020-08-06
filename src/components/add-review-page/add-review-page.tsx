@@ -10,7 +10,7 @@ import {Film, Review} from "../../types.js";
 const WrappedAddReview = withFormValues(AddReview);
 
 interface Props {
-   film: Film,
+   film: Film;
    postReview: (argument: Review) => void;
    cleanReviewState: () => void;
 }

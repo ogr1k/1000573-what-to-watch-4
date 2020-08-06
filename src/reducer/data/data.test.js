@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation} from "./data.js";
-import {films} from "../../mocks/test-mocks.js";
+import {films} from "../../mocks/test-mocks";
 
 const film = {
   "description": `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
@@ -97,7 +97,7 @@ it(`Data reducer without additional parameters should return initial state`, () 
     favouriteFilms: [],
     isFavouriteFetching: false,
     isFilmsFetching: false,
-    isServerUvailable: true
+    isServerAvailable: true
   });
 });
 
@@ -201,11 +201,11 @@ it(`Reducer should clean favouriteFilmsData by cleanFavouriteFilmsData`, () => {
 it(`Reducer should set networkError by setNetworkError`, () => {
 
   expect(reducer({
-    isServerUvailable: true
+    isServerAvailable: true
   }, {
     type: ActionType.SET_NETWORK_ERROR,
   })).toEqual({
-    isServerUvailable: false,
+    isServerAvailable: false,
   });
 
 });
