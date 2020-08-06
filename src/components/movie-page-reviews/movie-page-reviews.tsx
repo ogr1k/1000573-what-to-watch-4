@@ -22,20 +22,22 @@ class MoviePageReviews extends React.PureComponent<Props> {
     this.props.loadComments(this.props.film.id);
   }
 
-  _renderReviews() {
-    const {comments} = this.props;
-
+  _renderReviews(comments: Comment[]) {
     if (!comments.length) {
       return null;
     }
 
-    return comments.map((comment) => <Review key={comment.id} comment={comment}/>);
+    return comments.map((comment: Comment) => <Review key={comment.id} comment={comment}/>);
   }
 
   render() {
 
-    const {activeTab, onClick, film} = this.props;
+    const {activeTab, onClick, film, comments} = this.props;
     const {name, poster} = film;
+
+    const middleCommentsIndex = Math.ceil(comments.length / 2);
+    const firstPartComments = comments.slice(0, middleCommentsIndex);
+    const secondPartComments = comments.slice(middleCommentsIndex);
 
     return (
       <>
@@ -46,7 +48,10 @@ class MoviePageReviews extends React.PureComponent<Props> {
           <MoviePageTabs activeTab={activeTab} onClick={onClick}/>
           <div className="movie-card__reviews movie-card__row">
             <div className="movie-card__reviews-col">
-              {this._renderReviews()}
+              {this._renderReviews(firstPartComments)}
+            </div>
+            <div className="movie-card__reviews-col">
+              {this._renderReviews(secondPartComments)}
             </div>
           </div>
         </div>

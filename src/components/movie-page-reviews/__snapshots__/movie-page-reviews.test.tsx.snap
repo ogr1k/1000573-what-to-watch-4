@@ -99,6 +99,9 @@ Array [
           </div>
         </div>
       </div>
+      <div
+        className="movie-card__reviews-col"
+      />
     </div>
   </div>,
 ]
