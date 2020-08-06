@@ -99,5 +99,5 @@ export const getLoadFilmsError = (state) => {
 
 export const getServerError = (state) => {
 
-  return state[NAME_SPACE].isServerUvailable;
+  return state[NAME_SPACE].isServerAvailable;
 };

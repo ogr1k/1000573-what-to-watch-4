@@ -36,7 +36,7 @@ const ActionCreator = {
 const Operation = {
   postReview: (review, id) => (dispatch, getState, api) => {
     dispatch(ActionCreator.changeFetchStatus(FetchStatus.IS_FETCHING));
-    return api.post(`${AppRoute.COMMENTS}/${id}`, {
+    return api.post(`${AppRoute.COMMENTS}/${Number(id)}`, {
       rating: review.rating,
       comment: review.comment
     })
