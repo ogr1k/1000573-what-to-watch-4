@@ -3,6 +3,7 @@ import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {Film} from "../../types.js";
 
+
 interface Props {
   film: Film,
   isPlaying: boolean;

@@ -1,6 +1,3 @@
-import {InjectingProps as ActiveTypeInjectedProps} from "./hoc/with-active-tab/with-active-tab";
-
-
 export interface Film {
       description: string;
       director: string;

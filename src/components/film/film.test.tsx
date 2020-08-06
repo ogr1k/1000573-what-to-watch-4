@@ -1,9 +1,28 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import AddReview from "./add-review.jsx";
-import {BrowserRouter} from "react-router-dom";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import Film from "./film";
 
-const film = {
+export interface Film {
+  description: string;
+  director: string;
+  genre: string;
+  id: number;
+  name: string;
+  poster: string;
+  previewImage: string;
+  rating: number;
+  ratings: number;
+  starring: string[];
+  video: string;
+  year: number;
+  backgroundImage: string;
+  backgroundColor: string;
+  runTime: number;
+  isFavourite: boolean;
+  mainVideo: string;
+};
+
+const film: (Film) = {
   description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
   director: `Sergio Leone`,
   genre: `Crime`,
@@ -24,21 +43,12 @@ const film = {
 };
 
 
-it(`Render Add Review`, () => {
-
+it(`Render Film`, () => {
   const tree = renderer
-    .create(
-        <BrowserRouter>
-          <AddReview
-            film={film}
-            onClick={() => {}}
-            onChange={() => {}}
-            onSubmit={() => {}}
-            error={{}}
-            isValid={true}
-            isFetching={false}
-          />
-        </BrowserRouter>
+    .create(<Film film={film} onCardMouseEnter={() => {}}
+    onCardMouseLeave={() => {}} isPlaying={false}>
+    <div></div>
+    </Film>
     )
     .toJSON();
 
