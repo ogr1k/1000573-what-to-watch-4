@@ -8,7 +8,13 @@ import {noop} from "../../utils";
 const VIDEO_PLAY_DELAY_MSECONDS = 1000;
 
 
-const Film = (props) => {
+interface Props {
+  children: React.ReactNode;
+  onCardMouseEnter: () => void;
+  onCardMouseLeave: () => void;
+}
+
+const Film: React.FunctionComponent<Props> = (props: Props) => {
   const {children, onCardMouseEnter, onCardMouseLeave} = props;
 
   return (

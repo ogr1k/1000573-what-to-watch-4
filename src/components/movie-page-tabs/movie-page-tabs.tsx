@@ -1,11 +1,12 @@
 import * as React from "react";
 import {TabsNames} from "../../constants.js";
-import { InfoBlockCommonProps } from "../../types.js";
 
 
 const Tabs = [TabsNames.OVERVIEW, TabsNames.DETAILS, TabsNames.REVIEWS];
 
-interface Props extends Pick<InfoBlockCommonProps, "activeTab" | "onClick">  {
+interface Props {
+  activeTab: string;
+  onClick: (tab: string) => void;
   filmId?: number;
 }
 

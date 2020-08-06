@@ -3,8 +3,12 @@ import * as renderer from "react-test-renderer";
 import withCardPlayer from "./with-card-player";
 import {film} from "../../mocks/test-mocks";
 
+interface Props {
+  children: React.ReactNode;
+}
 
-const MockComponent = (props) => {
+
+const MockComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {children} = props;
 
   return (

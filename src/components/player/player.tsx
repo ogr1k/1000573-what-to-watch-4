@@ -2,7 +2,7 @@
 import * as React from "react";
 import {AppRoute} from "../../constants";
 import history from "../../history.js";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 interface Props {
   film: Film;

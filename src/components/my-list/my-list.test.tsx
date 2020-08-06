@@ -8,9 +8,10 @@ import {BrowserRouter} from "react-router-dom";
 import {createAPI} from "../../api.js";
 import thunk from 'redux-thunk';
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils.js";
 
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureStore(middlewares);
 

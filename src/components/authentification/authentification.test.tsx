@@ -10,7 +10,7 @@ it(`Render Authentification`, () => {
   const tree = renderer
       .create(
           <Router history={history}>
-            <Authentification onSubmit={noop} cleanLoginError={() => {}}/>
+            <Authentification onSubmit={noop} cleanLoginError={noop}/>
           </Router>)
       .toJSON();
 

@@ -10,7 +10,8 @@
     "test": "npm run eslint && npm run test.jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
-    "test.jest": "jest"
+    "test.jest": "jest",
+    "lint": "eslint --fix --ext .js,.jsx,.tsx ."
   },
   "devDependencies": {
     "@babel/core": "7.10.2",

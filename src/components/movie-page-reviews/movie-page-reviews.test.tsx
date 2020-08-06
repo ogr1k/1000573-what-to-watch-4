@@ -9,7 +9,8 @@ import {createAPI} from "../../api.js";
 import {film} from "../../mocks/test-mocks";
 import {noop} from "../../utils.js";
 
-const api = createAPI(() => {});
+
+const api = createAPI(noop);
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureStore(middlewares);
 

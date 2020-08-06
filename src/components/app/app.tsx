@@ -1,4 +1,4 @@
-import * as React  from "react";
+import * as React from "react";
 import Main from "../main/main";
 import MoviePage from "../movie-page/movie-page";
 import {Switch, Router, Route, Redirect} from "react-router-dom";
@@ -41,34 +41,34 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
         cleanLoginError={cleanLoginError}
       />
     );
+  };
+
+  if (!isServerAvailable) {
+    return <Error />;
   }
 
-    if (!isServerAvailable) {
-      return <Error />;
-    }
-
-    return (
-      <Router history={history}>
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <Main authorisationStatus={authorisationStatus}/>
-          </Route>
-          <Route exact path={`${AppRoute.FILM}/${AppRoute.ID}`} component={(props) =>
-            <MoviePage routerProps={props} authorisationStatus={authorisationStatus} />
-          }/>
-          <Route exact path={AppRoute.LOGIN}>
-            {renderAuthScreen()}
-          </Route>
-          <PrivateRoute exact path={`${AppRoute.FILM}/${AppRoute.ID}${AppRoute.REVIEW}`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
-          <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
-          <Route exact path={`${AppRoute.PLAYER}/${AppRoute.ID}`} component={PlayerPage}/>
-          <Route >
-            <Error notFoundError={true}/>
-          </Route>
-        </Switch>
-      </Router>
-    );
-}
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main authorisationStatus={authorisationStatus}/>
+        </Route>
+        <Route exact path={`${AppRoute.FILM}/${AppRoute.ID}`} component={(properties) =>
+          <MoviePage routerProps={properties} authorisationStatus={authorisationStatus} />
+        }/>
+        <Route exact path={AppRoute.LOGIN}>
+          {renderAuthScreen()}
+        </Route>
+        <PrivateRoute exact path={`${AppRoute.FILM}/${AppRoute.ID}${AppRoute.REVIEW}`} authorisationStatus={authorisationStatus} component={AddReviewPage}/>
+        <PrivateRoute exact path={AppRoute.MYLIST} component={MyList} authorisationStatus={authorisationStatus}/>
+        <Route exact path={`${AppRoute.PLAYER}/${AppRoute.ID}`} component={PlayerPage}/>
+        <Route >
+          <Error notFoundError={true}/>
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

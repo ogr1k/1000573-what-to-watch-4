@@ -6,7 +6,7 @@ interface State {
   activeTab: string;
 }
 
-interface InjectingProps {
+export interface InjectingProps {
   onClick: (tab: string) => void;
 }
 
@@ -53,4 +53,3 @@ const withActiveTab = (Component) => {
 };
 
 export default withActiveTab;
-export {InjectingProps};

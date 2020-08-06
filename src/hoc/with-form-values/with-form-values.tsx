@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Subtract} from "utility-types";
-import { Review } from '../../types';
+import {Review} from '../../types';
 
 const MAX_COMMENT_SYMBOLS = 400;
 const MIN_COMMENT_SYMBOLS = 50;
@@ -15,7 +15,7 @@ interface State {
   rating?: string;
 }
 
-interface InjectedProps {
+export interface InjectedProps {
   onChange: (e: React.FormEvent) => void;
   onSubmit: (e: React.FormEvent) => void;
   onClick: (rating: React.MouseEvent) => void;
@@ -99,4 +99,3 @@ const withFormValues = (Component) => {
 
 
 export default withFormValues;
-export {InjectedProps};

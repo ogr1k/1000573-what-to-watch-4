@@ -7,8 +7,6 @@ import Review from "../review/review";
 import {InfoBlockCommonProps, Comment} from "../../types";
 
 
-
-
 interface Props extends InfoBlockCommonProps {
   loadComments: (id: number) => void;
   comments: Comment[];
@@ -40,7 +38,7 @@ class MoviePageReviews extends React.PureComponent<Props> {
     const {name, poster} = film;
 
     return (
-    <>
+      <>
         <div className="movie-card__poster movie-card__poster--big">
           <img src={poster} alt={name} width={218} height={327} />
         </div>
@@ -52,7 +50,7 @@ class MoviePageReviews extends React.PureComponent<Props> {
             </div>
           </div>
         </div>
-    </>
+      </>
     );
   }
 

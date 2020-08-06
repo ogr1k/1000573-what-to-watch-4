@@ -6,7 +6,7 @@ const VIDEO_WIDTH = 280;
 const VIDEO_HEIGHT = 175;
 
 interface Props {
-  film: Film
+  film: Film;
 }
 
 interface State {

@@ -6,7 +6,6 @@ import {film} from "../../mocks/test-mocks";
 import {noop} from "../../utils.js";
 
 
-
 it(`Render Movie Page Info Block`, () => {
 
   const tree = renderer

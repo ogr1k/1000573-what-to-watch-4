@@ -1,8 +1,8 @@
 import * as React from "react";
-import {configure, shallow, mount} from "enzyme";
+import {configure, shallow} from "enzyme";
 import AddReview from "./add-review";
 import * as Adapter from "enzyme-adapter-react-16";
-import {film} from "../../mocks/test-mocks"
+import {film} from "../../mocks/test-mocks";
 import {noop} from "../../utils";
 
 configure({adapter: new Adapter()});

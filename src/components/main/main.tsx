@@ -14,7 +14,7 @@ import {AppRoute} from "../../constants.js";
 import {AuthorisationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import Loader from "../loader/loader";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 interface Props {
   promoFilm: Film;
@@ -39,15 +39,6 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
     return <Loader />;
   }
 
-  const renderShowMoreButton = () => {
-
-    if (maxCards < films.length) {
-      return <ShowMoreButton onClick={onShowMoreButtonClick}/>;
-    }
-
-    return null;
-  };
-
   const clickHandler = () => {
 
     if (authorisationStatus === AuthorisationStatus.AUTH) {
@@ -58,7 +49,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
   };
 
   return (
-      <>
+    <>
       <section className="movie-card">
 
         <div className="visually-hidden">
@@ -134,7 +125,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
 
           <FilmsList films={films.slice(0, maxCards)} />
 
-          {renderShowMoreButton()}
+          {maxCards < films.length && <ShowMoreButton onClick={onShowMoreButtonClick}/>}
 
         </section>
         <Footer />

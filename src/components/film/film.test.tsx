@@ -8,8 +8,8 @@ import {noop} from "../../utils";
 it(`Render Film`, () => {
   const tree = renderer
     .create(<Film film={film} onCardMouseEnter={noop}
-    onCardMouseLeave={noop} isPlaying={false}>
-    <div></div>
+      onCardMouseLeave={noop} isPlaying={false}>
+      <div></div>
     </Film>
     )
     .toJSON();

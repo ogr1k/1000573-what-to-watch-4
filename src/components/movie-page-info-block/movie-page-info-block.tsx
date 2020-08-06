@@ -3,9 +3,7 @@ import MoviePageOverview from "../movie-page-overview/movie-page-overview";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews";
 import {TabsNames} from "../../constants.js";
-import {InfoBlockCommonProps} from "../../types";
-
-interface Props extends InfoBlockCommonProps {}
+import {InfoBlockCommonProps as Props} from "../../types";
 
 const MoviePageInfoBlock: React.FunctionComponent<Props> = (props: Props) => {
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {getFilmById, getSameGenreFilms, getIsFilmsFetching} from "../../reducer/data/selector.js";
-import {Link, RouteProps} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MoviePageInfoBlock from "../movie-page-info-block/movie-page-info-block";
@@ -17,7 +17,7 @@ import {Film} from "../../types";
 const WrappedInfoBlock = withActiveTab(MoviePageInfoBlock);
 
 interface Props {
-  film: Film,
+  film: Film;
   authorisationStatus: string;
   sameGenreFilms: Film[];
   changeIsFavourite: (id: number, isFavourite: boolean) => void;

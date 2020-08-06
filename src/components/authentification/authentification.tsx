@@ -5,7 +5,7 @@ import {AppRoute} from "../../constants.js";
 
 enum Error {
   BAD_REQUEST = 400
-};
+}
 
 interface Props {
   cleanLoginError: () => void;

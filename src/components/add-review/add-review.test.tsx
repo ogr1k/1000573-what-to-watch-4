@@ -12,12 +12,12 @@ it(`Render Add Review`, () => {
     .create(
         <BrowserRouter>
           <AddReview
-        onSubmit={noop}
-        onClick={noop}
-        onChange={noop}
-        film={film}
-        isValid={true}
-      />
+            onSubmit={noop}
+            onClick={noop}
+            onChange={noop}
+            film={film}
+            isValid={true}
+          />
         </BrowserRouter>
     )
     .toJSON();

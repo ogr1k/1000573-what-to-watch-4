@@ -4,7 +4,7 @@ import Player from "../player/player";
 import {connect} from "react-redux";
 import {getFilmById, getIsFilmsFetching} from "../../reducer/data/selector.js";
 import Loader from "../loader/loader";
-import { Film } from "../../types.js";
+import {Film} from "../../types.js";
 
 
 const WrappedPlayer = withMainPlayer(Player);
