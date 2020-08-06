@@ -2,6 +2,7 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import MoviePageDetails from "./movie-page-details";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils.js";
 
 
 it(`Render Movie Page Details`, () => {
@@ -11,7 +12,7 @@ it(`Render Movie Page Details`, () => {
         <MoviePageDetails
           activeTab={``}
           film={film}
-          onClick={() => {}}
+          onClick={noop}
         />
     )
     .toJSON();

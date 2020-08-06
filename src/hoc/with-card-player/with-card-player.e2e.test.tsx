@@ -3,6 +3,7 @@ import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import withCardPlayer from "./with-card-player";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils";
 
 const VIDEO_PLAY_DELAY_MSECONDS = 1000;
 
@@ -45,8 +46,8 @@ it(`Checks that HOC's callback stops video`, () => {
     film={film}
   />);
 
-  window.HTMLMediaElement.prototype.pause = () => {};
-  window.HTMLMediaElement.prototype.load = () => {};
+  window.HTMLMediaElement.prototype.pause = noop;
+  window.HTMLMediaElement.prototype.load = noop;
 
   const {videoRef} = wrapper.instance();
 

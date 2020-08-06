@@ -7,7 +7,7 @@ import NameSpace from "../../reducer/name-space.js";
 import {BrowserRouter} from "react-router-dom";
 import {createAPI} from "../../api.js";
 import thunk from 'redux-thunk';
-import { film } from "../../mocks/test-mocks";
+import {film} from "../../mocks/test-mocks";
 
 
 const api = createAPI(() => {});

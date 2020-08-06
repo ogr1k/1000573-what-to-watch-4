@@ -7,6 +7,7 @@ import NameSpace from "../../reducer/name-space.js";
 import thunk from 'redux-thunk';
 import {createAPI} from "../../api.js";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils.js";
 
 const api = createAPI(() => {});
 const middlewares = [thunk.withExtraArgument(api)];
@@ -37,7 +38,7 @@ it(`Render Movie Page Reviews`, () => {
           <MoviePageReviews
             activeTab={`Reviews`}
             film={film}
-            onClick={() => {}}
+            onClick={noop}
           />
         </Provider>
     )

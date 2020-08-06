@@ -7,6 +7,7 @@ import NameSpace from "../../reducer/name-space.js";
 import {Router, BrowserRouter} from "react-router-dom";
 import history from "../../history.js";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -32,7 +33,7 @@ it(`Render Main`, () => {
           <Provider store={store}>
             <Router history={history}>
               <Main
-                handleHeaderClick={() => {}}
+                handleHeaderClick={noop}
               />
             </Router>
           </Provider>

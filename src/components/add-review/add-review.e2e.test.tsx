@@ -2,8 +2,8 @@ import * as React from "react";
 import {configure, shallow, mount} from "enzyme";
 import AddReview from "./add-review";
 import * as Adapter from "enzyme-adapter-react-16";
-import {BrowserRouter} from "react-router-dom";
 import {film} from "../../mocks/test-mocks"
+import {noop} from "../../utils";
 
 configure({adapter: new Adapter()});
 
@@ -14,8 +14,8 @@ it(`Should textarea be changed`, () => {
 
   const review = shallow(
       <AddReview
-        onSubmit={() => {}}
-        onClick={() => {}}
+        onSubmit={noop}
+        onClick={noop}
         onChange={(e) => {
           evt = e;
           mockFunction(e);
@@ -38,8 +38,8 @@ it(`Should form be submitted`, () => {
   const review = shallow(
       <AddReview
         onSubmit={mockFunction}
-        onClick={() => {}}
-        onChange={() => {}}
+        onClick={noop}
+        onChange={noop}
         film={film}
         isValid={true}
       />

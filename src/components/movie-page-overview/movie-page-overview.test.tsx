@@ -2,6 +2,7 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import MoviePageOverview from "./movie-page-overview";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils.js";
 
 it(`Render Movie Page Overview`, () => {
 
@@ -11,7 +12,7 @@ it(`Render Movie Page Overview`, () => {
         <MoviePageOverview
           activeTab={``}
           film={film}
-          onClick={() => {}}
+          onClick={noop}
         />
 
     )

@@ -3,6 +3,7 @@ import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import withMainPlayer from "./with-main-player";
 import {film} from "../../mocks/test-mocks";
+import {noop} from "../../utils";
 
 configure({adapter: new Adapter()});
 
@@ -54,7 +55,7 @@ it(`Checks that HOC's main player callback stops video`, () => {
       <PlayerWrapped film={film}/>
   );
 
-  window.HTMLMediaElement.prototype.pause = () => {};
+  window.HTMLMediaElement.prototype.pause = noop;
 
   const instance = wrapper.instance();
   const videoRef = instance.videoRef;
