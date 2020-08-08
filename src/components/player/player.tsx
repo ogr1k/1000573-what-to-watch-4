@@ -7,7 +7,7 @@ import {Film} from "../../types";
 
 const ISOSTRING_FIRST_TIME_DIGIT = 11;
 const ISOSTRING_TIME_DIGITS_AMOUNT = 8;
-const MILLISECODNS_IN_SECOND = 1000;
+const MILLISECONDS_IN_SECOND = 1000;
 const PERCANTAGES = 100;
 
 interface Props {
@@ -25,7 +25,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   const {children, onPlayPauseClick, progress, film, duration, onFullScreenclick, isPlaying} = props;
 
-  const elapsedTime = new Date((duration - progress) * MILLISECODNS_IN_SECOND).toISOString().substr(ISOSTRING_FIRST_TIME_DIGIT, ISOSTRING_TIME_DIGITS_AMOUNT);
+  const elapsedTime = new Date((duration - progress) * MILLISECONDS_IN_SECOND).toISOString().substr(ISOSTRING_FIRST_TIME_DIGIT, ISOSTRING_TIME_DIGITS_AMOUNT);
 
   const togglerPositionInPercantages = progress / duration * PERCANTAGES;
 
