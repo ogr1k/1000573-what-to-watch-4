@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
 import {getFavouriteFilms} from "../../reducer/data/selector.js";
 import {AppRoute} from "../../constants.js";
-import history from "../../history.js";
 import Footer from "../footer/footer";
 import {Link} from "react-router-dom";
 import FilmsList from "../films-list/films-list";
@@ -27,12 +26,6 @@ class MyList extends React.PureComponent<Props> {
     this.props.loadFavouriteFilms();
 
   }
-
-
-  handleClick(id) {
-    history.push(`${AppRoute.FILM}/${id}`);
-  }
-
 
   render() {
 

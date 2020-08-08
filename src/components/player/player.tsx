@@ -4,11 +4,16 @@ import {AppRoute} from "../../constants";
 import history from "../../history.js";
 import {Film} from "../../types";
 
+
+const ISOSTRING_FIRST_TIME_DIGIT = 11;
+const ISOSTRING_TIME_DIGITS_AMOUNT = 8;
+const MILLISECODNS_IN_SECOND = 1000;
+const PERCANTAGES = 100;
+
 interface Props {
   film: Film;
   isPlaying: boolean;
   onPlayPauseClick: () => void;
-  handleLeave: () => void;
   onFullScreenclick: () => void;
   children: React.ReactNode;
   progress: number;
@@ -20,8 +25,9 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   const {children, onPlayPauseClick, progress, film, duration, onFullScreenclick, isPlaying} = props;
 
-  const elapsedTime = new Date((duration - progress) * 1000).toISOString().substr(11, 8);
-  const togglerPosition = progress / duration * 100;
+  const elapsedTime = new Date((duration - progress) * MILLISECODNS_IN_SECOND).toISOString().substr(ISOSTRING_FIRST_TIME_DIGIT, ISOSTRING_TIME_DIGITS_AMOUNT);
+
+  const togglerPositionInPercantages = progress / duration * PERCANTAGES;
 
   return (
     <React.Fragment>
@@ -31,7 +37,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={progress} max={duration} />
-            <div className="player__toggler" style={{left: `${togglerPosition}%`}}>Toggler</div>
+            <div className="player__toggler" style={{left: `${togglerPositionInPercantages}%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{elapsedTime}</div>
         </div>

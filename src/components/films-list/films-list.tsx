@@ -1,13 +1,13 @@
 import * as React from "react";
 import withCardPlayer from "../../hoc/with-card-player/with-card-player";
 import Film from "../film/film";
-import {Film as FilmInterfase} from "../../types";
+import {Film as FilmTypes} from "../../types";
 
 const WrappedFilm = withCardPlayer(Film);
 
 interface Props {
 
-  films: FilmInterfase[];
+  films: FilmTypes[];
 
 }
 

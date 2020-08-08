@@ -13,6 +13,8 @@ interface Props {
    film: Film;
    postReview: (argument: Review) => void;
    cleanReviewState: () => void;
+   fetchStatus?: string;
+   errorMessage?: string;
 }
 
 

@@ -13,7 +13,7 @@ import MyList from "../my-list/my-list";
 import PlayerPage from "../player-page/player-page";
 import PrivateRoute from "../private-route/private-route";
 import Error from "../error/error";
-import {getLoadFilmsError, getServerError} from "../../reducer/data/selector.js";
+import {getServerError} from "../../reducer/data/selector.js";
 
 
 interface Props {
@@ -73,7 +73,6 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
 const mapStateToProps = (state) => {
   return {
     authorisationStatus: getAuthorisationStatus(state),
-    loadFilmsError: getLoadFilmsError(state),
     isServerAvailable: getServerError(state),
     loginError: getLoginError(state)
   };

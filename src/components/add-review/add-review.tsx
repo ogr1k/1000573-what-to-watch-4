@@ -5,7 +5,6 @@ import {FetchStatus} from "../../reducer/review/review.js";
 import {Film} from "../../types.js";
 import {InjectedProps} from "../../hoc/with-form-values/with-form-values";
 
-
 const MAX_RATING = 5;
 
 interface Props extends InjectedProps {
@@ -14,28 +13,28 @@ interface Props extends InjectedProps {
   fetchStatus?: string;
 }
 
+const renderStars = (isFetching: boolean) => {
+
+  const starsNodes: React.ReactNode[] = [];
+
+  for (let i = 0; i <= MAX_RATING; i++) {
+    starsNodes.push(
+        <React.Fragment key={i}>
+          <input className="rating__input" id={`star-${i}`} type="radio" disabled={isFetching} name="rating" defaultValue={i} defaultChecked={i === 0}/>
+          <label className={`rating__label ${i === 0 ? `visually-hidden` : ``}`} htmlFor={`star-${i}`}>Rating ${i}</label>
+        </React.Fragment>
+    );
+  }
+
+  return starsNodes;
+};
+
 
 const AddReview: React.FunctionComponent<Props> = (props: Props) => {
 
   if (props.fetchStatus === FetchStatus.DONE) {
     return <Redirect to={`${AppRoute.FILM}/${props.film.id}`} />;
   }
-
-  const renderStars = (isFetching: boolean) => {
-
-    const result = [];
-
-    for (let i = 0; i <= MAX_RATING; i++) {
-      result.push(
-          <React.Fragment key={i}>
-            <input className="rating__input" id={`star-${i}`} type="radio" disabled={isFetching} name="rating" defaultValue={i} defaultChecked={i === 0}/>
-            <label className={`rating__label ${i === 0 ? `visually-hidden` : ``}`} htmlFor={`star-${i}`}>Rating ${i}</label>
-          </React.Fragment>
-      );
-    }
-
-    return result;
-  };
 
   const {film, onSubmit, onClick, onChange, isValid, errorMessage, fetchStatus} = props;
   const {name, poster, backgroundImage, id} = film;

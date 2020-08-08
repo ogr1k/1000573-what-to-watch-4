@@ -8,7 +8,7 @@ import {noop} from "../../utils.js";
 it(`Render Player`, () => {
   const tree = renderer
     .create(<Player film={film} onPlayPauseClick={noop} onFullScreenclick={noop}
-      progress={0} isPlaying={false} duration={10} handleLeave={noop}
+      progress={0} isPlaying={false} duration={10}
     >
       <div></div>
     </Player>)
