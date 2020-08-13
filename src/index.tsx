@@ -31,7 +31,7 @@ store.dispatch(UserOperation.checkAuth());
 
 
 ReactDOM.render(
-    <Provider Provider store={store}>
+    <Provider store={store}>
       <App />
     </Provider>,
     document.querySelector(`#root`)
